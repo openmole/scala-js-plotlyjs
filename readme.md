@@ -1,12 +1,12 @@
-scala-js-plotly.js
+scala-js-plotlyjs
 ===============
 
-[![Build Status](https://travis-ci.org/DefinitelyScala/scala-js-plotly.js.svg?branch=master)](https://travis-ci.org/DefinitelyScala/scala-js-plotly.js)
+[![Build Status](https://travis-ci.org/DefinitelyScala/scala-js-plotlyjs.svg?branch=master)](https://travis-ci.org/DefinitelyScala/scala-js-plotlyjs)
 [![Scala.js](https://www.scala-js.org/assets/badges/scalajs-0.6.15.svg)](https://www.scala-js.org/)
 
 Scala.js facades for [plotly.js](https://plot.ly/javascript/).
 
-Generated from [TypeScript definitions](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/plotly.js) based on plotly.js .
+Generated from [TypeScript definitions](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/plotlyjs) based on plotly.js .
 
 Usage
 -----
@@ -20,7 +20,7 @@ resolvers += Resolver.jcenterRepo,
 Then, add it to your SBT dependencies:
 
 ```
-libraryDependencies += "com.definitelyscala" %%% "scala-js-plotly.js" % "1.0.0"
+libraryDependencies += "com.definitelyscala" %%% "scala-js-plotlyjs" % "1.0.0"
 ```
 
 Classes and traits are available in the package `com.definitelyscala.plotlyjs`, scaladoc is provided.
