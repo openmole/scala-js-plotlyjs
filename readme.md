@@ -20,7 +20,7 @@ resolvers += Resolver.jcenterRepo,
 Then, add it to your SBT dependencies:
 
 ```
-libraryDependencies += "com.definitelyscala" %%% "scala-js-plotlyjs" % "1.0.0"
+libraryDependencies += "com.definitelyscala" %%% "scala-js-plotlyjs" % "1.0.1"
 ```
 
 Classes and traits are available in the package `com.definitelyscala.plotlyjs`, scaladoc is provided.
