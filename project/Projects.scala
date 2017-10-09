@@ -42,7 +42,10 @@ object Projects {
     bintrayVcsUrl := Some("git:git@github.com:DefinitelyScala/scala-js-plotlyjs.git"),
     publishMavenStyle := true,
     licenses += ("MIT", url("http://opensource.org/licenses/MIT")),
-    libraryDependencies ++= Seq("org.scala-js" %%% "scalajs-dom" % "0.9.2"),
+    libraryDependencies ++= Seq(
+      "org.scala-js" %%% "scalajs-dom" % "0.9.2",
+      "org.querki" %%% "querki-jsext" % "0.8"),
+    scalacOptions += "-P:scalajs:sjsDefinedByDefault",
     scalaJSStage in Global := FastOptStage)
 
   lazy val plotlyjs: Project = Project(id = projectId, base = file(".")).settings(commonSettings ++ scalaJsSettings).enablePlugins(ScalaJSPlugin)
