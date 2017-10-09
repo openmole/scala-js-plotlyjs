@@ -18,18 +18,6 @@ object PlotlyImplicits {
 object Plotly extends PlotlyStatic
 
 @js.native
-trait StaticPlots extends js.Object {
-  def resize(root: Root): Unit = js.native
-}
-
-@js.native
-trait Point extends js.Object {
-  var x: Double = js.native
-  var y: Double = js.native
-  var z: Double = js.native
-}
-
-@js.native
 trait PlotlyHTMLElement extends js.Object {
   def on(event: String, callback: js.Function1[PointsData, Unit]): Unit
 

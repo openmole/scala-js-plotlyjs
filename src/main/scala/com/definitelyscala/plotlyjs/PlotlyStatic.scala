@@ -11,7 +11,6 @@ import js.|
 
 @js.native
 trait PlotlyStatic extends js.Object {
-  val Plots: StaticPlots = js.native
   type Root = String | HTMLElement
   def newPlot(root: Root, scatterData: js.Array[PlotData], layout: js.UndefOr[Layout] = js.undefined, config: js.UndefOr[Config] = js.undefined): PlotlyHTMLElement = js.native
   def plot(root: Root, data: js.Array[PlotData], layout: js.UndefOr[Layout] = js.undefined, config: js.UndefOr[Config] = js.undefined): PlotlyHTMLElement = js.native
