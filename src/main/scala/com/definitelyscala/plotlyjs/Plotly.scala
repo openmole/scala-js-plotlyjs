@@ -1,7 +1,9 @@
 package com.definitelyscala.plotlyjs
 
 import com.definitelyscala.plotlyjs.Plotly._
+import com.definitelyscala.plotlyjs.plotlyConts.PlotMode
 import org.scalajs.dom.raw.HTMLElement
+
 import scala.language.implicitConversions
 import org.querki.jsext._
 
@@ -11,7 +13,9 @@ import scala.scalajs.js.annotation.{ JSExportTopLevel, JSGlobal, JSGlobalScope, 
 
 object PlotlyImplicits {
   implicit def elToPlotlyElement[T <: HTMLElement](element: T): PlotlyHTMLElement = element.asInstanceOf[PlotlyHTMLElement]
+
   implicit def thisBuilderToThis[T <: js.Object, B <: JSOptionBuilder[T, _]](b: B): T = b._result
+
   implicit def thisBuilderToUndefForThis[T <: js.Object, B <: JSOptionBuilder[T, _]](b: B): js.UndefOr[T] = b._result
 }
 
@@ -71,60 +75,139 @@ object Layout extends LayoutBuilder(noOpts)
 
 class LayoutBuilder(val dict: OptMap) extends JSOptionBuilder[Layout, LayoutBuilder](new LayoutBuilder(_)) {
   def title(v: String) = jsOpt("title", v)
+
   def hovermode(v: String) = jsOpt("hovermode", v)
+
   def autosize(v: Boolean) = jsOpt("autosize", v)
+
   def showlegend(v: Boolean) = jsOpt("showlegend", v)
+
   def xaxis(v: Axis) = jsOpt("xaxis", v)
+
   def yaxis(v: Axis) = jsOpt("yaxis", v)
+
   def margin(v: Margin) = jsOpt("margin", v)
+
   def height(v: Double) = jsOpt("height", v)
+
   def width(v: Double) = jsOpt("width", v)
+
   def `xaxis.range`(v: js.Tuple2[Datum, Datum]) = jsOpt("xaxis.range", v)
+
   def `xaxis.range[0]`(v: Datum) = jsOpt("xaxis.range[0]", v)
+
   def `xaxis.range[1]`(v: Datum) = jsOpt("xaxis.range[1]", v)
+
   def `yaxis.range`(v: js.Tuple2[Datum, Datum]) = jsOpt("yaxis.range", v)
+
   def `yaxis.range[0]`(v: Datum) = jsOpt("yaxis.range[0]", v)
+
   def `yaxis.range[1]`(v: Datum) = jsOpt("yaxis.range[1]", v)
+
   def `yaxis.type`(v: AxisType) = jsOpt("yaxis.type", v)
+
   def `xaxis.type`(v: AxisType) = jsOpt("xaxis.type", v)
+
   def `xaxis.autorange`(v: Boolean) = jsOpt("xaxis.autorange", v)
+
   def `yaxis.autorange`(v: Boolean) = jsOpt("yaxis.autourang", v)
+
   def dragmode(v: String) = jsOpt("dragmode", v)
+
   def shapes(v: js.Array[Shape]) = jsOpt("shapes", v)
+
   def legend(v: Legend) = jsOpt("legend", v)
 }
 
 @js.native
 trait Legend extends js.Object {
-  var traceorder: String = js.native
-  var x: Double = js.native
-  var y: Double = js.native
-  var font: Option[Font] = js.native
-  var bgcolor: String = js.native
-  var bordercolor: String = js.native
-  var borderwidth: Double = js.native
-  var orientation: String = js.native
-  var tracegroupgap: Double = js.native
-  var xanchor: String = js.native
-  var yanchor: String = js.native
+  var traceorder: js.UndefOr[String] = js.native
+  var x: js.UndefOr[Double] = js.native
+  var y: js.UndefOr[Double] = js.native
+  var font: js.UndefOr[Font] = js.native
+  var bgcolor: js.UndefOr[String] = js.native
+  var bordercolor: js.UndefOr[String] = js.native
+  var borderwidth: js.UndefOr[Double] = js.native
+  var orientation: js.UndefOr[String] = js.native
+  var tracegroupgap: js.UndefOr[Double] = js.native
+  var xanchor: js.UndefOr[String] = js.native
+  var yanchor: js.UndefOr[String] = js.native
+}
+
+object Legend extends LegendBuilder(noOpts)
+
+class LegendBuilder(val dict: OptMap) extends JSOptionBuilder[Legend, LegendBuilder](new LegendBuilder(_)) {
+  def traceorder(v: String) = jsOpt("traceorder", v)
+
+  def x(v: Double) = jsOpt("x", v)
+
+  def y(v: Double) = jsOpt("y", v)
+
+  def font(v: Font) = jsOpt("font", v)
+
+  def bgcolor(v: String) = jsOpt("bgcolor", v)
+
+  def bordercolor(v: String) = jsOpt("bordercolor", v)
+
+  def borderwidth(v: Double) = jsOpt("borderwidth", v)
+
+  def orientation(v: String) = jsOpt("orientation", v)
+
+  def tracegroupgap(v: Double) = jsOpt("tracegroupgap", v)
+
+  def xanchor(v: String) = jsOpt("xanchor", v)
+
+  def yanchor(v: String) = jsOpt("yanchor", v)
 }
 
 @js.native
 trait Axis extends js.Object {
-  var title: String = js.native
-  var showgrid: Boolean = js.native
-  var fixedrange: Boolean = js.native
-  var rangemode: String = js.native
-  var `type`: AxisType = js.native
-  var tickformat: String = js.native
-  var hoverformat: String = js.native
-  var rangeslider: Option[RangeSlider] = js.native
-  var rangeselector: Option[RangeSelector] = js.native
-  var range: js.Tuple2[Datum, Datum] = js.native
-  var showticklabels: Boolean = js.native
-  var autotick: Boolean = js.native
-  var zeroline: Boolean = js.native
-  var autorange: Boolean | String = js.native
+  var title: js.UndefOr[String] = js.native
+  var showgrid: js.UndefOr[Boolean] = js.native
+  var fixedrange: js.UndefOr[Boolean] = js.native
+  var rangemode: js.UndefOr[String] = js.native
+  var `type`: js.UndefOr[AxisType] = js.native
+  var tickformat: js.UndefOr[String] = js.native
+  var hoverformat: js.UndefOr[String] = js.native
+  var rangeslider: js.UndefOr[RangeSlider] = js.native
+  var rangeselector: js.UndefOr[RangeSelector] = js.native
+  var range: js.UndefOr[js.Tuple2[Datum, Datum]] = js.native
+  var showticklabels: js.UndefOr[Boolean] = js.native
+  var autotick: js.UndefOr[Boolean] = js.native
+  var zeroline: js.UndefOr[Boolean] = js.native
+  var autorange: js.UndefOr[Boolean | String] = js.native
+}
+
+object Axis extends AxisBuilder(noOpts)
+
+class AxisBuilder(val dict: OptMap) extends JSOptionBuilder[Axis, AxisBuilder](new AxisBuilder(_)) {
+  def title(v: String) = jsOpt("title", v)
+
+  def showgrid(v: Boolean) = jsOpt("showgrid", v)
+
+  def fixedrange(v: Boolean) = jsOpt("fixedrange", v)
+
+  def rangemode(v: String) = jsOpt("rangemode", v)
+
+  def `type`(v: AxisType) = jsOpt("type", v)
+
+  def tickformat(v: String) = jsOpt("tickformat", v)
+
+  def hoverformat(v: String) = jsOpt("hoverformat", v)
+
+  def rangeslider(v: RangeSlider) = jsOpt("rangeslider", v)
+
+  def rangeselector(v: RangeSelector) = jsOpt("rangeselector", v)
+
+  def range(v: js.Tuple2[Datum, Datum]) = jsOpt("range", v)
+
+  def showticklabels(v: Boolean) = jsOpt("showticklabels", v)
+
+  def autotick(v: Boolean) = jsOpt("auotick", v)
+
+  def zeroline(v: Boolean) = jsOpt("zeroline", v)
+
+  def autorange(v: Boolean | String) = jsOpt("autorange", v)
 }
 
 @js.native
@@ -183,23 +266,8 @@ trait PlotData extends js.Object {
   var customdata: js.UndefOr[js.Array[String]] = js.native
   var text: js.UndefOr[String | js.Array[String]] = js.native
   var line: js.UndefOr[PlotLine] = js.native
-  var `line.color`: js.UndefOr[Color] = js.native
-  var `line.width`: js.UndefOr[Double] = js.native
-  var `line.dash`: js.UndefOr[Dash] = js.native
-  var `line.shape`: js.UndefOr[String] = js.native
-  var `line.smoothing`: js.UndefOr[Double] = js.native
-  var `line.simplify`: js.UndefOr[Boolean] = js.native
   var marker: js.UndefOr[PlotMarker] = js.native
-  var `marker.symbol`: js.UndefOr[String | js.Array[String]] = js.native
-  var `marker.color`: js.UndefOr[Color] = js.native
-  var `marker.opacity`: js.UndefOr[Double | js.Array[Double]] = js.native
-  var `marker.size`: js.UndefOr[Double | js.Array[Double]] = js.native
-  var `marker.maxdisplayed`: js.UndefOr[Double] = js.native
-  var `marker.sizeref`: js.UndefOr[Double] = js.native
-  var `marker.sizemin`: js.UndefOr[Double] = js.native
-  var `marker.sizemode`: js.UndefOr[String] = js.native
-  var `marker.showscale`: js.UndefOr[Boolean] = js.native
-  var mode: js.UndefOr[String] = js.native
+  var mode: js.UndefOr[PlotMode] = js.native
   var hoveron: js.UndefOr[String] = js.native
   var hoverinfo: js.UndefOr[String] = js.native
   var fill: js.UndefOr[String] = js.native
@@ -213,35 +281,35 @@ object PlotData extends PlotDataBuilder(noOpts)
 
 class PlotDataBuilder(val dict: OptMap) extends JSOptionBuilder[PlotData, PlotDataBuilder](new PlotDataBuilder(_)) {
   def `type`(v: String) = jsOpt("type", v)
+
   def x(v: js.Array[Datum] | js.Array[js.Array[Datum]]) = jsOpt("x", v)
+
   def y(v: js.Array[Datum] | js.Array[js.Array[Datum]]) = jsOpt("y", v)
+
   def z(v: js.Array[Datum] | js.Array[js.Array[Datum]]) = jsOpt("y", v)
+
   def customdata(v: js.Array[String]) = jsOpt("customdata", v)
+
   def text(v: String | js.Array[String]) = jsOpt("text", v)
+
   def line(v: PlotLine) = jsOpt("line", v)
-  def `line.color`(v: Color) = jsOpt("line.color", v)
-  def `line.width`(v: Double) = jsOpt("line.width", v)
-  def `line.dash`(v: Dash) = jsOpt("line.dash", v)
-  def `line.shape`(v: String) = jsOpt("line.shape", v)
-  def `line.smoothing`(v: Double) = jsOpt("line.smoothing", v)
-  def `line.simplify`(v: Boolean) = jsOpt("line.simplify", v)
+
   def marker(v: PlotMarker) = jsOpt("marker", v)
-  def `marker.symbol`(v: String | js.Array[String]) = jsOpt("marker.symbol", v)
-  def `marker.color`(v: Color) = jsOpt("marker.color", v)
-  def `marker.opacity`(v: Double | js.Array[Double]) = jsOpt("marker.opacity", v)
-  def `marker.size`(v: Double | js.Array[Double]) = jsOpt("marker.size", v)
-  def `marker.maxdisplayed`(v: Double) = jsOpt("marker.maxdisplayed", v)
-  def `marker.sizeref`(v: Double) = jsOpt("marker.sizeref", v)
-  def `marker.sizemin`(v: Double) = jsOpt("marker.sizemin", v)
-  def `marker.sizemode`(v: String) = jsOpt("marker.sizemode", v)
-  def `marker.showscale`(v: Boolean) = jsOpt("marker.showscale", v)
+
   def mode(v: String) = jsOpt("mode", v)
+
   def hoveron(v: String) = jsOpt("hoveron", v)
+
   def hoverinfo(v: String) = jsOpt("hoverinfo", v)
+
   def fill(v: String) = jsOpt("fill", v)
+
   def fillcolor(v: String) = jsOpt("fillcolor", v)
+
   def legendgroup(v: String) = jsOpt("legendgroup", v)
+
   def name(v: String) = jsOpt("name", v)
+
   def connectgaps(v: Boolean) = jsOpt("connectgaps", v)
 }
 
@@ -262,24 +330,48 @@ object PlotMarker extends PlotMarkerBuilder(noOpts)
 
 class PlotMarkerBuilder(val dict: OptMap) extends JSOptionBuilder[PlotMarker, PlotMarkerBuilder](new PlotMarkerBuilder(_)) {
   def symbol(v: String | js.Array[String]) = jsOpt("symbol", v)
+
   def color(v: Color) = jsOpt("color", v)
+
   def opacity(v: Double | js.Array[Double]) = jsOpt("opacity", v)
+
   def size(v: Double | js.Array[Double]) = jsOpt("size", v)
+
   def maxdisplayed(v: Double) = jsOpt("maxdisplayed", v)
+
   def sizeref(v: Double) = jsOpt("sizref", v)
+
   def sizemin(v: Double) = jsOpt("sizemin", v)
+
   def sizemode(v: String) = jsOpt("sizemode", v)
+
   def showscale(v: Boolean) = jsOpt("showscale", v)
 }
 
 @js.native
 trait PlotLine extends js.Object {
-  var color: Color = js.native
-  var width: Double = js.native
-  var dash: Dash = js.native
-  var shape: String = js.native
-  var smoothing: Double = js.native
-  var simplify: Boolean = js.native
+  var color: js.UndefOr[Color] = js.native
+  var width: js.UndefOr[Double] = js.native
+  var dash: js.UndefOr[Dash] = js.native
+  var shape: js.UndefOr[String] = js.native
+  var smoothing: js.UndefOr[Double] = js.native
+  var simplify: js.UndefOr[Boolean] = js.native
+}
+
+object PlotLine extends PlotLineBuilder(noOpts)
+
+class PlotLineBuilder(val dict: OptMap) extends JSOptionBuilder[PlotLine, PlotLineBuilder](new PlotLineBuilder(_)) {
+  def color(v: Color) = jsOpt("color", v)
+
+  def width(v: Double) = jsOpt("width", v)
+
+  def dash(v: Dash) = jsOpt("dash", v)
+
+  def shape(v: String) = jsOpt("shape", v)
+
+  def smoothing(v: Double) = jsOpt("smoothing", v)
+
+  def simplify(v: Boolean) = jsOpt("simplify", v)
 }
 
 @js.native
@@ -291,61 +383,143 @@ trait Font extends js.Object {
 
 @js.native
 trait Config extends js.Object {
-  var staticPlot: Boolean = js.native
-  var editable: Boolean = js.native
-  var autosizable: Boolean = js.native
-  var queueLength: Double = js.native
-  var fillFrame: Boolean = js.native
-  var frameMargins: Double = js.native
-  var scrollZoom: Boolean = js.native
-  var doubleClick: String = js.native
-  var showTips: Boolean = js.native
-  var showLink: Boolean = js.native
-  var sendData: Boolean = js.native
-  var linkText: String = js.native
-  var showSources: Boolean = js.native
-  var displayModeBar: String | Boolean = js.native
-  var modeBarButtonsToRemove: js.Array[ModeBarButtons] = js.native
-  var modeBarButtonsToAdd: js.Array[ModeBarButtons] = js.native
-  var modeBarButtons: js.Array[js.Array[ModeBarButtons]] = js.native
-  var displaylogo: Boolean = js.native
-  var plotGlPixelRatio: Double = js.native
-  var setBackground: String = js.native
-  var topojsonURL: String = js.native
-  var mapboxAccessToken: String = js.native
-  var logging: Boolean = js.native
-  var globalTransforms: js.Array[js.Any] = js.native
+  var staticPlot: js.UndefOr[Boolean] = js.native
+  var editable: js.UndefOr[Boolean] = js.native
+  var autosizable: js.UndefOr[Boolean] = js.native
+  var queueLength: js.UndefOr[Double] = js.native
+  var fillFrame: js.UndefOr[Boolean] = js.native
+  var frameMargins: js.UndefOr[Double] = js.native
+  var scrollZoom: js.UndefOr[Boolean] = js.native
+  var doubleClick: js.UndefOr[String] = js.native
+  var showTips: js.UndefOr[Boolean] = js.native
+  var showLink: js.UndefOr[Boolean] = js.native
+  var sendData: js.UndefOr[Boolean] = js.native
+  var linkText: js.UndefOr[String] = js.native
+  var showSources: js.UndefOr[Boolean] = js.native
+  var displayModeBar: js.UndefOr[String | Boolean] = js.native
+  var modeBarButtonsToRemove: js.UndefOr[js.Array[ModeBarButtons]] = js.native
+  var modeBarButtonsToAdd: js.UndefOr[js.Array[ModeBarButtons]] = js.native
+  var modeBarButtons: js.UndefOr[js.Array[js.Array[ModeBarButtons]]] = js.native
+  var displaylogo: js.UndefOr[Boolean] = js.native
+  var plotGlPixelRatio: js.UndefOr[Double] = js.native
+  var setBackground: js.UndefOr[String] = js.native
+  var topojsonURL: js.UndefOr[String] = js.native
+  var mapboxAccessToken: js.UndefOr[String] = js.native
+  var logging: js.UndefOr[Boolean] = js.native
+  var globalTransforms: js.UndefOr[js.Array[js.Any]] = js.native
+}
+
+object Config extends ConfigBuilder(noOpts)
+class ConfigBuilder(val dict: OptMap) extends JSOptionBuilder[Config, ConfigBuilder](new ConfigBuilder(_)) {
+  def staticPlot(v: Boolean) = jsOpt("staticPlot", v)
+  def editable(v: Boolean) = jsOpt("editable", v)
+  def autosizable(v: Boolean) = jsOpt("autosizable", v)
+  def queueLength(v: Double) = jsOpt("queueLength", v)
+  def fillFrame(v: Boolean) = jsOpt("fillFrame", v)
+  def frameMargins(v: Double) = jsOpt("frameMargins", v)
+  def scrollZoom(v: Boolean) = jsOpt("scrollZoom", v)
+  def doubleClick(v: String) = jsOpt("doubleClick", v)
+  def showTips(v: Boolean) = jsOpt("showTips", v)
+  def showLink(v: Boolean) = jsOpt("showLink", v)
+  def sendData(v: Boolean) = jsOpt("sendData", v)
+  def linkText(v: String) = jsOpt("linkText", v)
+  def showSources(v: Boolean) = jsOpt("showSources", v)
+  def displayModeBar(v: String | Boolean) = jsOpt("displayModeBar", v)
+  def modeBarButtonsToRemove(v: js.Array[ModeBarButtons]) = jsOpt("modeBarButtonsToRemove", v)
+  def modeBarButtonsToAdd(v: js.Array[ModeBarButtons]) = jsOpt("modeBarButtonsToAdd", v)
+  def modeBarButtons(v: js.Array[js.Array[ModeBarButtons]]) = jsOpt("modeBarButtons", v)
+  def displaylogo(v: Boolean) = jsOpt("displaylogo", v)
+  def plotGlPixelRatio(v: Double) = jsOpt("plotGlPixelRatio", v)
+  def setBackground(v: String) = jsOpt("setBackground", v)
+  def topojsonURL(v: String) = jsOpt("topojsonURL", v)
+  def mapboxAccessToken(v: String) = jsOpt("mapboxAccessToken", v)
+  def logging(v: Boolean) = jsOpt("logging", v)
+  def globalTransforms(v: js.Array[js.Any]) = jsOpt("globalTransforms", v)
 }
 
 @js.native
 trait RangeSlider extends js.Object {
-  var visible: Boolean = js.native
-  var thickness: Double = js.native
-  var range: js.Tuple2[Datum, Datum] = js.native
-  var borderwidth: Double = js.native
-  var bordercolor: String = js.native
-  var bgcolor: String = js.native
+  var visible: js.UndefOr[Boolean] = js.native
+  var thickness: js.UndefOr[Double] = js.native
+  var range: js.UndefOr[js.Tuple2[Datum, Datum]] = js.native
+  var borderwidth: js.UndefOr[Double] = js.native
+  var bordercolor: js.UndefOr[String] = js.native
+  var bgcolor: js.UndefOr[String] = js.native
+}
+
+object RangeSlider extends RangeSliderBuilder(noOpts)
+
+class RangeSliderBuilder(val dict: OptMap) extends JSOptionBuilder[RangeSlider, RangeSliderBuilder](new RangeSliderBuilder(_)) {
+  def visible(v: Boolean) = jsOpt("visible", v)
+
+  def thickness(v: Double) = jsOpt("thickness", v)
+
+  def range(v: js.Tuple2[Datum, Datum]) = jsOpt("range", v)
+
+  def borderwidth(v: Double) = jsOpt("borderwidth", v)
+
+  def bordercolor(v: String) = jsOpt("bordercolor", v)
+
+  def bgcolor(v: String) = jsOpt("bgcolor", v)
 }
 
 @js.native
 trait RangeSelectorButton extends js.Object {
-  var step: String = js.native
-  var stepmode: String = js.native
-  var count: Double = js.native
-  var label: String = js.native
+  var step: js.UndefOr[String] = js.native
+  var stepmode: js.UndefOr[String] = js.native
+  var count: js.UndefOr[Double] = js.native
+  var label: js.UndefOr[String] = js.native
+}
+
+object RangeSelectorButton extends RangeSelectorButtonBuilder(noOpts)
+
+class RangeSelectorButtonBuilder(val dict: OptMap) extends JSOptionBuilder[RangeSelectorButton, RangeSelectorButtonBuilder](new RangeSelectorButtonBuilder(_)) {
+  def step(v: String) = jsOpt("step", v)
+
+  def stepmode(v: String) = jsOpt("stepmode", v)
+
+  def count(v: Double) = jsOpt("count", v)
+
+  def label(v: String) = jsOpt("label", v)
 }
 
 @js.native
 trait RangeSelector extends js.Object {
-  var buttons: js.Array[Option[RangeSelectorButton]] = js.native
-  var visible: Boolean = js.native
-  var x: Double = js.native
-  var xanchor: String = js.native
-  var y: Double = js.native
-  var yanchor: String = js.native
-  var bgcolor: String = js.native
-  var activecolor: String = js.native
-  var bordercolor: String = js.native
-  var borderwidth: Double = js.native
-  var font: Option[Font] = js.native
+  var buttons: js.UndefOr[js.Array[RangeSelectorButton]] = js.native
+  var visible: js.UndefOr[Boolean] = js.native
+  var x: js.UndefOr[Double] = js.native
+  var xanchor: js.UndefOr[String] = js.native
+  var y: js.UndefOr[Double] = js.native
+  var yanchor: js.UndefOr[String] = js.native
+  var bgcolor: js.UndefOr[String] = js.native
+  var activecolor: js.UndefOr[String] = js.native
+  var bordercolor: js.UndefOr[String] = js.native
+  var borderwidth: js.UndefOr[Double] = js.native
+  var font: js.UndefOr[Font] = js.native
+}
+
+object RangeSelector extends RangeSelectorBuilder(noOpts)
+
+class RangeSelectorBuilder(val dict: OptMap) extends JSOptionBuilder[RangeSelector, RangeSelectorBuilder](new RangeSelectorBuilder(_)) {
+  def buttons(v: js.Array[RangeSelectorButton]) = jsOpt("buttons", v)
+
+  def visible(v: Boolean) = jsOpt("visble", v)
+
+  def x(v: Double) = jsOpt("x", v)
+
+  def xanchor(v: String) = jsOpt("xanchor", v)
+
+  def y(v: Double) = jsOpt("y", v)
+
+  def yanchor(v: String) = jsOpt("yanchor", v)
+
+  def bgcolor(v: String) = jsOpt("bgcolor", v)
+
+  def activecolor(v: String) = jsOpt("activecolor", v)
+
+  def bordercolor(v: String) = jsOpt("bordercolor", v)
+
+  def borderwidth(v: Double) = jsOpt("borderwidth", v)
+
+  def font(v: Font) = jsOpt("font", v)
 }
