@@ -11,6 +11,8 @@ import scala.scalajs.js.annotation.{ JSExportTopLevel, JSGlobal, JSGlobalScope, 
 
 object PlotlyImplicits {
   implicit def elToPlotlyElement[T <: HTMLElement](element: T): PlotlyHTMLElement = element.asInstanceOf[PlotlyHTMLElement]
+  implicit def thisBuilderToThis[T <: js.Object, B <: JSOptionBuilder[T, _]](b: B): T = b._result
+  implicit def thisBuilderToUndefForThis[T <: js.Object, B <: JSOptionBuilder[T, _]](b: B): js.UndefOr[T] = b._result
 }
 
 @js.native
@@ -211,79 +213,49 @@ object PlotData extends PlotDataBuilder(noOpts)
 
 class PlotDataBuilder(val dict: OptMap) extends JSOptionBuilder[PlotData, PlotDataBuilder](new PlotDataBuilder(_)) {
   def `type`(v: String) = jsOpt("type", v)
-
   def x(v: js.Array[Datum] | js.Array[js.Array[Datum]]) = jsOpt("x", v)
-
   def y(v: js.Array[Datum] | js.Array[js.Array[Datum]]) = jsOpt("y", v)
-
   def z(v: js.Array[Datum] | js.Array[js.Array[Datum]]) = jsOpt("y", v)
-
   def customdata(v: js.Array[String]) = jsOpt("customdata", v)
-
   def text(v: String | js.Array[String]) = jsOpt("text", v)
-
   def line(v: PlotLine) = jsOpt("line", v)
-
   def `line.color`(v: Color) = jsOpt("line.color", v)
-
   def `line.width`(v: Double) = jsOpt("line.width", v)
-
   def `line.dash`(v: Dash) = jsOpt("line.dash", v)
-
   def `line.shape`(v: String) = jsOpt("line.shape", v)
-
   def `line.smoothing`(v: Double) = jsOpt("line.smoothing", v)
-
   def `line.simplify`(v: Boolean) = jsOpt("line.simplify", v)
-
   def marker(v: PlotMarker) = jsOpt("marker", v)
-
   def `marker.symbol`(v: String | js.Array[String]) = jsOpt("marker.symbol", v)
-
   def `marker.color`(v: Color) = jsOpt("marker.color", v)
-
   def `marker.opacity`(v: Double | js.Array[Double]) = jsOpt("marker.opacity", v)
-
   def `marker.size`(v: Double | js.Array[Double]) = jsOpt("marker.size", v)
-
   def `marker.maxdisplayed`(v: Double) = jsOpt("marker.maxdisplayed", v)
-
   def `marker.sizeref`(v: Double) = jsOpt("marker.sizeref", v)
-
   def `marker.sizemin`(v: Double) = jsOpt("marker.sizemin", v)
-
   def `marker.sizemode`(v: String) = jsOpt("marker.sizemode", v)
-
   def `marker.showscale`(v: Boolean) = jsOpt("marker.showscale", v)
-
   def mode(v: String) = jsOpt("mode", v)
-
   def hoveron(v: String) = jsOpt("hoveron", v)
-
   def hoverinfo(v: String) = jsOpt("hoverinfo", v)
-
   def fill(v: String) = jsOpt("fill", v)
-
   def fillcolor(v: String) = jsOpt("fillcolor", v)
-
   def legendgroup(v: String) = jsOpt("legendgroup", v)
-
   def name(v: String) = jsOpt("name", v)
-
   def connectgaps(v: Boolean) = jsOpt("connectgaps", v)
 }
 
 @js.native
 trait PlotMarker extends js.Object {
-  var symbol: String | js.Array[String] = js.native
-  var color: Color = js.native
-  var opacity: Double | js.Array[Double] = js.native
-  var size: Double | js.Array[Double] = js.native
-  var maxdisplayed: Double = js.native
-  var sizeref: Double = js.native
-  var sizemin: Double = js.native
-  var sizemode: String = js.native
-  var showscale: Boolean = js.native
+  var symbol: js.UndefOr[String | js.Array[String]] = js.native
+  var color: js.UndefOr[Color] = js.native
+  var opacity: js.UndefOr[Double | js.Array[Double]] = js.native
+  var size: js.UndefOr[Double | js.Array[Double]] = js.native
+  var maxdisplayed: js.UndefOr[Double] = js.native
+  var sizeref: js.UndefOr[Double] = js.native
+  var sizemin: js.UndefOr[Double] = js.native
+  var sizemode: js.UndefOr[String] = js.native
+  var showscale: js.UndefOr[Boolean] = js.native
 }
 
 object PlotMarker extends PlotMarkerBuilder(noOpts)
