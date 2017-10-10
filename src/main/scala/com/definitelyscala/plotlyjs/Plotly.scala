@@ -56,16 +56,6 @@ trait Layout extends js.Object {
   var height: js.UndefOr[Double] = js.native
   var width: js.UndefOr[Double] = js.native
   var hovermode: js.UndefOr[String] = js.native
-  var `xaxis.range`: js.UndefOr[js.Tuple2[Datum, Datum]] = js.native
-  var `xaxis.range[0]`: js.UndefOr[Datum] = js.native
-  var `xaxis.range[1]`: js.UndefOr[Datum] = js.native
-  var `yaxis.range`: js.UndefOr[js.Tuple2[Datum, Datum]] = js.native
-  var `yaxis.range[0]`: js.UndefOr[Datum] = js.native
-  var `yaxis.range[1]`: js.UndefOr[Datum] = js.native
-  var `yaxis.type`: js.UndefOr[AxisType] = js.native
-  var `xaxis.type`: js.UndefOr[AxisType] = js.native
-  var `xaxis.autorange`: js.UndefOr[Boolean] = js.native
-  var `yaxis.autorange`: js.UndefOr[Boolean] = js.native
   var dragmode: js.UndefOr[String] = js.native
   var shapes: js.UndefOr[js.Array[Shape]] = js.native
   var legend: js.UndefOr[Legend] = js.native
@@ -91,26 +81,6 @@ class LayoutBuilder(val dict: OptMap) extends JSOptionBuilder[Layout, LayoutBuil
   def height(v: Double) = jsOpt("height", v)
 
   def width(v: Double) = jsOpt("width", v)
-
-  def `xaxis.range`(v: js.Tuple2[Datum, Datum]) = jsOpt("xaxis.range", v)
-
-  def `xaxis.range[0]`(v: Datum) = jsOpt("xaxis.range[0]", v)
-
-  def `xaxis.range[1]`(v: Datum) = jsOpt("xaxis.range[1]", v)
-
-  def `yaxis.range`(v: js.Tuple2[Datum, Datum]) = jsOpt("yaxis.range", v)
-
-  def `yaxis.range[0]`(v: Datum) = jsOpt("yaxis.range[0]", v)
-
-  def `yaxis.range[1]`(v: Datum) = jsOpt("yaxis.range[1]", v)
-
-  def `yaxis.type`(v: AxisType) = jsOpt("yaxis.type", v)
-
-  def `xaxis.type`(v: AxisType) = jsOpt("xaxis.type", v)
-
-  def `xaxis.autorange`(v: Boolean) = jsOpt("xaxis.autorange", v)
-
-  def `yaxis.autorange`(v: Boolean) = jsOpt("yaxis.autourang", v)
 
   def dragmode(v: String) = jsOpt("dragmode", v)
 
