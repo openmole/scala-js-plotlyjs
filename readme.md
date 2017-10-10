@@ -20,12 +20,52 @@ resolvers += Resolver.jcenterRepo,
 Then, add it to your SBT dependencies:
 
 ```
-libraryDependencies += "com.definitelyscala" %%% "scala-js-plotlyjs" % "1.0.2"
+libraryDependencies += "com.definitelyscala" %%% "scala-js-plotlyjs" % "1.0.3-SNAPSHOT"
 ```
 
 Classes and traits are available in the package `com.definitelyscala.plotlyjs`, scaladoc is provided.
 
 This project provides Scala.js facades. You will still need to include the JavaScript library source in your web page.
+
+Example
+-------
+```scala
+val plotDiv = div.render
+
+    val layout: Layout = Layout
+      .title("My beautifull plot")
+      .showlegend(true)
+
+    val data = PlotData
+      .mode(PlotMode.MARKERS+PlotMode.LINES)
+
+    val data1 = data
+      .x(js.Array[Datum](1999, 2000, 2001, 2002))
+      .y(js.Array[Datum](10, 1, 4, 7))
+      .customdata(js.Array[String]("one", "two", "three", "four"))
+      .marker(PlotMarker.size(12.0).color("red"))
+
+    val data2 = data
+      .x(js.Array[Datum](1999, 2000, 2001, 2002))
+      .y(js.Array[Datum](6, 9, 8, 7))
+      .customdata(js.Array[String]("one", "two", "three", "four"))
+      .marker(PlotMarker.size(12.0).color("rgb(0, 136, 170)"))
+
+    val config: Config = Config.displayModeBar(false)
+
+    val plot = Plotly.newPlot(plotDiv,
+      js.Array(data1, data2),
+      layout,
+      config)
+
+
+    plotDiv.on(PlotEvent.HOVER, (d: PointsData) => {
+      println(d.points.map { p => s"Point ${p.x} ${p.y} ${p.customdata}" })
+    })
+
+
+    dom.document.body.appendChild(plotDiv)
+```
 
 License
 -------
