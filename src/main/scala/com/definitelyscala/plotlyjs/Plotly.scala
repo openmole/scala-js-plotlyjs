@@ -220,11 +220,12 @@ trait PointsData extends js.Object {
 @js.native
 trait PointData extends js.Object {
   val curveNumber: Int = js.native
-  var pointNumber: Int = js.native
-  var customdata: String = js.native
-  val x: Int = js.native
-  val y: Int = js.native
-  val z: Int = js.native
+  val pointNumber: Int = js.native
+  val customdata: String = js.native
+  val x: Double = js.native
+  val y: Double = js.native
+  val z: Double = js.native
+  val data: PlotData = js.native
 }
 
 @js.native
