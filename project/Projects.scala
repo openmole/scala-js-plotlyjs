@@ -1,6 +1,6 @@
-import com.typesafe.sbt.SbtScalariform.{ ScalariformKeys, scalariformSettings }
 import org.scalajs.sbtplugin.ScalaJSPlugin
 import bintray.BintrayKeys._
+import com.typesafe.sbt.SbtScalariform
 import org.scalajs.sbtplugin.ScalaJSPlugin.autoImport._
 import sbt.Keys._
 import sbt._
@@ -10,7 +10,7 @@ object Projects {
   val projectName = "scala-js-plotlyjs"
 
   object Versions {
-    val app = "1.1-SNAPSHOT"
+    val app = "1.1"
     val scalaVersions = Seq("2.11.8", "2.12.2")
   }
 
@@ -25,7 +25,7 @@ object Projects {
 
     shellPrompt := { state => s"[${Project.extract(state).currentProject.id}] $$ " },
     resolvers += Resolver.jcenterRepo,
-    ScalariformKeys.preferences := ScalariformKeys.preferences.value) ++ scalariformSettings
+    SbtScalariform.ScalariformKeys.preferences := SbtScalariform.ScalariformKeys.preferences.value) ++ SbtScalariform.autoImport.scalariformSettings(true)
 
   private[this] val scalaJsSettings = Seq(
     name := projectName,
