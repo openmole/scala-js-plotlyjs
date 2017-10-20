@@ -1,6 +1,7 @@
 package com.definitelyscala.plotlyjs
 
 import com.definitelyscala.plotlyjs.Plotly._
+import com.definitelyscala.plotlyjs.colorscale.ColorScale
 import com.definitelyscala.plotlyjs.plotlyConts.PlotMode
 import org.scalajs.dom.raw.HTMLElement
 
@@ -17,6 +18,10 @@ object PlotlyImplicits {
   implicit def thisBuilderToThis[T <: js.Object, B <: JSOptionBuilder[T, _]](b: B): T = b._result
 
   implicit def thisBuilderToUndefForThis[T <: js.Object, B <: JSOptionBuilder[T, _]](b: B): js.UndefOr[T] = b._result
+
+  //  implicit def markerBuilderToMarker(mb: PlotMarkerBuilder): PlotMarker = mb._result
+  //
+  //  implicit def lineBuilderToLine(lb: PlotLineBuilder): PlotLine = lb._result
 }
 
 @js.native
@@ -181,13 +186,6 @@ class AxisBuilder(val dict: OptMap) extends JSOptionBuilder[Axis, AxisBuilder](n
 }
 
 @js.native
-trait ShapeLine extends js.Object {
-  var color: String = js.native
-  var width: Double = js.native
-  var dash: Dash = js.native
-}
-
-@js.native
 trait Shape extends js.Object {
   var visible: Boolean = js.native
   var layer: String = js.native
@@ -201,7 +199,7 @@ trait Shape extends js.Object {
   var y1: Datum = js.native
   var fillcolor: String = js.native
   var opacity: Double = js.native
-  var line: Option[ShapeLine] = js.native
+  var line: Option[PlotLine] = js.native
 }
 
 @js.native
@@ -231,9 +229,9 @@ trait PointData extends js.Object {
 @js.native
 trait PlotData extends js.Object {
   var `type`: js.UndefOr[String] = js.native
-  var x: js.UndefOr[js.Array[Datum] | js.Array[js.Array[Datum]]] = js.native
-  var y: js.UndefOr[js.Array[Datum] | js.Array[js.Array[Datum]]] = js.native
-  var z: js.UndefOr[js.Array[Datum] | js.Array[js.Array[Datum]]] = js.native
+  var x: js.UndefOr[DatumArray | DatumMatrix] = js.native
+  var y: js.UndefOr[DatumArray | DatumMatrix] = js.native
+  var z: js.UndefOr[DatumArray | DatumMatrix] = js.native
   var customdata: js.UndefOr[js.Array[String]] = js.native
   var text: js.UndefOr[String | js.Array[String]] = js.native
   var line: js.UndefOr[PlotLine] = js.native
@@ -253,11 +251,11 @@ object PlotData extends PlotDataBuilder(noOpts)
 class PlotDataBuilder(val dict: OptMap) extends JSOptionBuilder[PlotData, PlotDataBuilder](new PlotDataBuilder(_)) {
   def `type`(v: String) = jsOpt("type", v)
 
-  def x(v: js.Array[Datum] | js.Array[js.Array[Datum]]) = jsOpt("x", v)
+  def x(v: DatumArray | DatumMatrix) = jsOpt("x", v)
 
-  def y(v: js.Array[Datum] | js.Array[js.Array[Datum]]) = jsOpt("y", v)
+  def y(v: DatumArray | DatumMatrix) = jsOpt("y", v)
 
-  def z(v: js.Array[Datum] | js.Array[js.Array[Datum]]) = jsOpt("y", v)
+  def z(v: DatumArray | DatumMatrix) = jsOpt("y", v)
 
   def customdata(v: js.Array[String]) = jsOpt("customdata", v)
 
@@ -265,7 +263,9 @@ class PlotDataBuilder(val dict: OptMap) extends JSOptionBuilder[PlotData, PlotDa
 
   def line(v: PlotLine) = jsOpt("line", v)
 
-  def marker(v: PlotMarker) = jsOpt("marker", v)
+  // def marker(v: PlotMarker) = jsOpt("marker", v)
+
+  def set(v: PlotMarker) = jsOpt("marker", v)
 
   def mode(v: String) = jsOpt("mode", v)
 
@@ -286,53 +286,158 @@ class PlotDataBuilder(val dict: OptMap) extends JSOptionBuilder[PlotData, PlotDa
 
 @js.native
 trait PlotMarker extends js.Object {
-  var symbol: js.UndefOr[String | js.Array[String]] = js.native
-  var color: js.UndefOr[Color] = js.native
-  var opacity: js.UndefOr[Double | js.Array[Double]] = js.native
-  var size: js.UndefOr[Double | js.Array[Double]] = js.native
-  var maxdisplayed: js.UndefOr[Double] = js.native
-  var sizeref: js.UndefOr[Double] = js.native
-  var sizemin: js.UndefOr[Double] = js.native
-  var sizemode: js.UndefOr[String] = js.native
-  var showscale: js.UndefOr[Boolean] = js.native
+  val symbol: js.UndefOr[String | js.Array[String]] = js.native
+  val color: js.UndefOr[Color] = js.native
+  val colorscale: js.UndefOr[String] = js.native
+  val line: js.UndefOr[PlotLine] = js.native
+  val opacity: js.UndefOr[Double | js.Array[Double]] = js.native
+  val size: js.UndefOr[Double | js.Array[Double]] = js.native
+  val maxdisplayed: js.UndefOr[Double] = js.native
+  val sizeref: js.UndefOr[Double] = js.native
+  val sizemin: js.UndefOr[Double] = js.native
+  val sizemode: js.UndefOr[SizeMode] = js.native
+  val showscale: js.UndefOr[Boolean] = js.native
 }
 
 object PlotMarker extends PlotMarkerBuilder(noOpts)
 
 class PlotMarkerBuilder(val dict: OptMap) extends JSOptionBuilder[PlotMarker, PlotMarkerBuilder](new PlotMarkerBuilder(_)) {
+  /*
+   *
+   * Reference: Plotly.js API
+   */
   def symbol(v: String | js.Array[String]) = jsOpt("symbol", v)
 
-  def color(v: Color) = jsOpt("color", v)
+  /*
+   * Sets the marker color.
+   * It accepts either a specific color or an array of numbers that are mapped to the
+   * colorscale relative to the max and min values of the array or relative to `cmin` and `cmax` if set.
+   *
+   * Reference: Plotly.js API
+   */
+  //  def color(v: Color) = jsOpt("color", v.toJS)
 
+  def set(v: Color) = jsOpt("color", v.toJS)
+
+  /*
+   * Sets the colorscale and only has an effect if `marker.color` is set to a numerical array.
+   * The colorscale must be an array containing arrays mapping a normalized value to an rgb, rgba, hex, hsl, hsv,
+   * or named color string. At minimum, a mapping for the lowest (0) and highest (1) values are required.
+   * For example, `[[0, 'rgb(0,0,255)', [1, 'rgb(255,0,0)']]`.
+   * To control the bounds of the colorscale in color space, use `marker.cmin` and `marker.cmax`.
+   * Alternatively, `colorscale` may be a palette name string of the following list: Greys, YlGnBu, Greens, YlOrRd,
+   * Bluered, RdBu, Reds, Blues, Picnic, Rainbow, Portland, Jet, Hot, Blackbody, Earth, Electric, Viridis
+   *
+   * Reference: Plotly.js API
+   */
+  def colorscale(v: ColorScale) = jsOpt("colorscale", v)
+
+  def set(l: PlotLine) = jsOpt("line", l)
+
+  // def line(v: Line) = jsOpt("line", v)
+
+  /*
+   * Number or array of numbers between or equal to 0 and 1)
+   * Sets the marker opacity.
+   *
+   * Reference: Plotly.js API
+   */
   def opacity(v: Double | js.Array[Double]) = jsOpt("opacity", v)
 
+  /*
+   * Number or array of numbers greater than or equal to 0, default: 6
+   * Sets the marker size (in px).
+   *
+   * Reference: Plotly.js API
+   */
   def size(v: Double | js.Array[Double]) = jsOpt("size", v)
 
+  /*
+   * Number greater than or equal to 0, default: 0
+   * Sets a maximum number of points to be drawn on the graph.
+   * "0" corresponds to no limit.
+   *
+   * Reference: Plotly.js API
+   */
   def maxdisplayed(v: Double) = jsOpt("maxdisplayed", v)
 
+  /*
+   *default: 1
+   * Has an effect only if `marker.size` is set to a numerical array.
+   * Sets the scale factor used to determine the rendered size of marker points.
+   * Use with `sizemin` and `sizemode`.
+   * Reference: Plotly.js API
+   */
   def sizeref(v: Double) = jsOpt("sizref", v)
 
+  /*
+   * default: 0
+   * Has an effect only if `marker.size` is set to a numerical array.
+   * Sets the minimum size (in px) of the rendered marker points.
+   *
+   * Reference: Plotly.js API
+   */
   def sizemin(v: Double) = jsOpt("sizemin", v)
 
-  def sizemode(v: String) = jsOpt("sizemode", v)
+  /*
+   * default: "diameter"
+   * Has an effect only if `marker.size` is set to a numerical array.
+   * Sets the rule for which the data in `size` is converted to pixels.
+   *
+   * Reference: Plotly.js API
+   */
+  def set(v: SizeMode) = jsOpt("sizemode", v.toJS)
 
+  /*
+     * Has an effect only if `marker.color` is set to a numerical array.
+     * Reverses the color mapping if true (`cmin` will correspond to the last color
+     * in the array and `cmax` will correspond to the first color).
+     * Reference: Plotly.js API
+     */
+  def reversescale(v: Boolean) = jsOpt("reversescale", v)
+
+  /*
+     * Has an effect only if `marker.color` is set to a numerical array.
+     * Sets the lower bound of the color domain.
+     * Value should be associated to the `marker.color` array index,
+     * and if set, `marker.cmax` must be set as well.
+     *
+     * Reference: Plotly.js API
+     */
+  def cmin(v: Double) = jsOpt("cmin", v)
+
+  /*
+   * Has an effect only if `marker.color` is set to a numerical array.
+   * Sets the upper bound of the color domain.
+   * Value should be associated to the `marker.color` array index,
+   * and if set, `marker.cmin` must be set as well.
+   * Reference: Plotly.js API
+   */
+  def cmax(v: Double) = jsOpt("cmax", v)
+
+  /*
+   * Has an effect only if `marker.color` is set to a numerical array.
+   * Determines whether or not a colorbar is displayed.
+   *
+   * Reference: Plotly.js API
+   */
   def showscale(v: Boolean) = jsOpt("showscale", v)
 }
 
 @js.native
 trait PlotLine extends js.Object {
-  var color: js.UndefOr[Color] = js.native
-  var width: js.UndefOr[Double] = js.native
-  var dash: js.UndefOr[Dash] = js.native
-  var shape: js.UndefOr[String] = js.native
-  var smoothing: js.UndefOr[Double] = js.native
-  var simplify: js.UndefOr[Boolean] = js.native
+  val color: js.UndefOr[Color] = js.native
+  val width: js.UndefOr[Double] = js.native
+  val dash: js.UndefOr[Dash] = js.native
+  val shape: js.UndefOr[String] = js.native
+  val smoothing: js.UndefOr[Double] = js.native
+  val simplify: js.UndefOr[Boolean] = js.native
 }
 
 object PlotLine extends PlotLineBuilder(noOpts)
 
 class PlotLineBuilder(val dict: OptMap) extends JSOptionBuilder[PlotLine, PlotLineBuilder](new PlotLineBuilder(_)) {
-  def color(v: Color) = jsOpt("color", v)
+  def set(v: Color) = jsOpt("color", v.toJS)
 
   def width(v: Double) = jsOpt("width", v)
 
@@ -381,30 +486,54 @@ trait Config extends js.Object {
 }
 
 object Config extends ConfigBuilder(noOpts)
+
 class ConfigBuilder(val dict: OptMap) extends JSOptionBuilder[Config, ConfigBuilder](new ConfigBuilder(_)) {
   def staticPlot(v: Boolean) = jsOpt("staticPlot", v)
+
   def editable(v: Boolean) = jsOpt("editable", v)
+
   def autosizable(v: Boolean) = jsOpt("autosizable", v)
+
   def queueLength(v: Double) = jsOpt("queueLength", v)
+
   def fillFrame(v: Boolean) = jsOpt("fillFrame", v)
+
   def frameMargins(v: Double) = jsOpt("frameMargins", v)
+
   def scrollZoom(v: Boolean) = jsOpt("scrollZoom", v)
+
   def doubleClick(v: String) = jsOpt("doubleClick", v)
+
   def showTips(v: Boolean) = jsOpt("showTips", v)
+
   def showLink(v: Boolean) = jsOpt("showLink", v)
+
   def sendData(v: Boolean) = jsOpt("sendData", v)
+
   def linkText(v: String) = jsOpt("linkText", v)
+
   def showSources(v: Boolean) = jsOpt("showSources", v)
+
   def displayModeBar(v: String | Boolean) = jsOpt("displayModeBar", v)
+
   def modeBarButtonsToRemove(v: js.Array[ModeBarButtons]) = jsOpt("modeBarButtonsToRemove", v)
+
   def modeBarButtonsToAdd(v: js.Array[ModeBarButtons]) = jsOpt("modeBarButtonsToAdd", v)
+
   def modeBarButtons(v: js.Array[js.Array[ModeBarButtons]]) = jsOpt("modeBarButtons", v)
+
   def displaylogo(v: Boolean) = jsOpt("displaylogo", v)
+
   def plotGlPixelRatio(v: Double) = jsOpt("plotGlPixelRatio", v)
+
   def setBackground(v: String) = jsOpt("setBackground", v)
+
   def topojsonURL(v: String) = jsOpt("topojsonURL", v)
+
   def mapboxAccessToken(v: String) = jsOpt("mapboxAccessToken", v)
+
   def logging(v: Boolean) = jsOpt("logging", v)
+
   def globalTransforms(v: js.Array[js.Any]) = jsOpt("globalTransforms", v)
 }
 
