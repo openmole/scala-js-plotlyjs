@@ -32,39 +32,39 @@ Example
 ```scala
 val plotDiv = div.render
 
-    val layout: Layout = Layout
-      .title("My beautifull plot")
-      .showlegend(true)
+  val layout: Layout = Layout
+    .title("My beautifull plot")
+    .showlegend(true)
 
-    val data = PlotData
-      .mode(PlotMode.MARKERS+PlotMode.LINES)
+  val data = PlotData
+    .mode(PlotMode.MARKERS + PlotMode.LINES)
 
-    val data1 = data
-      .x(js.Array[Datum](1999, 2000, 2001, 2002))
-      .y(js.Array[Datum](10, 1, 4, 7))
-      .customdata(js.Array[String]("one", "two", "three", "four"))
-      .marker(PlotMarker.size(12.0).color("red"))
+  val data1 = data
+    .x(js.Array(1999, 2000, 2001, 2002))
+    .y(js.Array(10, 1, 4, 7))
+    .customdata(js.Array("one", "two", "three", "four"))
+    .set(plotlymarker.size(12.0).set(plotlycolor("red")))
 
-    val data2 = data
-      .x(js.Array[Datum](1999, 2000, 2001, 2002))
-      .y(js.Array[Datum](6, 9, 8, 7))
-      .customdata(js.Array[String]("one", "two", "three", "four"))
-      .marker(PlotMarker.size(12.0).color("rgb(0, 136, 170)"))
+  val data2 = data
+    .x(js.Array(1999, 2000, 2001, 2002))
+    .y(js.Array(6, 9, 8, 7))
+    .customdata(js.Array[String]("one", "two", "three", "four"))
+    .set(plotlymarker.size(12.0).set(plotlycolor.rgb(0, 136, 170)))
 
-    val config: Config = Config.displayModeBar(false)
+  val config: Config = Config.displayModeBar(false)
 
-    val plot = Plotly.newPlot(plotDiv,
-      js.Array(data1, data2),
-      layout,
-      config)
+  val plot = Plotly.newPlot(plotDiv,
+    js.Array(data1, data2),
+    layout,
+    config)
 
 
-    plotDiv.on(PlotEvent.HOVER, (d: PointsData) => {
-      println(d.points.map { p => s"Point ${p.x} ${p.y} ${p.customdata}" })
+  plotDiv.on(PlotEvent.HOVER, (d: PointsData) => {
+    hoverText() = d.points.map { p => s"${p.x} ${p.y} ${p.customdata}" }.mkString(" and ")
     })
 
 
-    dom.document.body.appendChild(plotDiv)
+  dom.document.body.appendChild(plotDiv)
 ```
 
 License
