@@ -1,7 +1,6 @@
 package com.definitelyscala.plotlyjs
 
 import com.definitelyscala.plotlyjs.Plotly._
-import com.definitelyscala.plotlyjs.colorscale.ColorScale
 import com.definitelyscala.plotlyjs.plotlyConts.PlotMode
 import org.scalajs.dom.raw.HTMLElement
 
@@ -330,11 +329,9 @@ class PlotMarkerBuilder(val dict: OptMap) extends JSOptionBuilder[PlotMarker, Pl
    *
    * Reference: Plotly.js API
    */
-  def colorscale(v: ColorScale) = jsOpt("colorscale", v)
+  def set(v: ColorScale) = jsOpt("colorscale", v.toJS)
 
   def set(l: PlotLine) = jsOpt("line", l)
-
-  // def line(v: Line) = jsOpt("line", v)
 
   /*
    * Number or array of numbers between or equal to 0 and 1)

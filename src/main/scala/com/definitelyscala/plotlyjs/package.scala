@@ -8,4 +8,6 @@ package object all {
   def plotlycolor = Color
 
   def plotlysizemode = SizeMode
+
+  def plotlycolorscale = ColorScale
 }
