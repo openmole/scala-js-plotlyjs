@@ -10,8 +10,8 @@ object Projects {
   val projectName = "scala-js-plotlyjs"
 
   object Versions {
-    val app = "1.1"
-    val scalaVersions = Seq("2.11.8", "2.12.2")
+    val app = "1.1.1-SNAPSHOT"
+    val scalaVersions = Seq("2.11.8", "2.12.4")
   }
 
   private[this] val commonSettings = Seq(
