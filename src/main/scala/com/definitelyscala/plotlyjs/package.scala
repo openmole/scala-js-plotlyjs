@@ -10,4 +10,6 @@ package object all {
   def plotlysizemode = SizeMode
 
   def plotlycolorscale = ColorScale
+
+  def plotlysymbol = TopSymbol
 }
