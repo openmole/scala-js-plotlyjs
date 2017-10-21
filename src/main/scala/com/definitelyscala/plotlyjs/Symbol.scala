@@ -27,7 +27,15 @@ object Symbol {
     def toJS: SymbolType = s
   }
 
+  def compassable(s: SymbolType) = new Compassable {
+    def toJS: SymbolType = s
+  }
+
   def toporientable(s: SymbolType) = new TopOrientable {
+    def toJS: SymbolType = s
+  }
+
+  def topcompassable(s: SymbolType) = new TopCompassable {
     def toJS: SymbolType = s
   }
 
@@ -44,6 +52,10 @@ object Symbol {
   def triangleDown = toporientable("triangle").down // 6
   def triangleLeft = toporientable("triangle").left // 7
   def triangleRight = toporientable("triangle").right // 8
+  def triangleNE = topcompassable("triangle").ne // 9
+  def triangleSE = topcompassable("triangle").se // 10
+  def triangleSW = topcompassable("triangle").sw // 11
+  def triangleNW = topcompassable("triangle").nw // 12
   def pentagon = top("pentagon") // 13
   def hexagon = top("hexagon") // 14
   def hexagon2 = top("hexagon2") // 15
@@ -52,12 +64,30 @@ object Symbol {
   def hexagram = top("hexagram") // 18
   def startriangleUp = topUpAndDown("star-triangle").up // 19
   def startriangleDown = topUpAndDown("star-triangle").down // 20
+  def starsquare = top("star-square") // 21
+  def stardiamond = top("star-diamond") // 22
+  def diamondtall = top("diamond-tall") // 23
+  def diamondwide = top("diamond-wid") // 24
+  def hourglass = openonly("hourglass") // 25
+  def bowtie = openonly("bowtie") // 26
+  def circlecross = openonly("circle-cross") // 27
+  def circlex = openonly("circle-x") // 28
+  def squarecross = openonly("square-cross") // 29
+  def squarex = openonly("square-x") // 30
+  def diamondcross = openonly("diamond-cross") // 31
+  def diamondx = openonly("diamond-x") // 32
+  def crossthin = openonly("cross-thin") // 33
+  def xthin = openonly("x-thin") // 34
+  def asterisk = openonly("asterisk") // 35
+  def hash = top("hash") // 36
   def yUp = orientable("y").up // 37
   def yDown = orientable("y").down // 38
   def yLeft = orientable("y").left // 39
   def yRight = orientable("y").right // 40
-  def starsquare = top("star-square") // 21
-  def stardiamond = top("star-diamond") // 22
+  def lineew = compassable("line").ew // 41
+  def linens = compassable("line").ns // 42
+  def linene = compassable("line").ne // 43
+  def linenw = compassable("line").nw // 44
 }
 
 import Symbol._
@@ -94,6 +124,22 @@ trait Leftable <: Symbol {
   def left: OpenableOnly = Symbol.openonly(s"$toJS-left")
 }
 
+trait EWable <: Symbol {
+  def ew: OpenableOnly = Symbol.openonly(s"$toJS-ew")
+}
+
+trait NSable <: Symbol {
+  def ns: OpenableOnly = Symbol.openonly(s"$toJS-ns")
+}
+
+trait NEable <: Symbol {
+  def ne: OpenableOnly = Symbol.openonly(s"$toJS-ne")
+}
+
+trait NWable <: Symbol {
+  def nw: OpenableOnly = Symbol.openonly(s"$toJS-nw")
+}
+
 trait TopUpable <: Symbol {
   def up: TopSymbol = Symbol.top(s"$toJS-up")
 }
@@ -110,9 +156,27 @@ trait TopLeftable <: Symbol {
   def left: TopSymbol = Symbol.top(s"$toJS-left")
 }
 
+trait TopSWable <: Symbol {
+  def sw: TopSymbol = Symbol.top(s"$toJS-sw")
+}
+
+trait TopSEable <: Symbol {
+  def se: TopSymbol = Symbol.top(s"$toJS-se")
+}
+
+trait TopNEtable <: Symbol {
+  def ne: TopSymbol = Symbol.top(s"$toJS-ne")
+}
+
+trait TopNWable <: Symbol {
+  def nw: TopSymbol = Symbol.top(s"$toJS-nw")
+}
+
 trait Orientable <: Upable with Downable with Rightable with Leftable
+trait Compassable <: EWable with NEable with NWable with NSable
 trait TopUpAndDown <: TopUpable with TopDownable
 trait TopOrientable <: TopUpable with TopDownable with TopRightable with TopLeftable
+trait TopCompassable <: TopSEable with TopNEtable with TopNWable with TopSWable
 trait TopSymbol <: Openable with Dotable
 trait UpSymbol <: Upable with Openable
 trait DownSymbol <: Downable with Openable
