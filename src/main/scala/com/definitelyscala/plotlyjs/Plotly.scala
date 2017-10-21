@@ -318,10 +318,10 @@ class PlotMarkerBuilder(val dict: OptMap) extends JSOptionBuilder[PlotMarker, Pl
    *  "11" | "triangle-sw" | "111" | "triangle-sw-open" | "211" | "triangle-sw-dot" | "311" | "triangle-sw-open-dot" |
    *  "12" | "triangle-nw" | "112" | "triangle-nw-open" | "212" | "triangle-nw-dot" | "312" | "triangle-nw-open-dot" |
    *  "13" | "pentagon" | "113" | "pentagon-open" | "213" | "pentagon-dot" | "313" | "pentagon-open-dot" |
-   *  "14" | "hexagon" | "114" | "hexagon-open" | "214" | "hexagon-dot" | "314" | "hexagon-open-dot" | "15" | "hexagon2" |
-   *  "115" | "hexagon2-open" | "215" | "hexagon2-dot" | "315" | "hexagon2-open-dot" | "16" | "octagon" |
-   *  "116" | "octagon-open" | "216" | "octagon-dot" | "316" | "octagon-open-dot" | "17" | "star" |
-   *  "117" | "star-open" | "217" | "star-dot" | "317" | "star-open-dot" |
+   *  "14" | "hexagon"  | "114" | "hexagon-open" | "214" | "hexagon-dot" | "314" | "hexagon-open-dot" |
+   *  "15" | "hexagon2" | "115" | "hexagon2-open" | "215" | "hexagon2-dot" | "315" | "hexagon2-open-dot" |
+   *  "16" | "octagon"  |"116" | "octagon-open" | "216" | "octagon-dot" | "316" | "octagon-open-dot" |
+   *  "17" | "star" | 117" | "star-open" | "217" | "star-dot" | "317" | "star-open-dot" |
    *  "18" | "hexagram" | "118" | "hexagram-open" | "218" | "hexagram-dot" | "318" | "hexagram-open-dot" |
    *  "19" | "star-triangle-up" | "119" | "star-triangle-up-open" | "219" | "star-triangle-up-dot" | "319" | "star-triangle-up-open-dot" |
    *  "20" | "star-triangle-down" | "120" | "star-triangle-down-open" | "220" | "star-triangle-down-dot" | "320" | "star-triangle-down-open-dot" |

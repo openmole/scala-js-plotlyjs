@@ -11,5 +11,5 @@ package object all {
 
   def plotlycolorscale = ColorScale
 
-  def plotlysymbol = TopSymbol
+  def plotlysymbol = Symbol
 }
