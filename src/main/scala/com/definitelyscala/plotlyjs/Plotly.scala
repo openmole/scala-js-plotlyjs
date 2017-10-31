@@ -1,8 +1,7 @@
 package com.definitelyscala.plotlyjs
 
 import com.definitelyscala.plotlyjs.Plotly._
-import com.definitelyscala.plotlyjs.Symbol.SymbolType
-import com.definitelyscala.plotlyjs.plotlyConts.PlotMode
+import com.definitelyscala.plotlyjs.plotlyConts._
 import org.scalajs.dom.raw.HTMLElement
 
 import scala.language.implicitConversions
@@ -18,10 +17,6 @@ object PlotlyImplicits {
   implicit def thisBuilderToThis[T <: js.Object, B <: JSOptionBuilder[T, _]](b: B): T = b._result
 
   implicit def thisBuilderToUndefForThis[T <: js.Object, B <: JSOptionBuilder[T, _]](b: B): js.UndefOr[T] = b._result
-
-  //  implicit def markerBuilderToMarker(mb: PlotMarkerBuilder): PlotMarker = mb._result
-  //
-  //  implicit def lineBuilderToLine(lb: PlotLineBuilder): PlotLine = lb._result
 }
 
 @js.native
@@ -30,9 +25,9 @@ object Plotly extends PlotlyStatic
 
 @js.native
 trait PlotlyHTMLElement extends js.Object {
-  def on(event: String, callback: js.Function1[PointsData, Unit]): Unit
+  def on(event: PlotEvent, callback: js.Function1[PointsData, Unit]): Unit
 
-  def on(event: String, callback: js.Function0[Unit]): Unit
+  def on(event: PlotEvent, callback: js.Function0[Unit]): Unit
 }
 
 @js.native
@@ -146,7 +141,7 @@ trait Axis extends js.Object {
   var hoverformat: js.UndefOr[String] = js.native
   var rangeslider: js.UndefOr[RangeSlider] = js.native
   var rangeselector: js.UndefOr[RangeSelector] = js.native
-  var range: js.UndefOr[js.Tuple2[Datum, Datum]] = js.native
+  var range: js.UndefOr[js.Array[Datum]] = js.native
   var showticklabels: js.UndefOr[Boolean] = js.native
   var autotick: js.UndefOr[Boolean] = js.native
   var zeroline: js.UndefOr[Boolean] = js.native
@@ -174,7 +169,7 @@ class AxisBuilder(val dict: OptMap) extends JSOptionBuilder[Axis, AxisBuilder](n
 
   def rangeselector(v: RangeSelector) = jsOpt("rangeselector", v)
 
-  def range(v: js.Tuple2[Datum, Datum]) = jsOpt("range", v)
+  def range(v1: Datum, v2: Datum) = jsOpt("range", js.Array(v1, v2))
 
   def showticklabels(v: Boolean) = jsOpt("showticklabels", v)
 
@@ -289,6 +284,8 @@ trait PlotMarker extends js.Object {
   val symbol: js.UndefOr[String | js.Array[String]] = js.native
   val color: js.UndefOr[Color] = js.native
   val colorscale: js.UndefOr[String] = js.native
+  val cmin: js.UndefOr[Double] = js.native
+  val cmax: js.UndefOr[Double] = js.native
   val line: js.UndefOr[PlotLine] = js.native
   val opacity: js.UndefOr[Double | js.Array[Double]] = js.native
   val size: js.UndefOr[Double | js.Array[Double]] = js.native

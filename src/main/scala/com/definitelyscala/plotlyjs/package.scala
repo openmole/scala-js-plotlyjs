@@ -12,4 +12,6 @@ package object all {
   def plotlycolorscale = ColorScale
 
   def plotlysymbol = Symbol
+
+  def plotlyaxis = Axis
 }
