@@ -14,9 +14,9 @@ import scala.scalajs.js.annotation.JSGlobal
 object PlotlyImplicits {
   implicit def elToPlotlyElement[T <: HTMLElement](element: T): PlotlyHTMLElement = element.asInstanceOf[PlotlyHTMLElement]
 
-  implicit def thisBuilderToThis[T <: js.Object, B <: JSOptionBuilder[T, _]](b: B): T = b._result
+  implicit def thisBuilderToThis[T <: js.Object, B <: JSOptionBuilder[T, _]](b: JSOptionBuilder[T, B]): T = b._result
 
-  implicit def thisBuilderToUndefForThis[T <: js.Object, B <: JSOptionBuilder[T, _]](b: B): js.UndefOr[T] = b._result
+  implicit def thisBuilderToUndefForThis[T <: js.Object, B <: JSOptionBuilder[T, _]](b: JSOptionBuilder[T, B]): js.UndefOr[T] = b._result
 }
 
 @js.native
