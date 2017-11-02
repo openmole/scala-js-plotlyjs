@@ -27,6 +27,10 @@ Classes and traits are available in the package `com.definitelyscala.plotlyjs`, 
 
 This project provides Scala.js facades. You will still need to include the JavaScript library source in your web page.
 
+Demo
+------
+[https://github.com/mathieuleclaire/scala-js-plotlyjs-demo](https://github.com/mathieuleclaire/scala-js-plotlyjs-demo)
+
 Example
 -------
 ```scala
