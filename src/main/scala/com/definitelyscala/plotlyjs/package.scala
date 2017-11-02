@@ -14,4 +14,6 @@ package object all {
   def plotlysymbol = Symbol
 
   def plotlyaxis = Axis
+
+  def plotlymode = PlotMode
 }

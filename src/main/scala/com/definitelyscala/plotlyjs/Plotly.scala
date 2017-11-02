@@ -9,7 +9,7 @@ import org.querki.jsext._
 
 import scala.scalajs.js
 import js.|
-import scala.scalajs.js.annotation.{ JSExportTopLevel, JSGlobal, JSGlobalScope, ScalaJSDefined }
+import scala.scalajs.js.annotation.JSGlobal
 
 object PlotlyImplicits {
   implicit def elToPlotlyElement[T <: HTMLElement](element: T): PlotlyHTMLElement = element.asInstanceOf[PlotlyHTMLElement]
@@ -262,7 +262,16 @@ class PlotDataBuilder(val dict: OptMap) extends JSOptionBuilder[PlotData, PlotDa
 
   def set(v: PlotMarker) = jsOpt("marker", v)
 
-  def mode(v: String) = jsOpt("mode", v)
+  /*
+   * Any combination of "lines", "markers", "text" joined with a "+" OR "none".
+   * examples: "lines", "markers", "lines+markers", "lines+markers+text", "none"
+   * Determines the drawing mode for this scatter trace.
+   * If the provided `mode` includes "text" then the `text` elements appear at the coordinates.
+   * Otherwise, the `text` elements appear on hover.
+   * If there are less than 20 points, then the default is "lines+markers". Otherwise, "lines".
+   *
+  */
+  def set(v: PlotMode) = jsOpt("mode", v.toJS)
 
   def hoveron(v: String) = jsOpt("hoveron", v)
 
