@@ -10,7 +10,7 @@ object Projects {
   val projectName = "scala-js-plotlyjs"
 
   object Versions {
-    val app = "1.1.3-SNAPSHOT"
+    val app = "1.1.4-SNAPSHOT"
     val scalaVersions = Seq("2.11.8", "2.12.4")
   }
 
