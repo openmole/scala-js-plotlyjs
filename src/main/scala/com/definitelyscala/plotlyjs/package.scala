@@ -16,4 +16,6 @@ package object all {
   def plotlyaxis = Axis
 
   def plotlymode = PlotMode
+
+  def plotlytype = PlotType
 }

@@ -223,7 +223,7 @@ trait PointData extends js.Object {
 
 @js.native
 trait PlotData extends js.Object {
-  var `type`: js.UndefOr[String] = js.native
+  var `type`: js.UndefOr[PlotType.PlotType] = js.native
   var x: js.UndefOr[DatumArray | DatumMatrix] = js.native
   var y: js.UndefOr[DatumArray | DatumMatrix] = js.native
   var z: js.UndefOr[DatumArray | DatumMatrix] = js.native
@@ -244,7 +244,6 @@ trait PlotData extends js.Object {
 object PlotData extends PlotDataBuilder(noOpts)
 
 class PlotDataBuilder(val dict: OptMap) extends JSOptionBuilder[PlotData, PlotDataBuilder](new PlotDataBuilder(_)) {
-  def `type`(v: String) = jsOpt("type", v)
 
   def x(v: DatumArray | DatumMatrix) = jsOpt("x", v)
 
@@ -258,8 +257,6 @@ class PlotDataBuilder(val dict: OptMap) extends JSOptionBuilder[PlotData, PlotDa
 
   def line(v: PlotLine) = jsOpt("line", v)
 
-  // def marker(v: PlotMarker) = jsOpt("marker", v)
-
   def set(v: PlotMarker) = jsOpt("marker", v)
 
   /*
@@ -272,6 +269,8 @@ class PlotDataBuilder(val dict: OptMap) extends JSOptionBuilder[PlotData, PlotDa
    *
   */
   def set(v: PlotMode) = jsOpt("mode", v.toJS)
+
+  def set(v: PlotType.PlotType) = jsOpt("type", v)
 
   def hoveron(v: String) = jsOpt("hoveron", v)
 
