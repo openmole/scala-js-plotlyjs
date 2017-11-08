@@ -18,10 +18,10 @@ object Color {
   def rgba(red: Int, green: Int, blue: Int, alpha: Double): Color = Color(s"rgba($red,$green,$blue,$alpha)")
 
   // Ex: hsl(220, 95, 21)
-  def hsl(hue: Int, saturation: Int, lightness: Int): Color = Color(s"rgba($hue,$saturation%,$lightness%)")
+  def hsl(hue: Int, saturation: Int, lightness: Int): Color = Color(s"hsl($hue,$saturation%,$lightness%)")
 
   // Ex: hsl(220, 95, 21)
-  def hsv(hue: Int, saturation: Int, value: Int): Color = Color(s"rgba($hue,$saturation%,$value%)")
+  def hsv(hue: Int, saturation: Int, value: Int): Color = Color(s"hsv($hue,$saturation%,$value%)")
 
   // Ex: hex("0021aa")
   def hex(code: ColorType): Color = Color(s"hex(#$code)")
