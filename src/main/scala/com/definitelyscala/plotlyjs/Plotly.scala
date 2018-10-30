@@ -222,6 +222,20 @@ trait PointData extends js.Object {
 }
 
 @js.native
+trait Dimension extends js.Object {
+  var label: js.UndefOr[String] = js.native
+  var values: js.UndefOr[DatumArray] = js.native
+}
+
+object Dimension extends DimensionBuilder(noOpts)
+
+class DimensionBuilder(val dict: OptMap) extends JSOptionBuilder[Dimension, DimensionBuilder](new DimensionBuilder(_)) {
+
+  def label(v: String) = jsOpt("label", v)
+  def values(v: DatumArray | DatumMatrix) = jsOpt("values", v)
+}
+
+@js.native
 trait PlotData extends js.Object {
   var `type`: js.UndefOr[PlotType.PlotType] = js.native
   var x: js.UndefOr[DatumArray | DatumMatrix] = js.native
@@ -239,6 +253,7 @@ trait PlotData extends js.Object {
   var legendgroup: js.UndefOr[String] = js.native
   var name: js.UndefOr[String] = js.native
   var connectgaps: js.UndefOr[Boolean] = js.native
+  var dimensions: js.UndefOr[DimensionArray] = js.native
 }
 
 object PlotData extends PlotDataBuilder(noOpts)
@@ -258,6 +273,8 @@ class PlotDataBuilder(val dict: OptMap) extends JSOptionBuilder[PlotData, PlotDa
   def line(v: PlotLine) = jsOpt("line", v)
 
   def set(v: PlotMarker) = jsOpt("marker", v)
+
+  def set(v: DimensionArray) = jsOpt("dimensions", v)
 
   /*
    * Any combination of "lines", "markers", "text" joined with a "+" OR "none".

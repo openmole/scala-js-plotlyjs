@@ -13,4 +13,5 @@ object PlotType {
   val mesh: PlotType = "mesh"
   val histogram: PlotType = "histogram"
   val scatter: PlotType = "scatter"
+  val splom: PlotType = "splom"
 }

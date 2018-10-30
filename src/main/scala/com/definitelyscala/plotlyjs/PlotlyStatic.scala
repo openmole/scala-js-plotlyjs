@@ -1,6 +1,5 @@
 package com.definitelyscala.plotlyjs
 
-import scala.concurrent.ExecutionContext.Implicits.global
 import org.scalajs.dom.raw._
 
 import scala.concurrent.Future
@@ -33,5 +32,6 @@ trait PlotlyStatic extends js.Object {
   type DatumArray = js.Array[String] | js.Array[Double] | js.Array[Date] | js.Array[Int]
   type DatumMatrix = js.Array[js.Array[String]] | js.Array[js.Array[Double]] | js.Array[js.Array[Date]] | js.Array[js.Array[Int]]
   type AllDatum = Datum | DatumArray
+  type DimensionArray = js.Array[Dimension]
   type Dash = String
 }
