@@ -264,7 +264,7 @@ class PlotDataBuilder(val dict: OptMap) extends JSOptionBuilder[PlotData, PlotDa
 
   def y(v: DatumArray | DatumMatrix) = jsOpt("y", v)
 
-  def z(v: DatumArray | DatumMatrix) = jsOpt("y", v)
+  def z(v: DatumArray | DatumMatrix) = jsOpt("z", v)
 
   def customdata(v: js.Array[String]) = jsOpt("customdata", v)
 
