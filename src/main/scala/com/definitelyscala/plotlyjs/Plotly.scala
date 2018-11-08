@@ -52,6 +52,20 @@ trait Layout extends js.Object {
   var showlegend: js.UndefOr[Boolean] = js.native
   var xaxis: js.UndefOr[Axis] = js.native
   var yaxis: js.UndefOr[Axis] = js.native
+  var xaxis2: js.UndefOr[Axis] = js.native
+  var yaxis2: js.UndefOr[Axis] = js.native
+  var xaxis3: js.UndefOr[Axis] = js.native
+  var yaxis3: js.UndefOr[Axis] = js.native
+  var xaxis4: js.UndefOr[Axis] = js.native
+  var yaxis4: js.UndefOr[Axis] = js.native
+  var xaxis5: js.UndefOr[Axis] = js.native
+  var yaxis5: js.UndefOr[Axis] = js.native
+  var xaxis6: js.UndefOr[Axis] = js.native
+  var yaxis6: js.UndefOr[Axis] = js.native
+  var xaxis7: js.UndefOr[Axis] = js.native
+  var yaxis7: js.UndefOr[Axis] = js.native
+  var xaxis8: js.UndefOr[Axis] = js.native
+  var yaxis8: js.UndefOr[Axis] = js.native
   var margin: js.UndefOr[Margin] = js.native
   var height: js.UndefOr[Double] = js.native
   var width: js.UndefOr[Double] = js.native
@@ -75,6 +89,34 @@ class LayoutBuilder(val dict: OptMap) extends JSOptionBuilder[Layout, LayoutBuil
   def xaxis(v: Axis) = jsOpt("xaxis", v)
 
   def yaxis(v: Axis) = jsOpt("yaxis", v)
+
+  def xaxis2(v: Axis) = jsOpt("xaxis2", v)
+
+  def yaxis2(v: Axis) = jsOpt("yaxis2", v)
+
+  def xaxis3(v: Axis) = jsOpt("xaxis3", v)
+
+  def yaxis3(v: Axis) = jsOpt("yaxis3", v)
+
+  def xaxis4(v: Axis) = jsOpt("xaxis4", v)
+
+  def yaxis4(v: Axis) = jsOpt("yaxis4", v)
+
+  def xaxis5(v: Axis) = jsOpt("xaxis5", v)
+
+  def yaxis5(v: Axis) = jsOpt("yaxis5", v)
+
+  def xaxis6(v: Axis) = jsOpt("xaxis6", v)
+
+  def yaxis6(v: Axis) = jsOpt("yaxis6", v)
+
+  def xaxis7(v: Axis) = jsOpt("xaxis7", v)
+
+  def yaxis7(v: Axis) = jsOpt("yaxis7", v)
+
+  def xaxis8(v: Axis) = jsOpt("xaxis8", v)
+
+  def yaxis8(v: Axis) = jsOpt("yaxis8", v)
 
   def margin(v: Margin) = jsOpt("margin", v)
 
@@ -144,6 +186,7 @@ trait Axis extends js.Object {
   var range: js.UndefOr[js.Array[Datum]] = js.native
   var showticklabels: js.UndefOr[Boolean] = js.native
   var autotick: js.UndefOr[Boolean] = js.native
+  var showline: js.UndefOr[Boolean] = js.native
   var zeroline: js.UndefOr[Boolean] = js.native
   var autorange: js.UndefOr[Boolean | String] = js.native
 }
@@ -177,6 +220,8 @@ class AxisBuilder(val dict: OptMap) extends JSOptionBuilder[Axis, AxisBuilder](n
 
   def zeroline(v: Boolean) = jsOpt("zeroline", v)
 
+  def showline(v: Boolean) = jsOpt("showline", v)
+
   def autorange(v: Boolean | String) = jsOpt("autorange", v)
 }
 
@@ -199,12 +244,20 @@ trait Shape extends js.Object {
 
 @js.native
 trait Margin extends js.Object {
-  var t: Double = js.native
-  var b: Double = js.native
-  var l: Double = js.native
-  var r: Double = js.native
+  var t: Int = js.native
+  var b: Int = js.native
+  var l: Int = js.native
+  var r: Int = js.native
 }
 
+object Margin extends MarginBuilder(noOpts)
+
+class MarginBuilder(val dict: OptMap) extends JSOptionBuilder[Margin, MarginBuilder](new MarginBuilder(_)) {
+  def t(v: Int) = jsOpt("t", v)
+  def b(v: Int) = jsOpt("b", v)
+  def l(v: Int) = jsOpt("l", v)
+  def r(v: Int) = jsOpt("r", v)
+}
 @js.native
 trait PointsData extends js.Object {
   var points: js.Array[PointData] = js.native
@@ -550,6 +603,7 @@ trait Config extends js.Object {
   var mapboxAccessToken: js.UndefOr[String] = js.native
   var logging: js.UndefOr[Boolean] = js.native
   var globalTransforms: js.UndefOr[js.Array[js.Any]] = js.native
+  var responsive: js.UndefOr[Boolean] = js.native
 }
 
 object Config extends ConfigBuilder(noOpts)
@@ -602,6 +656,8 @@ class ConfigBuilder(val dict: OptMap) extends JSOptionBuilder[Config, ConfigBuil
   def logging(v: Boolean) = jsOpt("logging", v)
 
   def globalTransforms(v: js.Array[js.Any]) = jsOpt("globalTransforms", v)
+
+  def responsive(v: Boolean) = jsOpt("responsive", v)
 }
 
 @js.native
