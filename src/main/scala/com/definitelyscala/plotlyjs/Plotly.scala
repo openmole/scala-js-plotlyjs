@@ -307,6 +307,7 @@ trait PlotData extends js.Object {
   var name: js.UndefOr[String] = js.native
   var connectgaps: js.UndefOr[Boolean] = js.native
   var dimensions: js.UndefOr[DimensionArray] = js.native
+  var errorY: js.UndefOr[ErrorY] = js.native
 }
 
 object PlotData extends PlotDataBuilder(noOpts)
@@ -355,6 +356,8 @@ class PlotDataBuilder(val dict: OptMap) extends JSOptionBuilder[PlotData, PlotDa
   def name(v: String) = jsOpt("name", v)
 
   def connectgaps(v: Boolean) = jsOpt("connectgaps", v)
+
+  def errorY(v: ErrorY) = jsOpt("error_y", v)
 }
 
 @js.native
@@ -745,4 +748,18 @@ class RangeSelectorBuilder(val dict: OptMap) extends JSOptionBuilder[RangeSelect
   def borderwidth(v: Double) = jsOpt("borderwidth", v)
 
   def font(v: Font) = jsOpt("font", v)
+}
+
+@js.native
+trait ErrorY extends js.Object {
+  var array: js.UndefOr[DatumArray] = js.native
+  var visible: js.UndefOr[Boolean] = js.native
+}
+
+object ErrorY extends ErrorYBuilder(noOpts)
+
+class ErrorYBuilder(val dict: OptMap) extends JSOptionBuilder[ErrorY, ErrorYBuilder](new ErrorYBuilder(_)) {
+  def array(v: DatumArray) = jsOpt("array", v)
+
+  def visible(v: Boolean) = jsOpt("visible", v)
 }
