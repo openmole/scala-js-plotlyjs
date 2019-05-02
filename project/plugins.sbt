@@ -5,10 +5,7 @@ resolvers += "Typesafe repository" at "https://repo.typesafe.com/typesafe/releas
 resolvers += Resolver.sonatypeRepo("releases")
 
 // Scala.js
-addSbtPlugin("org.scala-js" % "sbt-scalajs" % "0.6.25")
-
-// Dependency Resolution
-addSbtPlugin("io.get-coursier" % "sbt-coursier" % "1.0.0-RC12")
+addSbtPlugin("org.scala-js" % "sbt-scalajs" % "0.6.27")
 
 // Publishing
 addSbtPlugin("org.foundweekends" % "sbt-bintray" % "0.5.1")
