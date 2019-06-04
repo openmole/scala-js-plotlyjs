@@ -8,7 +8,7 @@ import sbt._
 val projectId = "scala-js-plotlyjs"
 val projectName = "scala-js-plotlyjs"
 
-val appVersion = "1.1.10"
+val appVersion = "1.1.11-SNAPSHOT"
 val scalaVersions = Seq("2.11.8", "2.12.4")
 
 
@@ -43,7 +43,7 @@ val scalaJsSettings = Seq(
   libraryDependencies ++= Seq(
     "org.scala-js" %%% "scalajs-dom" % "0.9.2",
     "org.querki" %%% "querki-jsext" % "0.8"),
-  npmDeps in Compile += Dep("plotly.js", "1.47.4", List("plotly.min.js")),
+  npmDeps in Compile += Dep("plotly.js", "1.48.1", List("plotly.min.js")),
   scalacOptions += "-P:scalajs:sjsDefinedByDefault",
   scalaJSStage in Global := FastOptStage)
 
