@@ -96,88 +96,88 @@ trait Symbol {
   def toJS: SymbolType
 }
 
-trait Dotable <: Symbol {
+trait Dotable extends Symbol {
   def dot: Symbol = Symbol(s"$toJS-dot")
 }
 
-trait Openable <: Symbol {
+trait Openable extends Symbol {
   def open: Dotable = Symbol.dot(s"$toJS-open")
 }
 
-trait OpenableOnly <: Symbol {
+trait OpenableOnly extends Symbol {
   def open: Symbol = Symbol(s"$toJS-open")
 }
 
-trait Upable <: Symbol {
+trait Upable extends Symbol {
   def up: OpenableOnly = Symbol.openonly(s"$toJS-up")
 }
 
-trait Downable <: Symbol {
+trait Downable extends Symbol {
   def down: OpenableOnly = Symbol.openonly(s"$toJS-down")
 }
 
-trait Rightable <: Symbol {
+trait Rightable extends Symbol {
   def right: OpenableOnly = Symbol.openonly(s"$toJS-right")
 }
 
-trait Leftable <: Symbol {
+trait Leftable extends Symbol {
   def left: OpenableOnly = Symbol.openonly(s"$toJS-left")
 }
 
-trait EWable <: Symbol {
+trait EWable extends Symbol {
   def ew: OpenableOnly = Symbol.openonly(s"$toJS-ew")
 }
 
-trait NSable <: Symbol {
+trait NSable extends Symbol {
   def ns: OpenableOnly = Symbol.openonly(s"$toJS-ns")
 }
 
-trait NEable <: Symbol {
+trait NEable extends Symbol {
   def ne: OpenableOnly = Symbol.openonly(s"$toJS-ne")
 }
 
-trait NWable <: Symbol {
+trait NWable extends Symbol {
   def nw: OpenableOnly = Symbol.openonly(s"$toJS-nw")
 }
 
-trait TopUpable <: Symbol {
+trait TopUpable extends Symbol {
   def up: TopSymbol = Symbol.top(s"$toJS-up")
 }
 
-trait TopDownable <: Symbol {
+trait TopDownable extends Symbol {
   def down: TopSymbol = Symbol.top(s"$toJS-down")
 }
 
-trait TopRightable <: Symbol {
+trait TopRightable extends Symbol {
   def right: TopSymbol = Symbol.top(s"$toJS-right")
 }
 
-trait TopLeftable <: Symbol {
+trait TopLeftable extends Symbol {
   def left: TopSymbol = Symbol.top(s"$toJS-left")
 }
 
-trait TopSWable <: Symbol {
+trait TopSWable extends Symbol {
   def sw: TopSymbol = Symbol.top(s"$toJS-sw")
 }
 
-trait TopSEable <: Symbol {
+trait TopSEable extends Symbol {
   def se: TopSymbol = Symbol.top(s"$toJS-se")
 }
 
-trait TopNEtable <: Symbol {
+trait TopNEtable extends Symbol {
   def ne: TopSymbol = Symbol.top(s"$toJS-ne")
 }
 
-trait TopNWable <: Symbol {
+trait TopNWable extends Symbol {
   def nw: TopSymbol = Symbol.top(s"$toJS-nw")
 }
 
-trait Orientable <: Upable with Downable with Rightable with Leftable
-trait Compassable <: EWable with NEable with NWable with NSable
-trait TopUpAndDown <: TopUpable with TopDownable
-trait TopOrientable <: TopUpable with TopDownable with TopRightable with TopLeftable
-trait TopCompassable <: TopSEable with TopNEtable with TopNWable with TopSWable
-trait TopSymbol <: Openable with Dotable
-trait UpSymbol <: Upable with Openable
-trait DownSymbol <: Downable with Openable
+trait Orientable extends Upable with Downable with Rightable with Leftable
+trait Compassable extends EWable with NEable with NWable with NSable
+trait TopUpAndDown extends TopUpable with TopDownable
+trait TopOrientable extends TopUpable with TopDownable with TopRightable with TopLeftable
+trait TopCompassable extends TopSEable with TopNEtable with TopNWable with TopSWable
+trait TopSymbol extends Openable with Dotable
+trait UpSymbol extends Upable with Openable
+trait DownSymbol extends Downable with Openable
 

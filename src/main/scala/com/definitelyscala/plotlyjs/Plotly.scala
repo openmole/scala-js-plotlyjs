@@ -1,6 +1,6 @@
 package com.definitelyscala.plotlyjs
 
-import com.definitelyscala.plotlyjs.Plotly._
+import com.definitelyscala.plotlyjs.PlotlyStatic._
 import com.definitelyscala.plotlyjs.plotlyConts._
 import org.scalajs.dom.raw.HTMLElement
 

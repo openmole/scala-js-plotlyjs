@@ -30,17 +30,17 @@ trait PlotMode {
   def toJS: PlotModeType
 }
 
-trait Markable <: PlotMode {
+trait Markable extends PlotMode {
   def lines = linable(toJS)
 
   def text = textable(toJS)
 }
 
-trait Linable <: PlotMode {
+trait Linable extends PlotMode {
   def text = textable(toJS)
 }
 
-trait Textable <: PlotMode
+trait Textable extends PlotMode
 
 object PlotMode {
   val markers = markable

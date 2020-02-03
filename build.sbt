@@ -8,16 +8,16 @@ import sbt._
 val projectId = "scala-js-plotlyjs"
 val projectName = "scala-js-plotlyjs"
 
-val appVersion = "1.1.11-SNAPSHOT"
-val scalaVersions = Seq("2.11.8", "2.12.4")
+val appVersion = "1.2"
+val scalaVersions = Seq("2.12.8","2.13.1")
 
 
 val commonSettings = Seq(
   version := appVersion,
+  scalaVersion := "2.13.1",
   crossScalaVersions := scalaVersions,
   scalacOptions ++= Seq(
-    "-encoding", "UTF-8", "-feature", "-deprecation", "-unchecked", "–Xcheck-null", "-Xfatal-warnings", /* "-Xlint", */
-    "-Ywarn-adapted-args", /* "-Ywarn-dead-code", */ "-Ywarn-inaccessible", "-Ywarn-nullary-override", "-Ywarn-numeric-widen"),
+    "-encoding", "UTF-8", "-feature", "-deprecation", "-unchecked", "–Xcheck-null", "-Xfatal-warnings", /* "-Xlint", */ "-Ywarn-numeric-widen"),
   scalacOptions in(Compile, doc) := Seq("-encoding", "UTF-8", "-feature", "-deprecation", "-unchecked"),
   scalacOptions in Test ++= Seq("-Yrangepos"),
 
@@ -41,9 +41,9 @@ val scalaJsSettings = Seq(
   publishMavenStyle := true,
   licenses += ("MIT", url("http://opensource.org/licenses/MIT")),
   libraryDependencies ++= Seq(
-    "org.scala-js" %%% "scalajs-dom" % "0.9.2",
-    "org.querki" %%% "querki-jsext" % "0.8"),
-  npmDeps in Compile += Dep("plotly.js", "1.48.1", List("plotly.min.js")),
+    "org.scala-js" %%% "scalajs-dom" % "0.9.8",
+    "org.querki" %%% "querki-jsext" % "0.9"),
+  npmDeps in Compile += Dep("plotly.js", "1.52.1", List("plotly.min.js")),
   scalacOptions += "-P:scalajs:sjsDefinedByDefault",
   scalaJSStage in Global := FastOptStage)
 

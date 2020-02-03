@@ -1,6 +1,6 @@
 package com.definitelyscala.plotlyjs
 
-import Plotly._
+import com.definitelyscala.plotlyjs.PlotlyStatic._
 import scala.scalajs.js
 import js.|
 

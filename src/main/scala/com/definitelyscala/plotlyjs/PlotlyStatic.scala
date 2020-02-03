@@ -8,6 +8,17 @@ import scala.scalajs.js.Date
 import scala.scalajs.js
 import js.|
 
+object PlotlyStatic {
+  type AxisType = String
+  type ModeBarButtons = String
+  type Datum = String | Double | Date | Int
+  type DatumArray = js.Array[String] | js.Array[Double] | js.Array[Date] | js.Array[Int]
+  type DatumMatrix = js.Array[js.Array[String]] | js.Array[js.Array[Double]] | js.Array[js.Array[Date]] | js.Array[js.Array[Int]]
+  type AllDatum = Datum | DatumArray
+  type DimensionArray = js.Array[Dimension]
+  type Dash = String
+}
+
 @js.native
 trait PlotlyStatic extends js.Object {
   type Root = String | HTMLElement
@@ -26,12 +37,4 @@ trait PlotlyStatic extends js.Object {
   def prependTraces(root: Root, update: js.UndefOr[PlotData] | js.Array[js.UndefOr[PlotData]] = js.undefined, indices: Double | js.Array[Double]): Future[PlotlyHTMLElement] = js.native
   def toImage(root: Root, opts: ToImgopts): Future[String] = js.native
   def downloadImage(root: Root, opts: DownloadImgopts): Future[String] = js.native
-  type AxisType = String
-  type ModeBarButtons = String
-  type Datum = String | Double | Date | Int
-  type DatumArray = js.Array[String] | js.Array[Double] | js.Array[Date] | js.Array[Int]
-  type DatumMatrix = js.Array[js.Array[String]] | js.Array[js.Array[Double]] | js.Array[js.Array[Date]] | js.Array[js.Array[Int]]
-  type AllDatum = Datum | DatumArray
-  type DimensionArray = js.Array[Dimension]
-  type Dash = String
 }
