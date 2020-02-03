@@ -8,7 +8,7 @@ import sbt._
 val projectId = "scala-js-plotlyjs"
 val projectName = "scala-js-plotlyjs"
 
-val appVersion = "1.2"
+val appVersion = "1.2.1-SNAPSHOT"
 val scalaVersions = Seq("2.12.8","2.13.1")
 
 
