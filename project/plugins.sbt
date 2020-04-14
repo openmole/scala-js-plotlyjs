@@ -8,7 +8,7 @@ resolvers += Resolver.sonatypeRepo("releases")
 addSbtPlugin("org.scala-js" % "sbt-scalajs" % "1.0.1")
 
 // Publishing
-addSbtPlugin("com.github.gseitz" % "sbt-release" % "1.0.7")
+addSbtPlugin("com.github.gseitz" % "sbt-release" % "1.0.13")
 
 addSbtPlugin("com.jsuereth" % "sbt-pgp" % "2.0.1")
 
