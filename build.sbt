@@ -5,46 +5,52 @@ import execnpm.NpmDeps.Dep
 import sbt.Keys._
 import sbt._
 
-val projectId = "scala-js-plotlyjs"
 val projectName = "scala-js-plotlyjs"
 
-val appVersion = "1.2.1-SNAPSHOT"
-val scalaVersions = Seq("2.12.8","2.13.1")
+val appVersion = "1.3.0"
 
-
-val commonSettings = Seq(
+val plotlySettings = Seq(
+  name := projectName,
   version := appVersion,
+  organization := "org.openmole",  
   scalaVersion := "2.13.1",
-  crossScalaVersions := scalaVersions,
-  scalacOptions ++= Seq(
-    "-encoding", "UTF-8", "-feature", "-deprecation", "-unchecked", "–Xcheck-null", "-Xfatal-warnings", /* "-Xlint", */ "-Ywarn-numeric-widen"),
-  scalacOptions in(Compile, doc) := Seq("-encoding", "UTF-8", "-feature", "-deprecation", "-unchecked"),
-  scalacOptions in Test ++= Seq("-Yrangepos"),
-
   shellPrompt := { state => s"[${Project.extract(state).currentProject.id}] $$ " },
   resolvers += Resolver.jcenterRepo,
-  SbtScalariform.ScalariformKeys.preferences := SbtScalariform.ScalariformKeys.preferences.value) ++ SbtScalariform.autoImport.scalariformSettings(true)
-
-val scalaJsSettings = Seq(
-  name := projectName,
-  organization := "com.definitelyscala",
-  homepage := Some(url("https://github.com/DefinitelyScala/scala-js-plotlyjs")),
-  scmInfo := Some(ScmInfo(
-    url("https://github.com/DefinitelyScala/scala-js-plotlyjs"),
-    "scm:git:git@github.com:DefinitelyScala/scala-js-plotlyjs.git",
-    Some("scm:git:git@github.com:DefinitelyScala/scala-js-plotlyjs.git"))),
-  bintrayOrganization := Some("definitelyscala"),
-  bintrayPackageLabels := Seq("scala", "scala.js"),
-  bintrayPackage := "scala-js-plotlyjs",
-  bintrayRepository := "maven",
-  bintrayVcsUrl := Some("git:git@github.com:DefinitelyScala/scala-js-plotlyjs.git"),
-  publishMavenStyle := true,
-  licenses += ("MIT", url("http://opensource.org/licenses/MIT")),
   libraryDependencies ++= Seq(
-    "org.scala-js" %%% "scalajs-dom" % "0.9.8",
-    "org.querki" %%% "querki-jsext" % "0.9"),
+    "org.scala-js" %%% "scalajs-dom" % "1.0.0",
+    "org.querki" %%% "querki-jsext" % "0.10"),
   npmDeps in Compile += Dep("plotly.js", "1.52.1", List("plotly.min.js")),
-  scalacOptions += "-P:scalajs:sjsDefinedByDefault",
-  scalaJSStage in Global := FastOptStage)
+  scalaJSStage in Global := FullOptStage
+)
 
-lazy val plotlyjs: Project = Project(id = projectId, base = file(".")).settings(commonSettings ++ scalaJsSettings) enablePlugins (ExecNpmPlugin)
+import sbtrelease.ReleasePlugin.autoImport.ReleaseTransformations._
+
+lazy val defaultSettings = Seq(
+  releasePublishArtifactsAction := PgpKeys.publishSigned.value,
+  releaseVersionBump := sbtrelease.Version.Bump.Minor,
+  releaseTagComment := s"Releasing ${(version in ThisBuild).value}",
+  releaseCommitMessage := s"Bump version to ${(version in ThisBuild).value}",
+  publishConfiguration in ThisBuild := publishConfiguration.value.withOverwrite(true),
+  releaseProcess := Seq[ReleaseStep](
+    checkSnapshotDependencies,
+    inquireVersions,
+    runClean,
+    runTest,
+    setReleaseVersion,
+    tagRelease,
+    releaseStepCommand("publishSigned"),
+    setNextVersion,
+    commitNextVersion,
+    releaseStepCommand("sonatypeReleaseAll"),
+    pushChanges
+  ),
+  publishTo in ThisBuild := {
+    val nexus = "https://oss.sonatype.org/"
+    if (version.value.trim.endsWith("SNAPSHOT"))
+      Some("snapshots" at nexus + "content/repositories/snapshots")
+    else
+      Some("releases" at nexus + "service/local/staging/deploy/maven2")
+  }
+)
+
+lazy val plotlyjs: Project = Project(id = projectName, base = file(".")).settings(plotlySettings ++ defaultSettings) enablePlugins (ExecNpmPlugin)
