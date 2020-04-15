@@ -15,7 +15,7 @@ val plotlySettings = Seq(
   organization := "org.openmole",  
   scalaVersion := "2.13.1",
   shellPrompt := { state => s"[${Project.extract(state).currentProject.id}] $$ " },
-  resolvers += Resolver.jcenterRepo,
+  //resolvers += Resolver.jcenterRepo,
   libraryDependencies ++= Seq(
     "org.scala-js" %%% "scalajs-dom" % "1.0.0",
     "org.querki" %%% "querki-jsext" % "0.10"),
@@ -39,9 +39,9 @@ lazy val defaultSettings = Seq(
     setReleaseVersion,
     tagRelease,
     releaseStepCommand("publishSigned"),
+    releaseStepCommand("sonatypeReleaseAll"),
     setNextVersion,
     commitNextVersion,
-    releaseStepCommand("sonatypeReleaseAll"),
     pushChanges
   ),
   publishTo in ThisBuild := {
