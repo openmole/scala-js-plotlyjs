@@ -17,4 +17,4 @@ addSbtPlugin("com.timushev.sbt" % "sbt-updates" % "0.5.0") // dependencyUpdates
 
 addSbtPlugin("org.scalariform" % "sbt-scalariform" % "1.8.3") // scalariformFormat
 
-addSbtPlugin("fr.iscpif" % "scalajs-execnpm" % "0.9")
+addSbtPlugin("org.openmole" % "scalajs-execnpm" % "0.9")

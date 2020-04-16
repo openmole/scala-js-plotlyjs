@@ -25,7 +25,19 @@ val plotlySettings = Seq(
 )
 
 
-version in ThisBuild := appVersion
+version := appVersion
+licenses := Seq("Affero GPLv3" -> url("http://www.gnu.org/licenses/"))
+homepage := Some(url("https://github.com/openmole/scala-js-plotlyjs"))
+scmInfo := Some(ScmInfo(url("https://github.com/openmole/scala-js-plotlyjs.git"), "git@github.com:openmole/scala-js-plotlyjs.git"))
+pomExtra := (
+  <developers>
+    <developer>
+      <id>mathieu.leclaire</id>
+      <name>Mathieu Leclaire</name>
+    </developer>
+  </developers>
+  )
+
 releasePublishArtifactsAction := PgpKeys.publishSigned.value
 releaseVersionBump := sbtrelease.Version.Bump.Minor
 releaseTagComment := s"Releasing ${(version in ThisBuild).value}"
