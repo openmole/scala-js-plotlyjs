@@ -53,7 +53,7 @@ import sbtrelease.ReleasePlugin.autoImport.ReleaseTransformations._
 
 releaseProcess := Seq[ReleaseStep](
     checkSnapshotDependencies,
-    //inquireVersions,
+    inquireVersions,
     runClean,
     runTest,
     //setReleaseVersion,
