@@ -7,12 +7,13 @@ import sbt._
 
 val projectName = "scala-js-plotlyjs"
 
-val appVersion = "1.3.0"
+val appVersion = "1.4.0"
+val organisation = "org.openmole" 
 
 val plotlySettings = Seq(
   name := projectName,
   version := appVersion,
-  organization := "org.openmole",  
+  organization := organisation,  
   scalaVersion := "2.13.1",
   shellPrompt := { state => s"[${Project.extract(state).currentProject.id}] $$ " },
   //resolvers += Resolver.jcenterRepo,
@@ -23,34 +24,33 @@ val plotlySettings = Seq(
   scalaJSStage in Global := FullOptStage
 )
 
+
+version in ThisBuild := appVersion
+releasePublishArtifactsAction := PgpKeys.publishSigned.value
+releaseVersionBump := sbtrelease.Version.Bump.Minor
+releaseTagComment := s"Releasing ${(version in ThisBuild).value}"
+releaseCommitMessage := s"Bump version to ${(version in ThisBuild).value}"
+sonatypeProfileName := organisation
+publishConfiguration := publishConfiguration.value.withOverwrite(true)
+
+publishTo := sonatypePublishToBundle.value
+publishMavenStyle := true
+autoCompilerPlugins := true 
+
 import sbtrelease.ReleasePlugin.autoImport.ReleaseTransformations._
 
-lazy val defaultSettings = Seq(
-  releasePublishArtifactsAction := PgpKeys.publishSigned.value,
-  releaseVersionBump := sbtrelease.Version.Bump.Minor,
-  releaseTagComment := s"Releasing ${(version in ThisBuild).value}",
-  releaseCommitMessage := s"Bump version to ${(version in ThisBuild).value}",
-  publishConfiguration in ThisBuild := publishConfiguration.value.withOverwrite(true),
-  releaseProcess := Seq[ReleaseStep](
+releaseProcess := Seq[ReleaseStep](
     checkSnapshotDependencies,
-    inquireVersions,
+    //inquireVersions,
     runClean,
     runTest,
-    setReleaseVersion,
+    //setReleaseVersion,
     tagRelease,
     releaseStepCommand("publishSigned"),
-    releaseStepCommand("sonatypeReleaseAll"),
+    releaseStepCommand("sonatypeBundleRelease"),
     setNextVersion,
     commitNextVersion,
     pushChanges
-  ),
-  publishTo in ThisBuild := {
-    val nexus = "https://oss.sonatype.org/"
-    if (version.value.trim.endsWith("SNAPSHOT"))
-      Some("snapshots" at nexus + "content/repositories/snapshots")
-    else
-      Some("releases" at nexus + "service/local/staging/deploy/maven2")
-  }
-)
+  )
 
-lazy val plotlyjs: Project = Project(id = projectName, base = file(".")).settings(plotlySettings ++ defaultSettings) enablePlugins (ExecNpmPlugin)
+lazy val plotlyjs: Project = Project(id = projectName, base = file(".")).settings(plotlySettings) enablePlugins (ExecNpmPlugin)
