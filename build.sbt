@@ -7,12 +7,10 @@ import sbt._
 
 val projectName = "scala-js-plotlyjs"
 
-val appVersion = "1.4.0"
 val organisation = "org.openmole" 
 
 val plotlySettings = Seq(
   name := projectName,
-  version := appVersion,
   organization := organisation,  
   scalaVersion := "2.13.1",
   shellPrompt := { state => s"[${Project.extract(state).currentProject.id}] $$ " },
@@ -25,7 +23,6 @@ val plotlySettings = Seq(
 )
 
 
-version := appVersion
 licenses := Seq("Affero GPLv3" -> url("http://www.gnu.org/licenses/"))
 homepage := Some(url("https://github.com/openmole/scala-js-plotlyjs"))
 scmInfo := Some(ScmInfo(url("https://github.com/openmole/scala-js-plotlyjs.git"), "git@github.com:openmole/scala-js-plotlyjs.git"))
