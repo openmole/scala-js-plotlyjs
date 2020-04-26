@@ -189,6 +189,10 @@ trait Axis extends js.Object {
   var showline: js.UndefOr[Boolean] = js.native
   var zeroline: js.UndefOr[Boolean] = js.native
   var autorange: js.UndefOr[Boolean | String] = js.native
+  var overlaying: js.UndefOr[String] = js.native
+  var side: js.UndefOr[String] = js.native
+  var anchor: js.UndefOr[String] = js.native
+  var domain: js.UndefOr[DatumArray | DatumMatrix] = js.native
 }
 
 object Axis extends AxisBuilder(noOpts)
@@ -223,6 +227,13 @@ class AxisBuilder(val dict: OptMap) extends JSOptionBuilder[Axis, AxisBuilder](n
   def showline(v: Boolean) = jsOpt("showline", v)
 
   def autorange(v: Boolean | String) = jsOpt("autorange", v)
+
+  def overlaying(v: String) = jsOpt("overlaying", v)
+
+  def anchor(v: String) = jsOpt("anchor", v)
+
+  def domain(v: DatumArray | DatumMatrix) = jsOpt("domain", v)
+
 }
 
 @js.native
@@ -308,6 +319,8 @@ trait PlotData extends js.Object {
   var connectgaps: js.UndefOr[Boolean] = js.native
   var dimensions: js.UndefOr[DimensionArray] = js.native
   var errorY: js.UndefOr[ErrorY] = js.native
+  var xaxis: js.UndefOr[String] = js.native
+  var yaxis: js.UndefOr[String] = js.native
 }
 
 object PlotData extends PlotDataBuilder(noOpts)
@@ -358,6 +371,11 @@ class PlotDataBuilder(val dict: OptMap) extends JSOptionBuilder[PlotData, PlotDa
   def connectgaps(v: Boolean) = jsOpt("connectgaps", v)
 
   def errorY(v: ErrorY) = jsOpt("error_y", v)
+
+  def xaxis(v: String) = jsOpt("xaxis", v)
+
+  def yaxis(v: String) = jsOpt("yaxis", v)
+
 }
 
 @js.native
