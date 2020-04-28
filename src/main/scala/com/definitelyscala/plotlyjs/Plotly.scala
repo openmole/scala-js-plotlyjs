@@ -1,5 +1,6 @@
 package com.definitelyscala.plotlyjs
 
+import com.definitelyscala.plotlyjs.HistogramDataBuilder.HistogramDataBuilder
 import com.definitelyscala.plotlyjs.PlotlyStatic._
 import com.definitelyscala.plotlyjs.plotlyConts._
 import org.scalajs.dom.raw.HTMLElement
@@ -326,6 +327,8 @@ trait PlotData extends js.Object {
 object PlotData extends PlotDataBuilder(noOpts)
 
 class PlotDataBuilder(val dict: OptMap) extends JSOptionBuilder[PlotData, PlotDataBuilder](new PlotDataBuilder(_)) {
+
+  def aJsOpt(n: String, o: Any) = jsOpt(n, o)
 
   def x(v: DatumArray | DatumMatrix) = jsOpt("x", v)
 
