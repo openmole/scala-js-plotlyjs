@@ -11,7 +11,7 @@ object PlotModeBuilder {
     def toJS: PlotModeType = s"$s+text"
   }
 
-  def apply(s: PlotModeType) = new Symbol {
+  def apply(s: PlotModeType) = new PlotSymbol {
     def toJS: PlotModeType = s
   }
 

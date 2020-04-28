@@ -452,7 +452,7 @@ class PlotMarkerBuilder(val dict: OptMap) extends JSOptionBuilder[PlotMarker, Pl
    *
    * Reference: Plotly.js API
    */
-  def set(v: Symbol) = jsOpt("symbol", v.toJS)
+  def set(v: PlotSymbol) = jsOpt("symbol", v.toJS)
 
   /*
    * Sets the marker color.
