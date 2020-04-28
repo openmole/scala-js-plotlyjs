@@ -24,11 +24,11 @@ import HistNorm._
 trait HistogramData extends js.Object {
 
   // Histograms
-  var nbinsx: js.UndefOr[Int] = js.native
-  var nbinsy: js.UndefOr[Int] = js.native
-  var xbins: js.UndefOr[Bin] = js.native
-  var ybins: js.UndefOr[Bin] = js.native
-  var histnorm: js.UndefOr[HistNorm] = js.native
+  val nbinsx: js.UndefOr[Int] = js.native
+  val nbinsy: js.UndefOr[Int] = js.native
+  val xbins: js.UndefOr[Bin] = js.native
+  val ybins: js.UndefOr[Bin] = js.native
+  val histnorm: js.UndefOr[HistNorm] = js.native
 
 }
 
@@ -52,11 +52,11 @@ object HistogramDataBuilder {
 
 @js.native
 trait Bin extends js.Object {
-  var start: js.UndefOr[Double] = js.native
+  val start: js.UndefOr[Double] = js.native
 
-  var end: js.UndefOr[Double] = js.native
+  val end: js.UndefOr[Double] = js.native
 
-  var size: js.UndefOr[Int] = js.native
+  val size: js.UndefOr[Int] = js.native
 }
 
 object Bin extends BinBuilder(noOpts)

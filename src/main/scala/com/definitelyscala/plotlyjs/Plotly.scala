@@ -33,47 +33,58 @@ trait PlotlyHTMLElement extends js.Object {
 
 @js.native
 trait ToImgopts extends js.Object {
-  var format: String = js.native
-  var width: Double = js.native
-  var height: Double = js.native
+  val format: String = js.native
+  val width: Double = js.native
+  val height: Double = js.native
 }
 
 @js.native
 trait DownloadImgopts extends js.Object {
-  var format: String = js.native
-  var width: Double = js.native
-  var height: Double = js.native
-  var filename: String = js.native
+  val format: String = js.native
+  val width: Double = js.native
+  val height: Double = js.native
+  val filename: String = js.native
+}
+
+@js.native
+trait Grid extends js.Object {
+  val title: js.UndefOr[String] = js.native
+}
+
+object Grid extends GridBuilder(noOpts)
+
+class GridBuilder(val dict: OptMap) extends JSOptionBuilder[Grid, GridBuilder](new GridBuilder(_)) {
+  def title(v: String) = jsOpt("title", v)
 }
 
 @js.native
 trait Layout extends js.Object {
-  var title: js.UndefOr[String] = js.native
-  var autosize: js.UndefOr[Boolean] = js.native
-  var showlegend: js.UndefOr[Boolean] = js.native
-  var xaxis: js.UndefOr[Axis] = js.native
-  var yaxis: js.UndefOr[Axis] = js.native
-  var xaxis2: js.UndefOr[Axis] = js.native
-  var yaxis2: js.UndefOr[Axis] = js.native
-  var xaxis3: js.UndefOr[Axis] = js.native
-  var yaxis3: js.UndefOr[Axis] = js.native
-  var xaxis4: js.UndefOr[Axis] = js.native
-  var yaxis4: js.UndefOr[Axis] = js.native
-  var xaxis5: js.UndefOr[Axis] = js.native
-  var yaxis5: js.UndefOr[Axis] = js.native
-  var xaxis6: js.UndefOr[Axis] = js.native
-  var yaxis6: js.UndefOr[Axis] = js.native
-  var xaxis7: js.UndefOr[Axis] = js.native
-  var yaxis7: js.UndefOr[Axis] = js.native
-  var xaxis8: js.UndefOr[Axis] = js.native
-  var yaxis8: js.UndefOr[Axis] = js.native
-  var margin: js.UndefOr[Margin] = js.native
-  var height: js.UndefOr[Double] = js.native
-  var width: js.UndefOr[Double] = js.native
-  var hovermode: js.UndefOr[String] = js.native
-  var dragmode: js.UndefOr[String] = js.native
-  var shapes: js.UndefOr[js.Array[Shape]] = js.native
-  var legend: js.UndefOr[Legend] = js.native
+  val title: js.UndefOr[String] = js.native
+  val autosize: js.UndefOr[Boolean] = js.native
+  val showlegend: js.UndefOr[Boolean] = js.native
+  val xaxis: js.UndefOr[Axis] = js.native
+  val yaxis: js.UndefOr[Axis] = js.native
+  val xaxis2: js.UndefOr[Axis] = js.native
+  val yaxis2: js.UndefOr[Axis] = js.native
+  val xaxis3: js.UndefOr[Axis] = js.native
+  val yaxis3: js.UndefOr[Axis] = js.native
+  val xaxis4: js.UndefOr[Axis] = js.native
+  val yaxis4: js.UndefOr[Axis] = js.native
+  val xaxis5: js.UndefOr[Axis] = js.native
+  val yaxis5: js.UndefOr[Axis] = js.native
+  val xaxis6: js.UndefOr[Axis] = js.native
+  val yaxis6: js.UndefOr[Axis] = js.native
+  val xaxis7: js.UndefOr[Axis] = js.native
+  val yaxis7: js.UndefOr[Axis] = js.native
+  val xaxis8: js.UndefOr[Axis] = js.native
+  val yaxis8: js.UndefOr[Axis] = js.native
+  val margin: js.UndefOr[Margin] = js.native
+  val height: js.UndefOr[Double] = js.native
+  val width: js.UndefOr[Double] = js.native
+  val hovermode: js.UndefOr[String] = js.native
+  val dragmode: js.UndefOr[String] = js.native
+  val shapes: js.UndefOr[js.Array[Shape]] = js.native
+  val legend: js.UndefOr[Legend] = js.native
 }
 
 object Layout extends LayoutBuilder(noOpts)
@@ -134,17 +145,17 @@ class LayoutBuilder(val dict: OptMap) extends JSOptionBuilder[Layout, LayoutBuil
 
 @js.native
 trait Legend extends js.Object {
-  var traceorder: js.UndefOr[String] = js.native
-  var x: js.UndefOr[Double] = js.native
-  var y: js.UndefOr[Double] = js.native
-  var font: js.UndefOr[Font] = js.native
-  var bgcolor: js.UndefOr[String] = js.native
-  var bordercolor: js.UndefOr[String] = js.native
-  var borderwidth: js.UndefOr[Double] = js.native
-  var orientation: js.UndefOr[String] = js.native
-  var tracegroupgap: js.UndefOr[Double] = js.native
-  var xanchor: js.UndefOr[String] = js.native
-  var yanchor: js.UndefOr[String] = js.native
+  val traceorder: js.UndefOr[String] = js.native
+  val x: js.UndefOr[Double] = js.native
+  val y: js.UndefOr[Double] = js.native
+  val font: js.UndefOr[Font] = js.native
+  val bgcolor: js.UndefOr[String] = js.native
+  val bordercolor: js.UndefOr[String] = js.native
+  val borderwidth: js.UndefOr[Double] = js.native
+  val orientation: js.UndefOr[String] = js.native
+  val tracegroupgap: js.UndefOr[Double] = js.native
+  val xanchor: js.UndefOr[String] = js.native
+  val yanchor: js.UndefOr[String] = js.native
 }
 
 object Legend extends LegendBuilder(noOpts)
@@ -175,25 +186,25 @@ class LegendBuilder(val dict: OptMap) extends JSOptionBuilder[Legend, LegendBuil
 
 @js.native
 trait Axis extends js.Object {
-  var title: js.UndefOr[String] = js.native
-  var showgrid: js.UndefOr[Boolean] = js.native
-  var fixedrange: js.UndefOr[Boolean] = js.native
-  var rangemode: js.UndefOr[String] = js.native
-  var `type`: js.UndefOr[AxisType] = js.native
-  var tickformat: js.UndefOr[String] = js.native
-  var hoverformat: js.UndefOr[String] = js.native
-  var rangeslider: js.UndefOr[RangeSlider] = js.native
-  var rangeselector: js.UndefOr[RangeSelector] = js.native
-  var range: js.UndefOr[js.Array[Datum]] = js.native
-  var showticklabels: js.UndefOr[Boolean] = js.native
-  var autotick: js.UndefOr[Boolean] = js.native
-  var showline: js.UndefOr[Boolean] = js.native
-  var zeroline: js.UndefOr[Boolean] = js.native
-  var autorange: js.UndefOr[Boolean | String] = js.native
-  var overlaying: js.UndefOr[String] = js.native
-  var side: js.UndefOr[String] = js.native
-  var anchor: js.UndefOr[String] = js.native
-  var domain: js.UndefOr[DatumArray | DatumMatrix] = js.native
+  val title: js.UndefOr[String] = js.native
+  val showgrid: js.UndefOr[Boolean] = js.native
+  val fixedrange: js.UndefOr[Boolean] = js.native
+  val rangemode: js.UndefOr[String] = js.native
+  val `type`: js.UndefOr[AxisType] = js.native
+  val tickformat: js.UndefOr[String] = js.native
+  val hoverformat: js.UndefOr[String] = js.native
+  val rangeslider: js.UndefOr[RangeSlider] = js.native
+  val rangeselector: js.UndefOr[RangeSelector] = js.native
+  val range: js.UndefOr[js.Array[Datum]] = js.native
+  val showticklabels: js.UndefOr[Boolean] = js.native
+  val autotick: js.UndefOr[Boolean] = js.native
+  val showline: js.UndefOr[Boolean] = js.native
+  val zeroline: js.UndefOr[Boolean] = js.native
+  val autorange: js.UndefOr[Boolean | String] = js.native
+  val overlaying: js.UndefOr[String] = js.native
+  val side: js.UndefOr[String] = js.native
+  val anchor: js.UndefOr[String] = js.native
+  val domain: js.UndefOr[DatumArray | DatumMatrix] = js.native
 }
 
 object Axis extends AxisBuilder(noOpts)
@@ -239,27 +250,27 @@ class AxisBuilder(val dict: OptMap) extends JSOptionBuilder[Axis, AxisBuilder](n
 
 @js.native
 trait Shape extends js.Object {
-  var visible: Boolean = js.native
-  var layer: String = js.native
-  var `type`: String = js.native
-  var path: String = js.native
-  var xref: String = js.native
-  var yref: String = js.native
-  var x0: Datum = js.native
-  var y0: Datum = js.native
-  var x1: Datum = js.native
-  var y1: Datum = js.native
-  var fillcolor: String = js.native
-  var opacity: Double = js.native
-  var line: Option[PlotLine] = js.native
+  val visible: Boolean = js.native
+  val layer: String = js.native
+  val `type`: String = js.native
+  val path: String = js.native
+  val xref: String = js.native
+  val yref: String = js.native
+  val x0: Datum = js.native
+  val y0: Datum = js.native
+  val x1: Datum = js.native
+  val y1: Datum = js.native
+  val fillcolor: String = js.native
+  val opacity: Double = js.native
+  val line: Option[PlotLine] = js.native
 }
 
 @js.native
 trait Margin extends js.Object {
-  var t: Int = js.native
-  var b: Int = js.native
-  var l: Int = js.native
-  var r: Int = js.native
+  val t: Int = js.native
+  val b: Int = js.native
+  val l: Int = js.native
+  val r: Int = js.native
 }
 
 object Margin extends MarginBuilder(noOpts)
@@ -272,7 +283,7 @@ class MarginBuilder(val dict: OptMap) extends JSOptionBuilder[Margin, MarginBuil
 }
 @js.native
 trait PointsData extends js.Object {
-  var points: js.Array[PointData] = js.native
+  val points: js.Array[PointData] = js.native
 }
 
 @js.native
@@ -288,8 +299,8 @@ trait PointData extends js.Object {
 
 @js.native
 trait Dimension extends js.Object {
-  var label: js.UndefOr[String] = js.native
-  var values: js.UndefOr[DatumArray] = js.native
+  val label: js.UndefOr[String] = js.native
+  val values: js.UndefOr[DatumArray] = js.native
 }
 
 object Dimension extends DimensionBuilder(noOpts)
@@ -302,26 +313,26 @@ class DimensionBuilder(val dict: OptMap) extends JSOptionBuilder[Dimension, Dime
 
 @js.native
 trait PlotData extends js.Object {
-  var `type`: js.UndefOr[PlotType.PlotType] = js.native
-  var x: js.UndefOr[DatumArray | DatumMatrix] = js.native
-  var y: js.UndefOr[DatumArray | DatumMatrix] = js.native
-  var z: js.UndefOr[DatumArray | DatumMatrix] = js.native
-  var customdata: js.UndefOr[js.Array[String]] = js.native
-  var text: js.UndefOr[String | js.Array[String]] = js.native
-  var line: js.UndefOr[PlotLine] = js.native
-  var marker: js.UndefOr[PlotMarker] = js.native
-  var mode: js.UndefOr[PlotMode] = js.native
-  var hoveron: js.UndefOr[String] = js.native
-  var hoverinfo: js.UndefOr[String] = js.native
-  var fill: js.UndefOr[String] = js.native
-  var fillcolor: js.UndefOr[String] = js.native
-  var legendgroup: js.UndefOr[String] = js.native
-  var name: js.UndefOr[String] = js.native
-  var connectgaps: js.UndefOr[Boolean] = js.native
-  var dimensions: js.UndefOr[DimensionArray] = js.native
-  var errorY: js.UndefOr[ErrorY] = js.native
-  var xaxis: js.UndefOr[String] = js.native
-  var yaxis: js.UndefOr[String] = js.native
+  val `type`: js.UndefOr[PlotType.PlotType] = js.native
+  val x: js.UndefOr[DatumArray | DatumMatrix] = js.native
+  val y: js.UndefOr[DatumArray | DatumMatrix] = js.native
+  val z: js.UndefOr[DatumArray | DatumMatrix] = js.native
+  val customdata: js.UndefOr[js.Array[String]] = js.native
+  val text: js.UndefOr[String | js.Array[String]] = js.native
+  val line: js.UndefOr[PlotLine] = js.native
+  val marker: js.UndefOr[PlotMarker] = js.native
+  val mode: js.UndefOr[PlotMode] = js.native
+  val hoveron: js.UndefOr[String] = js.native
+  val hoverinfo: js.UndefOr[String] = js.native
+  val fill: js.UndefOr[String] = js.native
+  val fillcolor: js.UndefOr[String] = js.native
+  val legendgroup: js.UndefOr[String] = js.native
+  val name: js.UndefOr[String] = js.native
+  val connectgaps: js.UndefOr[Boolean] = js.native
+  val dimensions: js.UndefOr[DimensionArray] = js.native
+  val errorY: js.UndefOr[ErrorY] = js.native
+  val xaxis: js.UndefOr[String] = js.native
+  val yaxis: js.UndefOr[String] = js.native
 }
 
 object PlotData extends PlotDataBuilder(noOpts)
@@ -596,38 +607,38 @@ class PlotLineBuilder(val dict: OptMap) extends JSOptionBuilder[PlotLine, PlotLi
 
 @js.native
 trait Font extends js.Object {
-  var family: String = js.native
-  var size: Double = js.native
-  var color: String = js.native
+  val family: String = js.native
+  val size: Double = js.native
+  val color: String = js.native
 }
 
 @js.native
 trait Config extends js.Object {
-  var staticPlot: js.UndefOr[Boolean] = js.native
-  var editable: js.UndefOr[Boolean] = js.native
-  var autosizable: js.UndefOr[Boolean] = js.native
-  var queueLength: js.UndefOr[Double] = js.native
-  var fillFrame: js.UndefOr[Boolean] = js.native
-  var frameMargins: js.UndefOr[Double] = js.native
-  var scrollZoom: js.UndefOr[Boolean] = js.native
-  var doubleClick: js.UndefOr[String] = js.native
-  var showTips: js.UndefOr[Boolean] = js.native
-  var showLink: js.UndefOr[Boolean] = js.native
-  var sendData: js.UndefOr[Boolean] = js.native
-  var linkText: js.UndefOr[String] = js.native
-  var showSources: js.UndefOr[Boolean] = js.native
-  var displayModeBar: js.UndefOr[String | Boolean] = js.native
-  var modeBarButtonsToRemove: js.UndefOr[js.Array[ModeBarButtons]] = js.native
-  var modeBarButtonsToAdd: js.UndefOr[js.Array[ModeBarButtons]] = js.native
-  var modeBarButtons: js.UndefOr[js.Array[js.Array[ModeBarButtons]]] = js.native
-  var displaylogo: js.UndefOr[Boolean] = js.native
-  var plotGlPixelRatio: js.UndefOr[Double] = js.native
-  var setBackground: js.UndefOr[String] = js.native
-  var topojsonURL: js.UndefOr[String] = js.native
-  var mapboxAccessToken: js.UndefOr[String] = js.native
-  var logging: js.UndefOr[Boolean] = js.native
-  var globalTransforms: js.UndefOr[js.Array[js.Any]] = js.native
-  var responsive: js.UndefOr[Boolean] = js.native
+  val staticPlot: js.UndefOr[Boolean] = js.native
+  val editable: js.UndefOr[Boolean] = js.native
+  val autosizable: js.UndefOr[Boolean] = js.native
+  val queueLength: js.UndefOr[Double] = js.native
+  val fillFrame: js.UndefOr[Boolean] = js.native
+  val frameMargins: js.UndefOr[Double] = js.native
+  val scrollZoom: js.UndefOr[Boolean] = js.native
+  val doubleClick: js.UndefOr[String] = js.native
+  val showTips: js.UndefOr[Boolean] = js.native
+  val showLink: js.UndefOr[Boolean] = js.native
+  val sendData: js.UndefOr[Boolean] = js.native
+  val linkText: js.UndefOr[String] = js.native
+  val showSources: js.UndefOr[Boolean] = js.native
+  val displayModeBar: js.UndefOr[String | Boolean] = js.native
+  val modeBarButtonsToRemove: js.UndefOr[js.Array[ModeBarButtons]] = js.native
+  val modeBarButtonsToAdd: js.UndefOr[js.Array[ModeBarButtons]] = js.native
+  val modeBarButtons: js.UndefOr[js.Array[js.Array[ModeBarButtons]]] = js.native
+  val displaylogo: js.UndefOr[Boolean] = js.native
+  val plotGlPixelRatio: js.UndefOr[Double] = js.native
+  val setBackground: js.UndefOr[String] = js.native
+  val topojsonURL: js.UndefOr[String] = js.native
+  val mapboxAccessToken: js.UndefOr[String] = js.native
+  val logging: js.UndefOr[Boolean] = js.native
+  val globalTransforms: js.UndefOr[js.Array[js.Any]] = js.native
+  val responsive: js.UndefOr[Boolean] = js.native
 }
 
 object Config extends ConfigBuilder(noOpts)
@@ -686,12 +697,12 @@ class ConfigBuilder(val dict: OptMap) extends JSOptionBuilder[Config, ConfigBuil
 
 @js.native
 trait RangeSlider extends js.Object {
-  var visible: js.UndefOr[Boolean] = js.native
-  var thickness: js.UndefOr[Double] = js.native
-  var range: js.UndefOr[js.Tuple2[Datum, Datum]] = js.native
-  var borderwidth: js.UndefOr[Double] = js.native
-  var bordercolor: js.UndefOr[String] = js.native
-  var bgcolor: js.UndefOr[String] = js.native
+  val visible: js.UndefOr[Boolean] = js.native
+  val thickness: js.UndefOr[Double] = js.native
+  val range: js.UndefOr[js.Tuple2[Datum, Datum]] = js.native
+  val borderwidth: js.UndefOr[Double] = js.native
+  val bordercolor: js.UndefOr[String] = js.native
+  val bgcolor: js.UndefOr[String] = js.native
 }
 
 object RangeSlider extends RangeSliderBuilder(noOpts)
@@ -712,10 +723,10 @@ class RangeSliderBuilder(val dict: OptMap) extends JSOptionBuilder[RangeSlider, 
 
 @js.native
 trait RangeSelectorButton extends js.Object {
-  var step: js.UndefOr[String] = js.native
-  var stepmode: js.UndefOr[String] = js.native
-  var count: js.UndefOr[Double] = js.native
-  var label: js.UndefOr[String] = js.native
+  val step: js.UndefOr[String] = js.native
+  val stepmode: js.UndefOr[String] = js.native
+  val count: js.UndefOr[Double] = js.native
+  val label: js.UndefOr[String] = js.native
 }
 
 object RangeSelectorButton extends RangeSelectorButtonBuilder(noOpts)
@@ -732,17 +743,17 @@ class RangeSelectorButtonBuilder(val dict: OptMap) extends JSOptionBuilder[Range
 
 @js.native
 trait RangeSelector extends js.Object {
-  var buttons: js.UndefOr[js.Array[RangeSelectorButton]] = js.native
-  var visible: js.UndefOr[Boolean] = js.native
-  var x: js.UndefOr[Double] = js.native
-  var xanchor: js.UndefOr[String] = js.native
-  var y: js.UndefOr[Double] = js.native
-  var yanchor: js.UndefOr[String] = js.native
-  var bgcolor: js.UndefOr[String] = js.native
-  var activecolor: js.UndefOr[String] = js.native
-  var bordercolor: js.UndefOr[String] = js.native
-  var borderwidth: js.UndefOr[Double] = js.native
-  var font: js.UndefOr[Font] = js.native
+  val buttons: js.UndefOr[js.Array[RangeSelectorButton]] = js.native
+  val visible: js.UndefOr[Boolean] = js.native
+  val x: js.UndefOr[Double] = js.native
+  val xanchor: js.UndefOr[String] = js.native
+  val y: js.UndefOr[Double] = js.native
+  val yanchor: js.UndefOr[String] = js.native
+  val bgcolor: js.UndefOr[String] = js.native
+  val activecolor: js.UndefOr[String] = js.native
+  val bordercolor: js.UndefOr[String] = js.native
+  val borderwidth: js.UndefOr[Double] = js.native
+  val font: js.UndefOr[Font] = js.native
 }
 
 object RangeSelector extends RangeSelectorBuilder(noOpts)
@@ -773,8 +784,8 @@ class RangeSelectorBuilder(val dict: OptMap) extends JSOptionBuilder[RangeSelect
 
 @js.native
 trait ErrorY extends js.Object {
-  var array: js.UndefOr[DatumArray] = js.native
-  var visible: js.UndefOr[Boolean] = js.native
+  val array: js.UndefOr[DatumArray] = js.native
+  val visible: js.UndefOr[Boolean] = js.native
 }
 
 object ErrorY extends ErrorYBuilder(noOpts)
