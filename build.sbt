@@ -12,13 +12,13 @@ val organisation = "org.openmole"
 val plotlySettings = Seq(
   name := projectName,
   organization := organisation,  
-  scalaVersion := "2.13.1",
+  scalaVersion := "2.13.2",
   shellPrompt := { state => s"[${Project.extract(state).currentProject.id}] $$ " },
   //resolvers += Resolver.jcenterRepo,
   libraryDependencies ++= Seq(
     "org.scala-js" %%% "scalajs-dom" % "1.0.0",
     "org.querki" %%% "querki-jsext" % "0.10"),
-  npmDeps in Compile += Dep("plotly.js", "1.53.1", List("plotly.min.js")),
+  npmDeps in Compile += Dep("plotly.js", "1.53.0", List("plotly.min.js")),
   scalaJSStage in Global := FullOptStage
 )
 
