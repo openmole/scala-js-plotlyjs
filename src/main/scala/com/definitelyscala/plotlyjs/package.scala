@@ -22,6 +22,8 @@ package object all extends symbols.PlotSymbols {
 
   def plotlytype = PlotType
 
+  def plotlygrid = Grid
+
   // Linechart objects
   def linechart = PlotData
 
@@ -58,5 +60,4 @@ package object all extends symbols.PlotSymbols {
 
   def heatmap = PlotData.set(plotlytype.heatmap)
 
-  // implicit def plotDataToHistogram(plotDataBuilder: PlotDataBuilder): HistogramDataBuilder = plotDataBuilder.asInstanceOf[HistogramDataBuilder]
 }

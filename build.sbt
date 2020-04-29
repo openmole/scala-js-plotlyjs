@@ -18,7 +18,7 @@ val plotlySettings = Seq(
   libraryDependencies ++= Seq(
     "org.scala-js" %%% "scalajs-dom" % "1.0.0",
     "org.querki" %%% "querki-jsext" % "0.10"),
-  npmDeps in Compile += Dep("plotly.js", "1.52.1", List("plotly.min.js")),
+  npmDeps in Compile += Dep("plotly.js", "1.53.1", List("plotly.min.js")),
   scalaJSStage in Global := FullOptStage
 )
 

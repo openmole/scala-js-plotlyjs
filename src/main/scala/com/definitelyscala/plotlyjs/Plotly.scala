@@ -47,17 +47,6 @@ trait DownloadImgopts extends js.Object {
 }
 
 @js.native
-trait Grid extends js.Object {
-  val title: js.UndefOr[String] = js.native
-}
-
-object Grid extends GridBuilder(noOpts)
-
-class GridBuilder(val dict: OptMap) extends JSOptionBuilder[Grid, GridBuilder](new GridBuilder(_)) {
-  def title(v: String) = jsOpt("title", v)
-}
-
-@js.native
 trait Layout extends js.Object {
   val title: js.UndefOr[String] = js.native
   val autosize: js.UndefOr[Boolean] = js.native
@@ -85,6 +74,7 @@ trait Layout extends js.Object {
   val dragmode: js.UndefOr[String] = js.native
   val shapes: js.UndefOr[js.Array[Shape]] = js.native
   val legend: js.UndefOr[Legend] = js.native
+  val grid: js.UndefOr[Grid] = js.native
 }
 
 object Layout extends LayoutBuilder(noOpts)
@@ -141,6 +131,8 @@ class LayoutBuilder(val dict: OptMap) extends JSOptionBuilder[Layout, LayoutBuil
   def shapes(v: js.Array[Shape]) = jsOpt("shapes", v)
 
   def legend(v: Legend) = jsOpt("legend", v)
+
+  def grid(v: Grid) = jsOpt("grid", v)
 }
 
 @js.native
