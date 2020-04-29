@@ -20,7 +20,7 @@ resolvers += Resolver.jcenterRepo,
 Then, add it to your SBT dependencies:
 
 ```
-libraryDependencies += "org.openmole" %%% "scala-js-plotlyjs" % "1.4.0"
+libraryDependencies += "org.openmole" %%% "scala-js-plotlyjs" % "1.4.2"
 ```
 
 Classes and traits are available in the package `com.definitelyscala.plotlyjs`, scaladoc is provided.
@@ -47,13 +47,13 @@ val plotDiv = div.render
     .x(js.Array(1999, 2000, 2001, 2002))
     .y(js.Array(10, 1, 4, 7))
     .customdata(js.Array("one", "two", "three", "four"))
-    .set(plotlymarker.size(12.0).set(plotlycolor("red")))
+    .marker(plotlymarker.size(12.0).color(plotlycolor("red")))
 
   val data2 = data
     .x(js.Array(1999, 2000, 2001, 2002))
     .y(js.Array(6, 9, 8, 7))
     .customdata(js.Array[String]("one", "two", "three", "four"))
-    .set(plotlymarker.size(12.0).set(plotlycolor.rgb(0, 136, 170)))
+    .marker(plotlymarker.size(12.0).color(plotlycolor.rgb(0, 136, 170)))
 
   val config: Config = Config.displayModeBar(false)
 
