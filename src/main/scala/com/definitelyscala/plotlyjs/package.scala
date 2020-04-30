@@ -4,33 +4,33 @@ package object all extends symbols.PlotSymbols {
 
   import com.definitelyscala.plotlyjs.HistogramDataBuilder._
 
-  def plotlyline = PlotLine
+  def line = PlotLine
 
-  def plotlymarker = PlotMarker
+  def marker = PlotMarker
 
-  def plotlycolor = Color
+  def color = Color
 
-  def plotlysizemode = SizeMode
+  def sizemode = SizeMode
 
-  def plotlycolorscale = ColorScale
+  def colorscale = ColorScale
 
-  def plotlysymbol = PlotSymbol
+  def ysymbol = PlotSymbol
 
-  def plotlyaxis = Axis
+  def axis = Axis
 
-  def plotlymode = PlotMode
+  def plotmode = PlotMode
 
-  def plotlytype = PlotType
+  def plottype = PlotType
 
-  def plotlygrid = Grid
+  def grid = Grid
 
   // Linechart objects
   def linechart = PlotData
 
   implicit class PlotDataAPI(plotDataBuilder: PlotDataBuilder) {
-    def lines = plotDataBuilder.set(plotlymode.markers.lines)
+    def lines = plotDataBuilder.set(plotmode.markers.lines)
 
-    def text = plotDataBuilder.set(plotlymode.markers.text)
+    def text = plotDataBuilder.set(plotmode.markers.text)
 
     def marker(marker: PlotMarker) = plotDataBuilder.set(marker)
   }
@@ -48,16 +48,16 @@ package object all extends symbols.PlotSymbols {
   }
 
   // Histogram objects
-  def histogram = PlotData.set(plotlytype.histogram).histnorm(HistNorm.default)
+  def histogram = PlotData.set(plottype.histogram).histnorm(HistNorm.default)
 
   def bin = Bin
 
-  def scatter = PlotData.set(plotlytype.scatter).set(plotlymode.markers)
+  def scatter = PlotData.set(plottype.scatter).set(plotmode.markers)
 
-  def box = PlotData.set(plotlytype.box)
+  def box = PlotData.set(plottype.box)
 
-  def splom = PlotData.set(plotlytype.splom)
+  def splom = PlotData.set(plottype.splom)
 
-  def heatmap = PlotData.set(plotlytype.heatmap)
+  def heatmap = PlotData.set(plottype.heatmap)
 
 }
