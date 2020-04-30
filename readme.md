@@ -2,7 +2,7 @@ scala-js-plotlyjs
 ===============
 
 [![Build Status](https://travis-ci.org/DefinitelyScala/scala-js-plotlyjs.svg?branch=master)](https://travis-ci.org/DefinitelyScala/scala-js-plotlyjs)
-[![Scala.js](https://www.scala-js.org/assets/badges/scalajs-0.6.15.svg)](https://www.scala-js.org/)
+[![Scala.js](https://www.scala-js.org/assets/badges/scalajs-1.0.0.svg)](https://www.scala-js.org/)
 
 Scala.js facades for [plotly.js](https://plot.ly/javascript/).
 
