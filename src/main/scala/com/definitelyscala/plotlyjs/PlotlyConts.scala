@@ -1,4 +1,4 @@
-package com.definitelyscala.plotlyjs
+package org.openmole.plotlyjs
 
 package object plotlyConts {
   type PlotEvent = String

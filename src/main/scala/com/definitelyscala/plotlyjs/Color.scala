@@ -1,6 +1,6 @@
-package com.definitelyscala.plotlyjs
+package org.openmole.plotlyjs
 
-import com.definitelyscala.plotlyjs.PlotlyStatic._
+import PlotlyStatic._
 import scala.scalajs.js
 import js.|
 

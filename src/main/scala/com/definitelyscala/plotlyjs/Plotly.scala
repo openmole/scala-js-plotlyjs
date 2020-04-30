@@ -1,8 +1,8 @@
-package com.definitelyscala.plotlyjs
+package org.openmole.plotlyjs
 
-import com.definitelyscala.plotlyjs.HistogramDataBuilder.HistogramDataBuilder
-import com.definitelyscala.plotlyjs.PlotlyStatic._
-import com.definitelyscala.plotlyjs.plotlyConts._
+import HistogramDataBuilder.HistogramDataBuilder
+import PlotlyStatic._
+import plotlyConts._
 import org.scalajs.dom.raw.HTMLElement
 
 import scala.language.implicitConversions

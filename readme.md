@@ -1,12 +1,9 @@
 scala-js-plotlyjs
 ===============
 
-[![Build Status](https://travis-ci.org/DefinitelyScala/scala-js-plotlyjs.svg?branch=master)](https://travis-ci.org/DefinitelyScala/scala-js-plotlyjs)
 [![Scala.js](https://www.scala-js.org/assets/badges/scalajs-1.0.0.svg)](https://www.scala-js.org/)
 
 Scala.js facades for [plotly.js](https://plot.ly/javascript/).
-
-Generated from [TypeScript definitions](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/plotlyjs) based on plotly.js .
 
 Usage
 -----
@@ -20,16 +17,14 @@ resolvers += Resolver.jcenterRepo,
 Then, add it to your SBT dependencies:
 
 ```
-libraryDependencies += "org.openmole" %%% "scala-js-plotlyjs" % "1.4.2"
+libraryDependencies += "org.openmole" %%% "scala-js-plotlyjs" % "1.5.0"
 ```
-
-Classes and traits are available in the package `com.definitelyscala.plotlyjs`, scaladoc is provided.
 
 This project provides Scala.js facades. You will still need to include the JavaScript library source in your web page.
 
 Demo
 ------
-[https://github.com/mathieuleclaire/scala-js-plotlyjs-demo](https://github.com/mathieuleclaire/scala-js-plotlyjs-demo)
+[https://github.com/openmole/scala-js-plotlyjs-demo](https://github.com/openmole/scala-js-plotlyjs-demo)
 
 Example
 -------
@@ -47,13 +42,13 @@ val plotDiv = div.render
     .x(js.Array(1999, 2000, 2001, 2002))
     .y(js.Array(10, 1, 4, 7))
     .customdata(js.Array("one", "two", "three", "four"))
-    .marker(plotlymarker.size(12.0).color(plotlycolor("red")))
+    .marker(marker.size(12.0).color(all.color("red")))
 
   val data2 = data
     .x(js.Array(1999, 2000, 2001, 2002))
     .y(js.Array(6, 9, 8, 7))
     .customdata(js.Array[String]("one", "two", "three", "four"))
-    .marker(plotlymarker.size(12.0).color(plotlycolor.rgb(0, 136, 170)))
+    .marker(marker.size(12.0).color(all.color.rgb(0, 136, 170)))
 
   val config: Config = Config.displayModeBar(false)
 

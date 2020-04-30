@@ -1,8 +1,8 @@
-package com.definitelyscala.plotlyjs
+package org.openmole.plotlyjs
 
 package object all extends symbols.PlotSymbols {
 
-  import com.definitelyscala.plotlyjs.HistogramDataBuilder._
+  import HistogramDataBuilder._
 
   def line = PlotLine
 

@@ -1,4 +1,4 @@
-package com.definitelyscala.plotlyjs
+package org.openmole.plotlyjs
 
 import org.querki.jsext.{ JSOptionBuilder, OptMap, noOpts }
 
@@ -34,8 +34,6 @@ trait HistogramData extends js.Object {
 
 object HistogramDataBuilder {
   implicit class HistogramDataBuilder(plotDataBuilder: PlotDataBuilder) {
-
-    //  plotDataBuilder.set(com.definitelyscala.plotlyjs.all.plotlytype.histogram)
 
     def nbinsx(v: Int) = plotDataBuilder.aJsOpt("nbinsx", v)
 
