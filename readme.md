@@ -17,14 +17,15 @@ resolvers += Resolver.jcenterRepo,
 Then, add it to your SBT dependencies:
 
 ```
-libraryDependencies += "org.openmole" %%% "scala-js-plotlyjs" % "1.5.0"
+libraryDependencies += "org.openmole" %%% "scala-js-plotlyjs" % "1.5.1"
 ```
 
 This project provides Scala.js facades. You will still need to include the JavaScript library source in your web page.
 
 Demo
 ------
-[https://github.com/openmole/scala-js-plotlyjs-demo](https://github.com/openmole/scala-js-plotlyjs-demo)
+[https://web.openmole.org/leclaire/plotly-demo.html](Plotly demo)
+Sources: [https://github.com/openmole/scala-js-plotlyjs-demo](https://github.com/openmole/scala-js-plotlyjs-demo) 
 
 Example
 -------
