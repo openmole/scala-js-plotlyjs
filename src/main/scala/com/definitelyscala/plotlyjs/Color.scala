@@ -26,7 +26,7 @@ object Color {
   // Ex: hex("0021aa")
   def hex(code: ColorType): Color = Color(s"hex(#$code)")
 
-  def array(a: DatumArray) = Color(a)
+  def array(a: DatumArray): Color = Color(a)
 }
 
 import Color._
