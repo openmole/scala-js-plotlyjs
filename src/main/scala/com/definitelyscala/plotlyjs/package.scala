@@ -3,6 +3,7 @@ package org.openmole.plotlyjs
 package object all extends symbols.PlotSymbols {
 
   import HistogramDataBuilder._
+  import SplomDataBuilder._
 
   def line = PlotLine
 
@@ -23,6 +24,8 @@ package object all extends symbols.PlotSymbols {
   def plottype = PlotType
 
   def grid = Grid
+
+  def diagonal = Diagonal
 
   // Linechart objects
   def linechart = PlotData
