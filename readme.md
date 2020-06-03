@@ -24,7 +24,8 @@ This project provides Scala.js facades. You will still need to include the JavaS
 
 Demo
 ------
-[https://web.openmole.org/leclaire/plotly-demo.html](Plotly demo)
+[Plotly demo](https://web.openmole.org/leclaire/plotly-demo.html)
+
 Sources: [https://github.com/openmole/scala-js-plotlyjs-demo](https://github.com/openmole/scala-js-plotlyjs-demo) 
 
 Example
