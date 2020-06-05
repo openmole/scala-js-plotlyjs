@@ -45,7 +45,8 @@ publishConfiguration := publishConfiguration.value.withOverwrite(true)
 
 publishTo := sonatypePublishToBundle.value
 publishMavenStyle := true
-autoCompilerPlugins := true 
+releaseCrossBuild := true
+autoCompilerPlugins := true
 
 import sbtrelease.ReleasePlugin.autoImport.ReleaseTransformations._
 
@@ -56,7 +57,7 @@ releaseProcess := Seq[ReleaseStep](
     runTest,
     //setReleaseVersion,
     tagRelease,
-    releaseStepCommand("publishSigned"),
+    releaseStepCommandAndRemaining("+publishSigned"),
     releaseStepCommand("sonatypeBundleRelease"),
     setNextVersion,
     commitNextVersion,
