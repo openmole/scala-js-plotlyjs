@@ -1,6 +1,5 @@
 package org.openmole.plotlyjs
 
-import HistogramDataBuilder.HistogramDataBuilder
 import PlotlyStatic._
 import plotlyConts._
 import org.scalajs.dom.raw.HTMLElement
@@ -10,7 +9,7 @@ import org.querki.jsext._
 
 import scala.scalajs.js
 import js.|
-import scala.scalajs.js.annotation.JSGlobal
+import scala.scalajs.js.annotation.{ JSExport, JSGlobal }
 
 object PlotlyImplicits {
   implicit def elToPlotlyElement[T <: HTMLElement](element: T): PlotlyHTMLElement = element.asInstanceOf[PlotlyHTMLElement]
@@ -38,12 +37,34 @@ trait ToImgopts extends js.Object {
   val height: Double = js.native
 }
 
+object ToImgopts extends ToImgoptsBuilder(noOpts)
+
+class ToImgoptsBuilder(val dict: OptMap) extends JSOptionBuilder[ToImgopts, ToImgoptsBuilder](new ToImgoptsBuilder(_)) {
+  def format(v: String) = jsOpt("format", v)
+
+  def width(v: Double) = jsOpt("width", v)
+
+  def height(v: Double) = jsOpt("height", v)
+}
+
 @js.native
 trait DownloadImgopts extends js.Object {
-  val format: String = js.native
-  val width: Double = js.native
-  val height: Double = js.native
-  val filename: String = js.native
+  val format: js.UndefOr[String] = js.native
+  val width: js.UndefOr[Double] = js.native
+  val height: js.UndefOr[Double] = js.native
+  val filename: js.UndefOr[String] = js.native
+}
+
+object DownloadImgopts extends DownloadImgoptsBuilder(noOpts)
+
+class DownloadImgoptsBuilder(val dict: OptMap) extends JSOptionBuilder[DownloadImgopts, DownloadImgoptsBuilder](new DownloadImgoptsBuilder(_)) {
+  def format(v: String) = jsOpt("format", v)
+
+  def width(v: Double) = jsOpt("width", v)
+
+  def height(v: Double) = jsOpt("height", v)
+
+  def filename(v: String) = jsOpt("filename", v)
 }
 
 @js.native
@@ -180,10 +201,14 @@ object Margin extends MarginBuilder(noOpts)
 
 class MarginBuilder(val dict: OptMap) extends JSOptionBuilder[Margin, MarginBuilder](new MarginBuilder(_)) {
   def t(v: Int) = jsOpt("t", v)
+
   def b(v: Int) = jsOpt("b", v)
+
   def l(v: Int) = jsOpt("l", v)
+
   def r(v: Int) = jsOpt("r", v)
 }
+
 @js.native
 trait PointsData extends js.Object {
   val points: js.Array[PointData] = js.native
@@ -211,6 +236,7 @@ object Dimension extends DimensionBuilder(noOpts)
 class DimensionBuilder(val dict: OptMap) extends JSOptionBuilder[Dimension, DimensionBuilder](new DimensionBuilder(_)) {
 
   def label(v: String) = jsOpt("label", v)
+
   def values(v: DatumArray | DatumMatrix) = jsOpt("values", v)
 }
 
