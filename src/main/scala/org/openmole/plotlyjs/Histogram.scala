@@ -33,17 +33,17 @@ trait HistogramData extends js.Object {
 }
 
 object HistogramDataBuilder {
-  implicit class HistogramDataBuilder(plotDataBuilder: PlotDataBuilder) {
+  implicit class HistogramDataBuilder(plotDataBuilder: PlotDataBuilder) extends PlotDataBuilder(plotDataBuilder.dict) {
 
-    def nbinsx(v: Int) = plotDataBuilder.aJsOpt("nbinsx", v)
+    def nbinsx(v: Int): HistogramDataBuilder = plotDataBuilder.aJsOpt("nbinsx", v)
 
-    def nbinsy(v: Int) = plotDataBuilder.aJsOpt("nbinsy", v)
+    def nbinsy(v: Int): HistogramDataBuilder = plotDataBuilder.aJsOpt("nbinsy", v)
 
-    def xbins(v: Bin) = plotDataBuilder.aJsOpt("xbins", v)
+    def xbins(v: Bin): HistogramDataBuilder = plotDataBuilder.aJsOpt("xbins", v)
 
-    def ybins(v: Bin) = plotDataBuilder.aJsOpt("ybins", v)
+    def ybins(v: Bin): HistogramDataBuilder = plotDataBuilder.aJsOpt("ybins", v)
 
-    def histnorm(v: HistNorm) = plotDataBuilder.aJsOpt("histnorm", v)
+    def histnorm(v: HistNorm): HistogramDataBuilder = plotDataBuilder.aJsOpt("histnorm", v)
   }
 
 }

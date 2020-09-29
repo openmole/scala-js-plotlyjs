@@ -1,9 +1,13 @@
 package org.openmole.plotlyjs
 
+import org.openmole.plotlyjs.ScatterPolar.Toself
+
 package object all extends symbols.PlotSymbols {
 
   import HistogramDataBuilder._
   import SplomDataBuilder._
+  import ScatterPolarDataBuilder._
+  import ScatterPolar._
 
   def line = PlotLine
 
@@ -27,15 +31,23 @@ package object all extends symbols.PlotSymbols {
 
   def diagonal = Diagonal
 
+  def polar = PolarLayout
+
+  def radialaxis = RadialAxis
+
+  def angularaxis = AngularAxis
+
+  def shape = Shape
+
   // Linechart objects
   def linechart = PlotData
 
   implicit class PlotDataAPI(plotDataBuilder: PlotDataBuilder) {
-    def lines = plotDataBuilder.set(plotmode.markers.lines)
+    def lines = plotDataBuilder.set(plotmode.lines)
 
-    def text = plotDataBuilder.set(plotmode.markers.text)
+    def text = plotDataBuilder.set(plotmode.text)
 
-    def marker(marker: PlotMarker) = plotDataBuilder.set(marker)
+    def marker(marker: PlotMarker) = plotDataBuilder.set(plotmode.markers)
   }
 
   implicit class PlotMarkerAPI(plotMarkerBuilder: PlotMarkerBuilder) {
@@ -56,6 +68,8 @@ package object all extends symbols.PlotSymbols {
   def bin = Bin
 
   def scatter = PlotData.set(plottype.scatter).set(plotmode.markers)
+
+  def scatterpolar = PlotData.set(plottype.scatterpolar).fillPolar(toself)
 
   def box = PlotData.set(plottype.box)
 

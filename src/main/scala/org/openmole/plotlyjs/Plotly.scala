@@ -1,14 +1,16 @@
 package org.openmole.plotlyjs
 
 import PlotlyStatic._
+import org.openmole.plotlyjs.ScatterPolar.{ Fill, ThetaUnit }
 import plotlyConts._
 import org.scalajs.dom.raw.HTMLElement
+import PlotMode._
 
 import scala.language.implicitConversions
 import org.querki.jsext._
 
 import scala.scalajs.js
-import js.|
+import js.{ Array, | }
 import scala.scalajs.js.annotation.{ JSExport, JSGlobal }
 
 object PlotlyImplicits {
@@ -172,11 +174,24 @@ class AxisBuilder(val dict: OptMap) extends JSOptionBuilder[Axis, AxisBuilder](n
 
 }
 
+object ShapeType {
+  type ShapeType = String
+
+  val circle: ShapeType = "circle"
+
+  val path: ShapeType = "path"
+
+  val line: ShapeType = "line"
+
+  val rect: ShapeType = "rect"
+}
+
+import ShapeType._
 @js.native
 trait Shape extends js.Object {
   val visible: Boolean = js.native
   val layer: String = js.native
-  val `type`: String = js.native
+  val `type`: ShapeType = js.native
   val path: String = js.native
   val xref: String = js.native
   val yref: String = js.native
@@ -184,9 +199,40 @@ trait Shape extends js.Object {
   val y0: Datum = js.native
   val x1: Datum = js.native
   val y1: Datum = js.native
-  val fillcolor: String = js.native
+  val fillcolor: Color = js.native
   val opacity: Double = js.native
   val line: Option[PlotLine] = js.native
+}
+
+object Shape extends ShapeBuilder(noOpts)
+
+class ShapeBuilder(val dict: OptMap) extends JSOptionBuilder[Shape, ShapeBuilder](new ShapeBuilder(_)) {
+  def visible(v: Boolean) = jsOpt("visible", v)
+
+  def layer(v: String) = jsOpt("layer", v)
+
+  def `type`(v: ShapeType) = jsOpt("type", v)
+
+  def path(v: String) = jsOpt("path", v)
+
+  def xref(v: String) = jsOpt("xref", v)
+
+  def yref(v: String) = jsOpt("yref", v)
+
+  def x0(v: Datum) = jsOpt("x0", v)
+
+  def y0(v: Datum) = jsOpt("y0", v)
+
+  def x1(v: Datum) = jsOpt("x1", v)
+
+  def y1(v: Datum) = jsOpt("y1", v)
+
+  def fillcolor(v: Color) = jsOpt("fillcolor", v.toJS)
+
+  def opacity(v: Double) = jsOpt("opacity", v)
+
+  def line(v: PlotLine) = jsOpt("line", v)
+
 }
 
 @js.native
@@ -280,6 +326,8 @@ class PlotDataBuilder(val dict: OptMap) extends JSOptionBuilder[PlotData, PlotDa
 
   def text(v: String | js.Array[String]) = jsOpt("text", v)
 
+  def textPosition(v: TextPosition.TextPosition) = jsOpt("textposition", v)
+
   def line(v: PlotLine) = jsOpt("line", v)
 
   def set(v: PlotMarker) = jsOpt("marker", v)
@@ -295,7 +343,7 @@ class PlotDataBuilder(val dict: OptMap) extends JSOptionBuilder[PlotData, PlotDa
    * If there are less than 20 points, then the default is "lines+markers". Otherwise, "lines".
    *
   */
-  def set(v: PlotMode) = jsOpt("mode", v.toJS)
+  def set(v: PlotMode.PlotMode) = jsOpt("mode", v.toJS)
 
   def set(v: PlotType.PlotType) = jsOpt("type", v)
 

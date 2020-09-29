@@ -12,7 +12,9 @@ object PlotlyStatic {
   type AxisType = String
   type ModeBarButtons = String
   type Datum = String | Double | Date | Int
+  type DatumNumeric = Int | Double
   type DatumArray = js.Array[String] | js.Array[Double] | js.Array[Date] | js.Array[Int]
+  type DatumNumericArray = Array[Double] | Array[Int]
   type DatumMatrix = js.Array[js.Array[String]] | js.Array[js.Array[Double]] | js.Array[js.Array[Date]] | js.Array[js.Array[Int]]
   type AllDatum = Datum | DatumArray
   type DimensionArray = js.Array[Dimension]

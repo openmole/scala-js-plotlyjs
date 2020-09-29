@@ -72,6 +72,7 @@ trait Layout extends js.Object {
   val shapes: js.UndefOr[js.Array[Shape]] = js.native
   val legend: js.UndefOr[Legend] = js.native
   val grid: js.UndefOr[Grid] = js.native
+  val polar: js.UndefOr[PolarLayout] = js.native
 }
 
 object Layout extends LayoutBuilder(noOpts)
@@ -130,4 +131,6 @@ class LayoutBuilder(val dict: OptMap) extends JSOptionBuilder[Layout, LayoutBuil
   def legend(v: Legend) = jsOpt("legend", v)
 
   def grid(v: Grid) = jsOpt("grid", v)
+
+  def polar(v: PolarLayout) = jsOpt("polar", v)
 }

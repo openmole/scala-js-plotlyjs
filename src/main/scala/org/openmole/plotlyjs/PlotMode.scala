@@ -1,49 +1,28 @@
 package org.openmole.plotlyjs
 
-object PlotModeBuilder {
-  type PlotModeType = String
-
-  def linable(s: PlotModeType) = new Linable {
-    def toJS: PlotModeType = s"$s+lines"
-  }
-
-  def textable(s: PlotModeType) = new Textable {
-    def toJS: PlotModeType = s"$s+text"
-  }
-
-  def apply(s: PlotModeType) = new PlotSymbol {
-    def toJS: PlotModeType = s
-  }
-
-  def markable = new Markable {
-    def toJS: PlotModeType = "markers"
-  }
-
-  def linable: Linable = linable("")
-
-  def textable: Textable = textable("")
-}
-
-import PlotModeBuilder._
-
-trait PlotMode {
-  def toJS: PlotModeType
-}
-
-trait Markable extends PlotMode {
-  def lines = linable(toJS)
-
-  def text = textable(toJS)
-}
-
-trait Linable extends PlotMode {
-  def text = textable(toJS)
-}
-
-trait Textable extends PlotMode
-
 object PlotMode {
-  val markers = markable
-  val lines = linable
-  val text = textable
+  trait PlotMode {
+    def toJS: String
+  }
+
+  object markers extends PlotMode {
+    def toJS: String = "markers"
+  }
+
+  object lines extends PlotMode {
+    def toJS = "lines"
+  }
+
+  object text extends PlotMode {
+    def toJS = "text"
+  }
+
+  object markersAndText extends PlotMode {
+    def toJS = s"${markers.toJS}+${text.toJS}"
+  }
+
+  object linesAndText extends PlotMode {
+    def toJS = s"${lines.toJS}+${text.toJS}"
+  }
+
 }
