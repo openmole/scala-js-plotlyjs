@@ -1,5 +1,6 @@
 package org.openmole.plotlyjs
 
+import org.openmole.plotlyjs.AxisType.AxisType
 import org.openmole.plotlyjs.PlotlyStatic.{ Datum, DatumArray, DatumNumeric, DatumNumericArray }
 import org.querki.jsext.{ JSOptionBuilder, OptMap, noOpts }
 
@@ -59,23 +60,23 @@ object ScatterPolarDataBuilder {
 
   implicit class ScatterPolarDataBuilder(val plotDataBuilder: PlotDataBuilder) {
 
-    def r(v: Array[Double]) = plotDataBuilder.aJsOpt("r", v)
+    def r(v: Array[Double]) = plotDataBuilder.asJsOpt("r", v)
 
-    def r0(v: Int | String) = plotDataBuilder.aJsOpt("r0", v)
+    def r0(v: Int | String) = plotDataBuilder.asJsOpt("r0", v)
 
-    def dr(v: Double) = plotDataBuilder.aJsOpt("dr", v)
+    def dr(v: Double) = plotDataBuilder.asJsOpt("dr", v)
 
-    def theta(v: DatumArray) = plotDataBuilder.aJsOpt("theta", v)
+    def theta(v: DatumArray) = plotDataBuilder.asJsOpt("theta", v)
 
-    def theta0(v: Int | String) = plotDataBuilder.aJsOpt("theta0", v)
+    def theta0(v: Int | String) = plotDataBuilder.asJsOpt("theta0", v)
 
-    def dtheta(v: Double) = plotDataBuilder.aJsOpt("dtheta", v)
+    def dtheta(v: Double) = plotDataBuilder.asJsOpt("dtheta", v)
 
-    def thetaunit(v: ThetaUnit) = plotDataBuilder.aJsOpt("thetaunit", v)
+    def thetaunit(v: ThetaUnit) = plotDataBuilder.asJsOpt("thetaunit", v)
 
-    def fillPolar(v: Fill) = plotDataBuilder.aJsOpt("fill", v.value)
+    def fillPolar(v: Fill) = plotDataBuilder.asJsOpt("fill", v.value)
 
-    def hovertemplate(v: String | Array[String]) = plotDataBuilder.aJsOpt("hovertemplate", v)
+    def hovertemplate(v: String | Array[String]) = plotDataBuilder.asJsOpt("hovertemplate", v)
 
     def _result = plotDataBuilder._result
   }
@@ -97,69 +98,35 @@ class PolarLayoutBuilder(val dict: OptMap) extends JSOptionBuilder[PolarLayout, 
 
   def sector(v: Array[Double]) = jsOpt("sector", v)
 
-  def set(v: RadialAxis) = jsOpt("radialaxis", v)
+  def radialAxis(v: Axis) = jsOpt("radialaxis", v)
 
-  def set(v: AngularAxis) = jsOpt("angularaxis", v)
+  def angularAxis(v: Axis) = jsOpt("angularaxis", v)
 }
 
-object RadialAxisType {
-  type RadialAxisType = String
-
-  val dash: RadialAxisType = "-"
-  val linear: RadialAxisType = "linear"
-  val log: RadialAxisType = "log"
-  val date: RadialAxisType = "date"
-  val category: RadialAxisType = "category"
-}
-
-object TickType {
-  type TickType = String
-
-  val none = ""
-  val inside = "inside"
-  val outside = "outside"
-}
-
-import RadialAxisType._, TickType._
-
-@js.native
-trait RadialAxis extends js.Object {
-  val visible: js.UndefOr[Boolean] = js.native
-  val `type`: js.UndefOr[RadialAxisType] = js.native
-  val showticklabels: js.UndefOr[Boolean] = js.native
-  val ticks: js.UndefOr[TickType] = js.native
-  val linewidth: js.UndefOr[Int] = js.native
-}
-
-object RadialAxis extends RadialAxisBuilder(noOpts)
-
-class RadialAxisBuilder(val dict: OptMap) extends JSOptionBuilder[RadialAxis, RadialAxisBuilder](new RadialAxisBuilder(_)) {
-  def visible(v: Boolean) = jsOpt("visible", v)
-
-  def `type`(v: RadialAxisBuilder) = jsOpt("type", v)
-
-  def showticklabels(v: Boolean) = jsOpt("showticklabels", v)
-
-  def ticks(v: TickType) = jsOpt("ticks", v)
-
-  def linewidth(v: Int) = jsOpt("linewidth", v)
-}
-
-@js.native
-trait AngularAxis extends js.Object {
-  val visible: js.UndefOr[Boolean] = js.native
-  val showticklabels: js.UndefOr[Boolean] = js.native
-  val gridcolor: js.UndefOr[Color] = js.native
-  val ticks: js.UndefOr[TickType] = js.native
-  val linewidth: js.UndefOr[Int] = js.native
-}
-
-object AngularAxis extends AngularAxisBuilder(noOpts)
-
-class AngularAxisBuilder(val dict: OptMap) extends JSOptionBuilder[AngularAxis, AngularAxisBuilder](new AngularAxisBuilder(_)) {
-  def visible(v: Boolean) = jsOpt("visible", v)
-  def showticklabels(v: Boolean) = jsOpt("showticklabels", v)
-  def gridcolor(v: Color) = jsOpt("color", v.toJS)
-  def ticks(v: TickType) = jsOpt("ticks", v)
-  def linewidth(v: Int) = jsOpt("linewidth", v)
-}
+//@js.native
+//trait RadialAxis extends js.Object {
+//  val `type`: js.UndefOr[AxisType] = js.native
+//}
+//
+//object RadialAxisBuilder {
+//
+//  implicit def radialAxisBuilderToAxis(radialAxisBuilder: RadialAxisBuilder): Axis = radialAxisBuilder._result
+//
+//  implicit class RadialAxisBuilder(val axisBuilder: AxisBuilder) {
+//    def _result = axisBuilder._result
+//  }
+//
+//}
+//
+//@js.native
+//trait AngularAxis extends js.Object
+//
+//object AngularAxisBuilder {
+//
+//  implicit def angularAxisBuilderToAxis(angularAxisBuilder: AngularAxisBuilder): Axis = angularAxisBuilder._result
+//
+//  implicit class AngularAxisBuilder(val axisBuilder: AxisBuilder) {
+//    def _result = axisBuilder._result
+//  }
+//
+//}

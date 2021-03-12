@@ -9,7 +9,6 @@ import scala.scalajs.js
 import js.|
 
 object PlotlyStatic {
-  type AxisType = String
   type ModeBarButtons = String
   type Datum = String | Double | Date | Int
   type DatumNumeric = Int | Double

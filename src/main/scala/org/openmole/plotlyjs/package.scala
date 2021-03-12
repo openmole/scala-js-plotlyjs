@@ -5,7 +5,6 @@ import org.openmole.plotlyjs.ScatterPolar.Toself
 package object all extends symbols.PlotSymbols {
 
   import HistogramDataBuilder._
-  import SplomDataBuilder._
   import ScatterPolarDataBuilder._
   import ScatterPolar._
 
@@ -33,9 +32,7 @@ package object all extends symbols.PlotSymbols {
 
   def polar = PolarLayout
 
-  def radialaxis = RadialAxis
-
-  def angularaxis = AngularAxis
+  def ternary = TernaryLayout
 
   def shape = Shape
 
@@ -70,6 +67,8 @@ package object all extends symbols.PlotSymbols {
   def scatter = PlotData.set(plottype.scatter).set(plotmode.markers)
 
   def scatterpolar = PlotData.set(plottype.scatterpolar).fillPolar(toself)
+
+  def scatterternary = PlotData.set(plottype.scatterternary)
 
   def box = PlotData.set(plottype.box)
 

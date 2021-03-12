@@ -30,15 +30,15 @@ object SplomDataBuilder {
 
   implicit class SplomDataBuilder(plotDataBuilder: PlotDataBuilder) {
 
-    def showupperhalf(v: Boolean) = plotDataBuilder.aJsOpt("showupperhalf", v)
+    def showupperhalf(v: Boolean) = plotDataBuilder.asJsOpt("showupperhalf", v)
 
-    def showlowerhalf(v: Boolean) = plotDataBuilder.aJsOpt("showlowerhalf", v)
+    def showlowerhalf(v: Boolean) = plotDataBuilder.asJsOpt("showlowerhalf", v)
 
-    def diagonal(v: Diagonal) = plotDataBuilder.aJsOpt("diagonal", v)
+    def diagonal(v: Diagonal) = plotDataBuilder.asJsOpt("diagonal", v)
 
     def diagonalOff = {
       val d: Diagonal = Diagonal.visible(false)
-      plotDataBuilder.aJsOpt("diagonal", d)
+      plotDataBuilder.asJsOpt("diagonal", d)
     }
   }
 

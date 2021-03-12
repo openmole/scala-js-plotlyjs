@@ -5,6 +5,7 @@ import org.openmole.plotlyjs.ScatterPolar.{ Fill, ThetaUnit }
 import plotlyConts._
 import org.scalajs.dom.raw.HTMLElement
 import PlotMode._
+import org.openmole.plotlyjs.TickType.TickType
 
 import scala.language.implicitConversions
 import org.querki.jsext._
@@ -110,6 +111,25 @@ class LegendBuilder(val dict: OptMap) extends JSOptionBuilder[Legend, LegendBuil
   def yanchor(v: String) = jsOpt("yanchor", v)
 }
 
+object AxisType {
+  type AxisType = String
+
+  val dash: AxisType = "-"
+  val linear: AxisType = "linear"
+  val log: AxisType = "log"
+  val date: AxisType = "date"
+  val category: AxisType = "category"
+}
+
+object TickMode {
+  type TickMode = String
+
+  val linear = "linear"
+  val auto = "auto"
+  val array = "array"
+}
+
+import AxisType._, TickMode._
 @js.native
 trait Axis extends js.Object {
   val title: js.UndefOr[String] = js.native
@@ -124,6 +144,8 @@ trait Axis extends js.Object {
   val range: js.UndefOr[js.Array[Datum]] = js.native
   val showticklabels: js.UndefOr[Boolean] = js.native
   val autotick: js.UndefOr[Boolean] = js.native
+  val dtick: js.UndefOr[Datum] = js.native
+  val tickmode: js.UndefOr[TickMode] = js.native
   val showline: js.UndefOr[Boolean] = js.native
   val zeroline: js.UndefOr[Boolean] = js.native
   val autorange: js.UndefOr[Boolean | String] = js.native
@@ -131,11 +153,19 @@ trait Axis extends js.Object {
   val side: js.UndefOr[String] = js.native
   val anchor: js.UndefOr[String] = js.native
   val domain: js.UndefOr[DatumArray | DatumMatrix] = js.native
+  val visible: js.UndefOr[Boolean] = js.native
+  val gridcolor: js.UndefOr[Color] = js.native
+  val ticks: js.UndefOr[TickType] = js.native
+  val linewidth: js.UndefOr[Int] = js.native
+  val bounds: js.UndefOr[DatumArray] = js.native
 }
 
 object Axis extends AxisBuilder(noOpts)
 
 class AxisBuilder(val dict: OptMap) extends JSOptionBuilder[Axis, AxisBuilder](new AxisBuilder(_)) {
+
+  def asJsOpt(n: String, o: Any) = jsOpt(n, o)
+
   def title(v: String) = jsOpt("title", v)
 
   def showgrid(v: Boolean) = jsOpt("showgrid", v)
@@ -160,6 +190,10 @@ class AxisBuilder(val dict: OptMap) extends JSOptionBuilder[Axis, AxisBuilder](n
 
   def autotick(v: Boolean) = jsOpt("auotick", v)
 
+  def dtick(v: Datum) = jsOpt("dtick", v)
+
+  def tickmode(v: TickMode) = jsOpt("tickmode", v)
+
   def zeroline(v: Boolean) = jsOpt("zeroline", v)
 
   def showline(v: Boolean) = jsOpt("showline", v)
@@ -172,6 +206,15 @@ class AxisBuilder(val dict: OptMap) extends JSOptionBuilder[Axis, AxisBuilder](n
 
   def domain(v: DatumArray | DatumMatrix) = jsOpt("domain", v)
 
+  def visible(v: Boolean) = jsOpt("visible", v)
+
+  def gridcolor(v: Color) = jsOpt("gridcolor", v.toJS)
+
+  def ticks(v: TickType) = jsOpt("ticks", v)
+
+  def linewidth(v: Int) = jsOpt("linewidth", v)
+
+  def bounds(v: DatumArray) = jsOpt("bounds", v)
 }
 
 object ShapeType {
@@ -187,6 +230,7 @@ object ShapeType {
 }
 
 import ShapeType._
+
 @js.native
 trait Shape extends js.Object {
   val visible: Boolean = js.native
@@ -314,7 +358,7 @@ object PlotData extends PlotDataBuilder(noOpts)
 
 class PlotDataBuilder(val dict: OptMap) extends JSOptionBuilder[PlotData, PlotDataBuilder](new PlotDataBuilder(_)) {
 
-  def aJsOpt(n: String, o: Any) = jsOpt(n, o)
+  def asJsOpt(n: String, o: Any) = jsOpt(n, o)
 
   def x(v: DatumArray | DatumMatrix) = jsOpt("x", v)
 

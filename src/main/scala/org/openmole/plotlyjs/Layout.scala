@@ -1,5 +1,6 @@
 package org.openmole.plotlyjs
 
+import org.openmole.plotlyjs.PlotlyStatic.Datum
 import org.querki.jsext.{ JSOptionBuilder, OptMap, noOpts }
 
 import scala.scalajs.js
@@ -43,6 +44,16 @@ object HoverMode {
 
 import DragMode._, HoverMode._
 
+object TickType {
+  type TickType = String
+
+  val none = ""
+  val inside = "inside"
+  val outside = "outside"
+}
+
+import TickType._
+
 @js.native
 trait Layout extends js.Object {
   val title: js.UndefOr[String] = js.native
@@ -64,6 +75,10 @@ trait Layout extends js.Object {
   val yaxis7: js.UndefOr[Axis] = js.native
   val xaxis8: js.UndefOr[Axis] = js.native
   val yaxis8: js.UndefOr[Axis] = js.native
+  val xaxis9: js.UndefOr[Axis] = js.native
+  val yaxis9: js.UndefOr[Axis] = js.native
+  val xaxis10: js.UndefOr[Axis] = js.native
+  val yaxis10: js.UndefOr[Axis] = js.native
   val margin: js.UndefOr[Margin] = js.native
   val height: js.UndefOr[Double] = js.native
   val width: js.UndefOr[Double] = js.native
@@ -73,6 +88,7 @@ trait Layout extends js.Object {
   val legend: js.UndefOr[Legend] = js.native
   val grid: js.UndefOr[Grid] = js.native
   val polar: js.UndefOr[PolarLayout] = js.native
+  val ternary: js.UndefOr[TernaryLayout] = js.native
 }
 
 object Layout extends LayoutBuilder(noOpts)
@@ -120,6 +136,14 @@ class LayoutBuilder(val dict: OptMap) extends JSOptionBuilder[Layout, LayoutBuil
 
   def yaxis8(v: Axis) = jsOpt("yaxis8", v)
 
+  def xaxis9(v: Axis) = jsOpt("xaxis9", v)
+
+  def yaxis9(v: Axis) = jsOpt("yaxis9", v)
+
+  def xaxis10(v: Axis) = jsOpt("xaxis10", v)
+
+  def yaxis10(v: Axis) = jsOpt("yaxis10", v)
+
   def margin(v: Margin) = jsOpt("margin", v)
 
   def height(v: Double) = jsOpt("height", v)
@@ -133,4 +157,6 @@ class LayoutBuilder(val dict: OptMap) extends JSOptionBuilder[Layout, LayoutBuil
   def grid(v: Grid) = jsOpt("grid", v)
 
   def polar(v: PolarLayout) = jsOpt("polar", v)
+
+  def ternary(v: TernaryLayout) = jsOpt("ternary", v)
 }
