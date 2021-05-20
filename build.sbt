@@ -36,7 +36,6 @@ releaseProcess := Seq[ReleaseStep](
   checkSnapshotDependencies,
   inquireVersions,
   runClean,
-  runTest,
   //setReleaseVersion,
   tagRelease,
   releaseStepCommandAndRemaining("+publishSigned"),
