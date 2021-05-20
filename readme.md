@@ -17,10 +17,11 @@ resolvers += Resolver.jcenterRepo,
 Then, add it to your SBT dependencies:
 
 ```
-libraryDependencies += "org.openmole" %%% "scala-js-plotlyjs" % "1.5.1"
+libraryDependencies += "org.openmole" %%% "scala-js-plotlyjs" % "1.5.6"
 ```
 
-This project provides Scala.js facades. You will still need to include the JavaScript library source in your web page.
+This project provides Scala.js facades. The plotly.js (1.54.1) file resources is embedd in the jars through the jsDependency sbt plugin.
+
 
 Demo
 ------
@@ -31,39 +32,41 @@ Sources: [https://github.com/openmole/scala-js-plotlyjs-demo](https://github.com
 Example
 -------
 ```scala
-val plotDiv = div.render
+    val plotDiv = div()
 
-  val layout: Layout = Layout
-    .title("My beautifull plot")
-    .showlegend(true)
+val layout = Layout
+  .title("My line plot")
+  .showlegend(true)
+  .xaxis(axis.title("Time"))
+  .yaxis(axis.title("Production"))
 
-  val data = PlotData
-    .mode(PlotMode.MARKERS + PlotMode.LINES)
+val data = linechart.lines
 
-  val data1 = data
-    .x(js.Array(1999, 2000, 2001, 2002))
-    .y(js.Array(10, 1, 4, 7))
-    .customdata(js.Array("one", "two", "three", "four"))
-    .marker(marker.size(12.0).color(all.color("red")))
+val ref = Utils.randomDoubles(15, 10)
 
-  val data2 = data
-    .x(js.Array(1999, 2000, 2001, 2002))
-    .y(js.Array(6, 9, 8, 7))
-    .customdata(js.Array[String]("one", "two", "three", "four"))
-    .marker(marker.size(12.0).color(all.color.rgb(0, 136, 170)))
-
-  val config: Config = Config.displayModeBar(false)
-
-  val plot = Plotly.newPlot(plotDiv,
-    js.Array(data1, data2),
-    layout,
-    config)
+val dataRef = data
+  .x((0 to 14).toJSArray)
+  .y(ref)
+  .marker(marker.symbol(square).color(all.color.rgb(180, 0, 0)).size(12.0))
+  .name("Reds")
 
 
-  plotDiv.on(PlotEvent.HOVER, (d: PointsData) => {
-    hoverText() = d.points.map { p => s"${p.x} ${p.y} ${p.customdata}" }.mkString(" and ")
-    })
+val dataN = (for (i <- 1 to 6) yield {
+  data
+    .x((0 to 14).toJSArray)
+    .y(ref.map { x => x + Utils.rng.nextDouble * 2 - 1 }.toJSArray)
+    .marker(marker.size(10.0).color(all.color.rgb(200, 136, 170)))
+    ._result
+}).toJSArray
 
 
-  dom.document.body.appendChild(plotDiv)
+val config = Config.displayModeBar(false)
+
+Plotly.newPlot(plotDiv.ref,
+  dataN :+ dataRef._result,
+  layout,
+  config)
+
+plotDiv
+
 ```
