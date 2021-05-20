@@ -10,6 +10,8 @@ addSbtPlugin("org.xerial.sbt" % "sbt-sonatype" % "3.9.7")
 
 addSbtPlugin("com.jsuereth" % "sbt-pgp" % "2.0.1")
 
+addSbtPlugin("org.scala-js" % "sbt-jsdependencies" % "1.0.2")
+
 // Code Quality
 addSbtPlugin("org.scalastyle" %% "scalastyle-sbt-plugin" % "1.0.0") // scalastyle
 
