@@ -40,11 +40,11 @@ package object all extends symbols.PlotSymbols {
   def linechart = PlotData
 
   implicit class PlotDataAPI(plotDataBuilder: PlotDataBuilder) {
-    def lines = plotDataBuilder.set(plotmode.lines)
+    def lines = plotDataBuilder.set(plotmode.markers.lines)
 
-    def text = plotDataBuilder.set(plotmode.text)
+    def text = plotDataBuilder.set(plotmode.markers.text)
 
-    def marker(marker: PlotMarker) = plotDataBuilder.set(plotmode.markers)
+    def marker(marker: PlotMarker) = plotDataBuilder.set(marker)
   }
 
   implicit class PlotMarkerAPI(plotMarkerBuilder: PlotMarkerBuilder) {

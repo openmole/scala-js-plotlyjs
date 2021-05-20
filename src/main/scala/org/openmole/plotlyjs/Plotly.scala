@@ -387,7 +387,9 @@ class PlotDataBuilder(val dict: OptMap) extends JSOptionBuilder[PlotData, PlotDa
    * If there are less than 20 points, then the default is "lines+markers". Otherwise, "lines".
    *
   */
-  def set(v: PlotMode.PlotMode) = jsOpt("mode", v.toJS)
+
+  def set(v: PlotMode) = jsOpt("mode", v.toJS)
+  //def set(v: PlotMode.PlotMode) = jsOpt("mode", v.toJS)
 
   def set(v: PlotType.PlotType) = jsOpt("type", v)
 
