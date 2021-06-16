@@ -16,4 +16,5 @@ object PlotType {
   val splom: PlotType = "splom"
   val scatterpolar: PlotType = "scatterpolar"
   val scatterternary: PlotType = "scatterternary"
+  val parallelCoordinates: PlotType = "parcoords"
 }

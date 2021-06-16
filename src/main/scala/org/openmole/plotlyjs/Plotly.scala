@@ -413,6 +413,9 @@ class PlotDataBuilder(val dict: OptMap) extends JSOptionBuilder[PlotData, PlotDa
 
   def yaxis(v: String) = jsOpt("yaxis", v)
 
+  //TODO general or create a ParallelCoordinatesDataBuilder ?
+  def dimensions(v: DimensionArray) = jsOpt("dimensions", v)
+
 }
 
 @js.native

@@ -36,6 +36,8 @@ package object all extends symbols.PlotSymbols {
 
   def shape = Shape
 
+  def dimension = Dimension
+
   // Linechart objects
   def linechart = PlotData
 
@@ -75,5 +77,7 @@ package object all extends symbols.PlotSymbols {
   def splom = PlotData.set(plottype.splom)
 
   def heatmap = PlotData.set(plottype.heatmap)
+
+  def parallelCoordinates = PlotData.set(plottype.parallelCoordinates)
 
 }
