@@ -42,9 +42,9 @@ package object all extends symbols.PlotSymbols {
   def linechart = PlotData
 
   implicit class PlotDataAPI(plotDataBuilder: PlotDataBuilder) {
-    def lines = plotDataBuilder.set(plotmode.markers.lines)
+    def lines = plotDataBuilder.setMode(plotmode.markers.lines)
 
-    def text = plotDataBuilder.set(plotmode.markers.text)
+    def text = plotDataBuilder.setMode(plotmode.markers.text)
 
     def marker(marker: PlotMarker) = plotDataBuilder.set(marker)
   }
@@ -66,11 +66,13 @@ package object all extends symbols.PlotSymbols {
 
   def bin = Bin
 
-  def scatter = PlotData.set(plottype.scatter).set(plotmode.markers)
+  def scatter = PlotData.set(plottype.scatter).setMode(plotmode.markers)
 
-  def scatterpolar = PlotData.set(plottype.scatterpolar).fillPolar(toself)
+  def scatter3d = PlotData.set(plottype.scatter3d)
 
-  def scatterternary = PlotData.set(plottype.scatterternary)
+  def scatterPolar = PlotData.set(plottype.scatterPolar).fillPolar(toself)
+
+  def scatterTernary = PlotData.set(plottype.scatterTernary)
 
   def box = PlotData.set(plottype.box)
 

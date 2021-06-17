@@ -388,7 +388,7 @@ class PlotDataBuilder(val dict: OptMap) extends JSOptionBuilder[PlotData, PlotDa
    *
   */
 
-  def set(v: PlotMode) = jsOpt("mode", v.toJS)
+  def setMode(v: PlotMode) = jsOpt("mode", v.toJS)
   //def set(v: PlotMode.PlotMode) = jsOpt("mode", v.toJS)
 
   def set(v: PlotType.PlotType) = jsOpt("type", v)

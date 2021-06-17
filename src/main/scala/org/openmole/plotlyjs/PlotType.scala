@@ -12,9 +12,11 @@ object PlotType {
   val surface: PlotType = "surface"
   val mesh: PlotType = "mesh"
   val histogram: PlotType = "histogram"
-  val scatter: PlotType = "scatter"
   val splom: PlotType = "splom"
-  val scatterpolar: PlotType = "scatterpolar"
-  val scatterternary: PlotType = "scatterternary"
+  val scatter: PlotType = "scatter"
+  val scatter3d: PlotType = "scatter3d"
+  val scatterPolar: PlotType = "scatterpolar"
+  val scatterTernary: PlotType = "scatterternary"
   val parallelCoordinates: PlotType = "parcoords"
+
 }
