@@ -12,6 +12,7 @@ import org.querki.jsext._
 
 import scala.scalajs.js
 import js.{ Array, | }
+import scala.scalajs.js.JSConverters.JSRichIterableOnce
 import scala.scalajs.js.annotation.{ JSExport, JSGlobal }
 
 object PlotlyImplicits {
@@ -619,6 +620,10 @@ object PlotLine extends PlotLineBuilder(noOpts)
 
 class PlotLineBuilder(val dict: OptMap) extends JSOptionBuilder[PlotLine, PlotLineBuilder](new PlotLineBuilder(_)) {
   def set(v: Color) = jsOpt("color", v.toJS)
+
+  def color(v: Seq[Double]) = jsOpt("color", v.toJSArray)
+
+  def colorscale(v: Seq[(Double, Color)]) = jsOpt("colorscale", v.map({ case (value, color) => js.Array(value, color) }).toJSArray)
 
   def width(v: Double) = jsOpt("width", v)
 
