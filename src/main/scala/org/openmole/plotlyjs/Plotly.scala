@@ -216,6 +216,8 @@ class AxisBuilder(val dict: OptMap) extends JSOptionBuilder[Axis, AxisBuilder](n
   def linewidth(v: Int) = jsOpt("linewidth", v)
 
   def bounds(v: DatumArray) = jsOpt("bounds", v)
+
+  def scaleanchor(v: String) = jsOpt("scaleanchor", v)
 }
 
 object ShapeType {
@@ -619,11 +621,15 @@ trait PlotLine extends js.Object {
 object PlotLine extends PlotLineBuilder(noOpts)
 
 class PlotLineBuilder(val dict: OptMap) extends JSOptionBuilder[PlotLine, PlotLineBuilder](new PlotLineBuilder(_)) {
-  def set(v: Color) = jsOpt("color", v.toJS)
+  def color(v: Color) = jsOpt("color", v.toJS)
 
+  /*
+  @deprecated
   def color(v: Seq[Double]) = jsOpt("color", v.toJSArray)
 
+  @deprecated
   def colorscale(v: Seq[(Double, Color)]) = jsOpt("colorscale", v.map({ case (value, color) => js.Array(value, color) }).toJSArray)
+  */
 
   def width(v: Double) = jsOpt("width", v)
 
