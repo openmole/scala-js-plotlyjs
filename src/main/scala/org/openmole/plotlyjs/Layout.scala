@@ -85,6 +85,7 @@ trait Layout extends js.Object {
   val hovermode: js.UndefOr[HoverMode] = js.native
   val dragmode: js.UndefOr[DragMode] = js.native
   val shapes: js.UndefOr[js.Array[Shape]] = js.native
+  val annotations: js.UndefOr[js.Array[Annotation]] = js.native
   val legend: js.UndefOr[Legend] = js.native
   val grid: js.UndefOr[Grid] = js.native
   val polar: js.UndefOr[PolarLayout] = js.native
@@ -151,6 +152,8 @@ class LayoutBuilder(val dict: OptMap) extends JSOptionBuilder[Layout, LayoutBuil
   def width(v: Double) = jsOpt("width", v)
 
   def shapes(v: js.Array[Shape]) = jsOpt("shapes", v)
+
+  def annotations(v: js.Array[Annotation]) = jsOpt("annotations", v)
 
   def legend(v: Legend) = jsOpt("legend", v)
 

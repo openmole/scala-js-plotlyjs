@@ -283,6 +283,25 @@ class ShapeBuilder(val dict: OptMap) extends JSOptionBuilder[Shape, ShapeBuilder
 }
 
 @js.native
+trait Annotation extends js.Object {
+  val x: Datum = js.native
+  val y: Datum = js.native
+  val text: String = js.native
+  val textangle: Datum = js.native
+  val showarrow: Boolean = js.native
+}
+
+object Annotation extends AnnotationBuilder(noOpts)
+
+class AnnotationBuilder(val dict: OptMap) extends JSOptionBuilder[Annotation, AnnotationBuilder](new AnnotationBuilder(_)) {
+  def x(v: Datum) = jsOpt("x", v)
+  def y(v: Datum) = jsOpt("y", v)
+  def text(v: String) = jsOpt("text", v)
+  def textangle(v: Datum) = jsOpt("textangle", v)
+  def showarrow(v: Boolean) = jsOpt("showarrow", v)
+}
+
+@js.native
 trait Margin extends js.Object {
   val t: Int = js.native
   val b: Int = js.native
@@ -622,14 +641,6 @@ object PlotLine extends PlotLineBuilder(noOpts)
 
 class PlotLineBuilder(val dict: OptMap) extends JSOptionBuilder[PlotLine, PlotLineBuilder](new PlotLineBuilder(_)) {
   def color(v: Color) = jsOpt("color", v.toJS)
-
-  /*
-  @deprecated
-  def color(v: Seq[Double]) = jsOpt("color", v.toJSArray)
-
-  @deprecated
-  def colorscale(v: Seq[(Double, Color)]) = jsOpt("colorscale", v.map({ case (value, color) => js.Array(value, color) }).toJSArray)
-  */
 
   def width(v: Double) = jsOpt("width", v)
 
