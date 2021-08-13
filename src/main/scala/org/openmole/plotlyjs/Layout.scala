@@ -95,6 +95,9 @@ trait Layout extends js.Object {
 object Layout extends LayoutBuilder(noOpts)
 
 class LayoutBuilder(val dict: OptMap) extends JSOptionBuilder[Layout, LayoutBuilder](new LayoutBuilder(_)) {
+
+  def asJsOpt(n: String, o: Any) = jsOpt(n, o)
+
   def title(v: String) = jsOpt("title", v)
 
   def hovermode(v: HoverMode) = jsOpt("hovermode", v)
