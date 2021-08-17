@@ -286,6 +286,10 @@ class ShapeBuilder(val dict: OptMap) extends JSOptionBuilder[Shape, ShapeBuilder
 trait Annotation extends js.Object {
   val x: Datum = js.native
   val y: Datum = js.native
+  val xref: String = js.native
+  val yref: String = js.native
+  val xanchor: String = js.native
+  val yanchor: String = js.native
   val text: String = js.native
   val textangle: Datum = js.native
   val showarrow: Boolean = js.native
@@ -296,6 +300,10 @@ object Annotation extends AnnotationBuilder(noOpts)
 class AnnotationBuilder(val dict: OptMap) extends JSOptionBuilder[Annotation, AnnotationBuilder](new AnnotationBuilder(_)) {
   def x(v: Datum) = jsOpt("x", v)
   def y(v: Datum) = jsOpt("y", v)
+  def xref(v: String) = jsOpt("xref", v)
+  def yref(v: String) = jsOpt("yref", v)
+  def xanchor(v: String) = jsOpt("xanchor", v)
+  def yanchor(v: String) = jsOpt("yanchor", v)
   def text(v: String) = jsOpt("text", v)
   def textangle(v: Datum) = jsOpt("textangle", v)
   def showarrow(v: Boolean) = jsOpt("showarrow", v)
