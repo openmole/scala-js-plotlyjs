@@ -9,6 +9,7 @@ import org.openmole.plotlyjs.TickType.TickType
 
 import scala.language.implicitConversions
 import org.querki.jsext._
+import org.scalajs.dom.html
 
 import scala.scalajs.js
 import js.{ Array, | }
@@ -443,7 +444,6 @@ class PlotDataBuilder(val dict: OptMap) extends JSOptionBuilder[PlotData, PlotDa
 
   def yaxis(v: String) = jsOpt("yaxis", v)
 
-  //TODO general or create a ParallelCoordinatesDataBuilder ?
   def dimensions(v: DimensionArray) = jsOpt("dimensions", v)
 
 }
@@ -685,7 +685,7 @@ trait Config extends js.Object {
   val showSources: js.UndefOr[Boolean] = js.native
   val displayModeBar: js.UndefOr[String | Boolean] = js.native
   val modeBarButtonsToRemove: js.UndefOr[js.Array[ModeBarButtons]] = js.native
-  val modeBarButtonsToAdd: js.UndefOr[js.Array[ModeBarButtons]] = js.native
+  val modeBarButtonsToAdd: js.UndefOr[js.Array[ModeBarButtons | ModeBarButton]] = js.native
   val modeBarButtons: js.UndefOr[js.Array[js.Array[ModeBarButtons]]] = js.native
   val displaylogo: js.UndefOr[Boolean] = js.native
   val plotGlPixelRatio: js.UndefOr[Double] = js.native
@@ -730,7 +730,7 @@ class ConfigBuilder(val dict: OptMap) extends JSOptionBuilder[Config, ConfigBuil
 
   def modeBarButtonsToRemove(v: js.Array[ModeBarButtons]) = jsOpt("modeBarButtonsToRemove", v)
 
-  def modeBarButtonsToAdd(v: js.Array[ModeBarButtons]) = jsOpt("modeBarButtonsToAdd", v)
+  def modeBarButtonsToAdd(v: js.Array[ModeBarButtons | ModeBarButton]) = jsOpt("modeBarButtonsToAdd", v)
 
   def modeBarButtons(v: js.Array[js.Array[ModeBarButtons]]) = jsOpt("modeBarButtons", v)
 
@@ -836,6 +836,38 @@ class RangeSelectorBuilder(val dict: OptMap) extends JSOptionBuilder[RangeSelect
   def borderwidth(v: Double) = jsOpt("borderwidth", v)
 
   def font(v: Font) = jsOpt("font", v)
+}
+
+@js.native
+trait Icon extends js.Object {
+  val width: Datum = js.native
+  val height: Datum = js.native
+  val path: String = js.native
+}
+
+object Icon extends IconBuilder(noOpts) {
+  // Add plotly icons here ?
+}
+
+class IconBuilder(val dict: OptMap) extends JSOptionBuilder[Icon, IconBuilder](new IconBuilder(_)) {
+  def width(v: Datum) = jsOpt("width", v)
+  def height(v: Datum) = jsOpt("height", v)
+  def path(v: String) = jsOpt("path", v)
+}
+
+@js.native
+trait ModeBarButton extends js.Object {
+  val name: String = js.native
+  val icon: Icon = js.native
+  val click: js.Function1[html.Div, Unit] = js.native
+}
+
+object ModeBarButton extends ModeBarButtonBuilder(noOpts)
+
+class ModeBarButtonBuilder(val dict: OptMap) extends JSOptionBuilder[ModeBarButton, ModeBarButtonBuilder](new ModeBarButtonBuilder(_)) {
+  def name(v: String) = jsOpt("name", v)
+  def icon(v: Icon) = jsOpt("icon", v)
+  def click(v: js.Function1[html.Div, Unit]) = jsOpt("click", v)
 }
 
 @js.native
