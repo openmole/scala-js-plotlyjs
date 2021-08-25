@@ -843,6 +843,7 @@ trait Icon extends js.Object {
   val width: Datum = js.native
   val height: Datum = js.native
   val path: String = js.native
+  val transform: String = js.native
 }
 
 object Icon extends IconBuilder(noOpts) {
@@ -853,13 +854,14 @@ class IconBuilder(val dict: OptMap) extends JSOptionBuilder[Icon, IconBuilder](n
   def width(v: Datum) = jsOpt("width", v)
   def height(v: Datum) = jsOpt("height", v)
   def path(v: String) = jsOpt("path", v)
+  def transform(v: String) = jsOpt("transform", v)
 }
 
 @js.native
 trait ModeBarButton extends js.Object {
   val name: String = js.native
   val icon: Icon = js.native
-  val click: js.Function1[html.Div, Unit] = js.native
+  val click: js.Function0[Unit] | js.Function1[html.Div, Unit] = js.native
 }
 
 object ModeBarButton extends ModeBarButtonBuilder(noOpts)
@@ -867,6 +869,7 @@ object ModeBarButton extends ModeBarButtonBuilder(noOpts)
 class ModeBarButtonBuilder(val dict: OptMap) extends JSOptionBuilder[ModeBarButton, ModeBarButtonBuilder](new ModeBarButtonBuilder(_)) {
   def name(v: String) = jsOpt("name", v)
   def icon(v: Icon) = jsOpt("icon", v)
+  def click(v: js.Function0[Unit]) = jsOpt("click", v)
   def click(v: js.Function1[html.Div, Unit]) = jsOpt("click", v)
 }
 
