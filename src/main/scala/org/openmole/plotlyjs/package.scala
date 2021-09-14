@@ -53,6 +53,8 @@ package object all extends symbols.PlotSymbols {
 
     def symbol(symbol: PlotSymbol) = plotMarkerBuilder.set(symbol)
 
+    def line(line: PlotLine) = plotMarkerBuilder.set(line)
+
     def color(color: Color) = plotMarkerBuilder.set(color)
 
     def sizeMode(sizeMode: SizeMode) = plotMarkerBuilder.set(sizeMode)
