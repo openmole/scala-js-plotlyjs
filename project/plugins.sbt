@@ -1,7 +1,7 @@
 scalacOptions ++= Seq("-unchecked", "-deprecation")
 
 // Scala.js
-addSbtPlugin("org.scala-js" % "sbt-scalajs" % "1.5.1")
+addSbtPlugin("org.scala-js" % "sbt-scalajs" % "1.8.0")
 
 // Publishing
 addSbtPlugin("com.github.gseitz" % "sbt-release" % "1.0.13")

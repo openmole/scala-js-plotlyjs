@@ -20,8 +20,8 @@ pomExtra := (
 
 releasePublishArtifactsAction := PgpKeys.publishSigned.value
 releaseVersionBump := sbtrelease.Version.Bump.Minor
-releaseTagComment := s"Releasing ${(version in ThisBuild).value}"
-releaseCommitMessage := s"Bump version to ${(version in ThisBuild).value}"
+releaseTagComment := s"Releasing ${(ThisBuild / version).value}"
+releaseCommitMessage := s"Bump version to ${(ThisBuild / version).value}"
 sonatypeProfileName := organisation
 publishConfiguration := publishConfiguration.value.withOverwrite(true)
 
@@ -48,14 +48,14 @@ releaseProcess := Seq[ReleaseStep](
 lazy val plotlyjs: Project = Project(id = projectName, base = file(".")) enablePlugins (ScalaJSPlugin, JSDependenciesPlugin) settings (
   name := projectName,
   organization := organisation,
-  scalaVersion := "2.13.5",
-  crossScalaVersions := Seq("2.12.11", "2.13.5"),
+  scalaVersion := "3.1.0",
+  crossScalaVersions := Seq("2.13.7", "3.1.0"),
   shellPrompt := { state => s"[${Project.extract(state).currentProject.id}] $$ " },
   packageJSDependencies / skip := false,
   // Using webjars beacause plotly.js webpacking does not work properly
   jsDependencies += "org.webjars.bower" % "plotly.js" % "1.54.1" / "dist/plotly.min.js",
   libraryDependencies ++= Seq(
-    "org.scala-js" %%% "scalajs-dom" % "1.1.0",
-    "org.querki" %%% "querki-jsext" % "0.10"
+    "org.scala-js" %%% "scalajs-dom" % "2.0.0",
+    "org.querki" %%% "querki-jsext" % "0.10" cross (CrossVersion.for3Use2_13)
   )
 )
