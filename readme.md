@@ -17,7 +17,7 @@ resolvers += Resolver.jcenterRepo,
 Then, add it to your SBT dependencies:
 
 ```
-libraryDependencies += "org.openmole" %%% "scala-js-plotlyjs" % "1.5.6"
+libraryDependencies += "org.openmole" %%% "scala-js-plotlyjs" % "1.6.0"
 ```
 
 This project provides Scala.js facades. The plotly.js (1.54.1) file resources is embedd in the jars through the jsDependency sbt plugin.
