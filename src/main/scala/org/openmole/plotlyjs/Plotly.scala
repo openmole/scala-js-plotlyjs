@@ -13,15 +13,14 @@ import org.scalajs.dom.html
 
 import scala.scalajs.js
 import js.{ Array, | }
-import scala.scalajs.js.JSConverters.JSRichIterableOnce
-import scala.scalajs.js.annotation.{ JSExport, JSGlobal }
+import scala.scalajs.js.annotation.{ JSExport, JSGlobal, JSImport }
 
 object PlotlyImplicits {
   implicit def elToPlotlyElement[T <: HTMLElement](element: T): PlotlyHTMLElement = element.asInstanceOf[PlotlyHTMLElement]
 
   implicit def thisBuilderToThis[T <: js.Object, B <: JSOptionBuilder[T, _]](b: JSOptionBuilder[T, B]): T = b._result
 
-  implicit def thisBuilderToUndefForThis[T <: js.Object, B <: JSOptionBuilder[T, _]](b: JSOptionBuilder[T, B]): js.UndefOr[T] = b._result
+  //implicit def thisBuilderToUndefForThis[T <: js.Object, B <: JSOptionBuilder[T, _]](b: JSOptionBuilder[T, B]): js.UndefOr[T] = b._result
 }
 
 @js.native
@@ -337,12 +336,12 @@ trait PointsData extends js.Object {
 
 @js.native
 trait PointData extends js.Object {
-  val curveNumber: Int = js.native
-  val pointNumber: Int = js.native
+  val curveNumber: Int | String = js.native
+  val pointNumber: Array[Int] = js.native
   val customdata: String = js.native
-  val x: Double = js.native
-  val y: Double = js.native
-  val z: Double = js.native
+  val x: Double | String = js.native
+  val y: Double | String = js.native
+  val z: Double | String = js.native
   val data: PlotData = js.native
 }
 
@@ -367,7 +366,7 @@ trait PlotData extends js.Object {
   val x: js.UndefOr[DatumArray | DatumMatrix] = js.native
   val y: js.UndefOr[DatumArray | DatumMatrix] = js.native
   val z: js.UndefOr[DatumArray | DatumMatrix] = js.native
-  val customdata: js.UndefOr[js.Array[String]] = js.native
+  val customdata: js.UndefOr[js.Array[String] | js.Array[js.Array[String]]] = js.native
   val text: js.UndefOr[String | js.Array[String]] = js.native
   val line: js.UndefOr[PlotLine] = js.native
   val marker: js.UndefOr[PlotMarker] = js.native
@@ -383,6 +382,8 @@ trait PlotData extends js.Object {
   val errorY: js.UndefOr[ErrorY] = js.native
   val xaxis: js.UndefOr[String] = js.native
   val yaxis: js.UndefOr[String] = js.native
+  val colorscale: js.UndefOr[js.Array[js.Array[Any]]] = js.native // heatmap
+  val showscale: js.UndefOr[Boolean] = js.native // heatmap
 }
 
 object PlotData extends PlotDataBuilder(noOpts)
@@ -397,7 +398,7 @@ class PlotDataBuilder(val dict: OptMap) extends JSOptionBuilder[PlotData, PlotDa
 
   def z(v: DatumArray | DatumMatrix) = jsOpt("z", v)
 
-  def customdata(v: js.Array[String]) = jsOpt("customdata", v)
+  def customdata(v: js.Array[String] | js.Array[js.Array[String]]) = jsOpt("customdata", v)
 
   def text(v: String | js.Array[String]) = jsOpt("text", v)
 
@@ -445,6 +446,10 @@ class PlotDataBuilder(val dict: OptMap) extends JSOptionBuilder[PlotData, PlotDa
   def yaxis(v: String) = jsOpt("yaxis", v)
 
   def dimensions(v: DimensionArray) = jsOpt("dimensions", v)
+
+  def colorScale(v: js.Array[js.Array[Any]]) = jsOpt("colorscale", v)
+
+  def showScale(v: Boolean) = jsOpt("showscale", v)
 
 }
 
