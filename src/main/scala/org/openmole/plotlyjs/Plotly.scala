@@ -366,6 +366,7 @@ trait PlotData extends js.Object {
   val x: js.UndefOr[DatumArray | DatumMatrix] = js.native
   val y: js.UndefOr[DatumArray | DatumMatrix] = js.native
   val z: js.UndefOr[DatumArray | DatumMatrix] = js.native
+  val zmid: js.UndefOr[Double] = js.native
   val customdata: js.UndefOr[js.Array[String] | js.Array[js.Array[String]]] = js.native
   val text: js.UndefOr[String | js.Array[String]] = js.native
   val line: js.UndefOr[PlotLine] = js.native
@@ -373,6 +374,7 @@ trait PlotData extends js.Object {
   val mode: js.UndefOr[PlotMode] = js.native
   val hoveron: js.UndefOr[String] = js.native
   val hoverinfo: js.UndefOr[String] = js.native
+  val hovertemplate: js.UndefOr[String] = js.native
   val fill: js.UndefOr[String] = js.native
   val fillcolor: js.UndefOr[String] = js.native
   val legendgroup: js.UndefOr[String] = js.native
@@ -397,6 +399,8 @@ class PlotDataBuilder(val dict: OptMap) extends JSOptionBuilder[PlotData, PlotDa
   def y(v: DatumArray | DatumMatrix) = jsOpt("y", v)
 
   def z(v: DatumArray | DatumMatrix) = jsOpt("z", v)
+
+  def zmid(v: Double) = jsOpt("zmid", v)
 
   def customdata(v: js.Array[String] | js.Array[js.Array[String]]) = jsOpt("customdata", v)
 
@@ -428,6 +432,8 @@ class PlotDataBuilder(val dict: OptMap) extends JSOptionBuilder[PlotData, PlotDa
   def hoveron(v: String) = jsOpt("hoveron", v)
 
   def hoverinfo(v: String) = jsOpt("hoverinfo", v)
+
+  def hovertemplate(v: String) = jsOpt("hovertemplate", v)
 
   def fill(v: String) = jsOpt("fill", v)
 

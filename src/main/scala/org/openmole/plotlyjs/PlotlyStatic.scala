@@ -1,7 +1,5 @@
 package org.openmole.plotlyjs
 
-import org.scalajs.dom.raw._
-
 import scala.concurrent.Future
 import scala.scalajs.js.Date
 
@@ -22,11 +20,11 @@ object PlotlyStatic {
 
 @js.native
 trait PlotlyStatic extends js.Object {
-  type Root = String | HTMLElement
-  def newPlot(root: Root, scatterData: js.Array[PlotData], layout: js.UndefOr[Layout] = js.undefined, config: js.UndefOr[Config] = js.undefined): PlotlyHTMLElement = js.native
-  def plot(root: Root, data: js.Array[PlotData], layout: js.UndefOr[Layout] = js.undefined, config: js.UndefOr[Config] = js.undefined): PlotlyHTMLElement = js.native
-  def relayout(root: Root, layout: js.UndefOr[Layout] = js.undefined): Future[PlotlyHTMLElement] = js.native
-  def redraw(root: Root): Future[PlotlyHTMLElement] = js.native
+  type Root = String | PlotlyHTMLElement
+  def newPlot(root: Root, scatterData: js.Array[PlotData], layout: js.UndefOr[Layout] = js.undefined, config: js.UndefOr[Config] = js.undefined): Unit = js.native
+  def plot(root: Root, data: js.Array[PlotData], layout: js.UndefOr[Layout] = js.undefined, config: js.UndefOr[Config] = js.undefined): Unit = js.native
+  def relayout(root: Root, layout: js.UndefOr[Layout] = js.undefined): Unit = js.native
+  def redraw(root: Root): Unit = js.native
   def purge(root: Root): Unit = js.native
   val d3: js.Any = js.native
   def restyle(root: Root, aobj: js.Array[PlotData], traces: js.UndefOr[js.Array[Double] | Double] = js.undefined): Future[PlotlyHTMLElement] = js.native
