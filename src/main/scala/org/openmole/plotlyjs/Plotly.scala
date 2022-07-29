@@ -32,6 +32,8 @@ trait PlotlyHTMLElement extends js.Object {
   def on(event: PlotEvent, callback: js.Function1[PointsData, Unit]): Unit
 
   def on(event: PlotEvent, callback: js.Function0[Unit]): Unit
+
+  def data(seq: js.UndefOr[DatumArray | DatumMatrix]): Unit
 }
 
 @js.native
@@ -366,6 +368,8 @@ trait PlotData extends js.Object {
   val x: js.UndefOr[DatumArray | DatumMatrix] = js.native
   val y: js.UndefOr[DatumArray | DatumMatrix] = js.native
   val z: js.UndefOr[DatumArray | DatumMatrix] = js.native
+  val r: js.UndefOr[DatumArray | DatumMatrix] = js.native
+  val theta: js.UndefOr[DatumArray | DatumMatrix] = js.native
   val zmid: js.UndefOr[Double] = js.native
   val customdata: js.UndefOr[js.Array[String] | js.Array[js.Array[String]]] = js.native
   val text: js.UndefOr[String | js.Array[String]] = js.native
@@ -399,6 +403,10 @@ class PlotDataBuilder(val dict: OptMap) extends JSOptionBuilder[PlotData, PlotDa
   def y(v: DatumArray | DatumMatrix) = jsOpt("y", v)
 
   def z(v: DatumArray | DatumMatrix) = jsOpt("z", v)
+
+  def r(v: DatumArray | DatumMatrix) = jsOpt("r", v)
+
+  def theta(v: DatumArray | DatumMatrix) = jsOpt("theta", v)
 
   def zmid(v: Double) = jsOpt("zmid", v)
 
@@ -649,6 +657,7 @@ class PlotMarkerBuilder(val dict: OptMap) extends JSOptionBuilder[PlotMarker, Pl
 @js.native
 trait PlotLine extends js.Object {
   val color: js.UndefOr[Color] = js.native
+  val colorScale: js.UndefOr[js.Array[js.Array[Any]]] = js.native
   val width: js.UndefOr[Double] = js.native
   val dash: js.UndefOr[Dash] = js.native
   val shape: js.UndefOr[String] = js.native
@@ -660,6 +669,8 @@ object PlotLine extends PlotLineBuilder(noOpts)
 
 class PlotLineBuilder(val dict: OptMap) extends JSOptionBuilder[PlotLine, PlotLineBuilder](new PlotLineBuilder(_)) {
   def color(v: Color) = jsOpt("color", v.toJS)
+
+  def colorScale(v: js.Array[js.Array[Any]]) = jsOpt("colorscale", v)
 
   def width(v: Double) = jsOpt("width", v)
 
