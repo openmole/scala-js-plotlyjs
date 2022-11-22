@@ -1,7 +1,7 @@
 package org.openmole.plotlyjs
 
 import org.openmole.plotlyjs.AxisType.AxisType
-import org.openmole.plotlyjs.PlotlyStatic.{ Datum, DatumArray, DatumNumeric, DatumNumericArray }
+import org.openmole.plotlyjs.PlotlyTypes._
 import org.querki.jsext.{ JSOptionBuilder, OptMap, noOpts }
 
 import scala.scalajs.js

@@ -1,10 +1,10 @@
 package org.openmole.plotlyjs
 
-import PlotlyStatic._
 import org.openmole.plotlyjs.ScatterPolar.{ Fill, ThetaUnit }
 import plotlyConts._
 import org.scalajs.dom.raw.HTMLElement
 import PlotMode._
+import org.openmole.plotlyjs.Plotly._
 import org.openmole.plotlyjs.TickType.TickType
 
 import scala.language.implicitConversions
@@ -14,6 +14,7 @@ import org.scalajs.dom.html
 import scala.scalajs.js
 import js.{ Array, | }
 import scala.scalajs.js.annotation.{ JSExport, JSGlobal, JSImport }
+import PlotlyTypes._
 
 object PlotlyImplicits {
   implicit def elToPlotlyElement[T <: HTMLElement](element: T): PlotlyHTMLElement = element.asInstanceOf[PlotlyHTMLElement]
@@ -23,9 +24,9 @@ object PlotlyImplicits {
   //implicit def thisBuilderToUndefForThis[T <: js.Object, B <: JSOptionBuilder[T, _]](b: JSOptionBuilder[T, B]): js.UndefOr[T] = b._result
 }
 
-@js.native
-@JSGlobal
-object Plotly extends PlotlyStatic
+//@js.native
+//@JSGlobal
+//object Plotly extends PlotlyStatic
 
 @js.native
 trait PlotlyHTMLElement extends js.Object {
@@ -686,8 +687,16 @@ class PlotLineBuilder(val dict: OptMap) extends JSOptionBuilder[PlotLine, PlotLi
 @js.native
 trait Font extends js.Object {
   val family: String = js.native
-  val size: Double = js.native
+  val size: Int = js.native
   val color: String = js.native
+}
+
+object Font extends FontBuilder(noOpts)
+
+class FontBuilder(val dict: OptMap) extends JSOptionBuilder[Font, FontBuilder](new FontBuilder(_)) {
+  def family(v: String) = jsOpt("family", v)
+  def size(v: Int) = jsOpt("size", v)
+  def color(v: String) = jsOpt("color", v)
 }
 
 @js.native

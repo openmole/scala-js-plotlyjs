@@ -1,6 +1,6 @@
 package org.openmole.plotlyjs
 
-import org.openmole.plotlyjs.PlotlyStatic.Datum
+import org.openmole.plotlyjs.PlotlyTypes.Datum
 import org.querki.jsext.{ JSOptionBuilder, OptMap, noOpts }
 
 import scala.scalajs.js
@@ -91,6 +91,7 @@ trait Layout extends js.Object {
   val grid: js.UndefOr[Grid] = js.native
   val polar: js.UndefOr[PolarLayout] = js.native
   val ternary: js.UndefOr[TernaryLayout] = js.native
+  val font: js.UndefOr[Font] = js.native
 }
 
 object Layout extends LayoutBuilder(noOpts)
@@ -168,4 +169,6 @@ class LayoutBuilder(val dict: OptMap) extends JSOptionBuilder[Layout, LayoutBuil
   def polar(v: PolarLayout) = jsOpt("polar", v)
 
   def ternary(v: TernaryLayout) = jsOpt("ternary", v)
+
+  def font(v: Font) = jsOpt("font", v)
 }

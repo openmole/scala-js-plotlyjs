@@ -45,17 +45,17 @@ releaseProcess := Seq[ReleaseStep](
   pushChanges
 )
 
-ThisBuild / scalaVersion := "3.1.0"
+ThisBuild / scalaVersion := "3.1.3"
 
-ThisBuild / crossScalaVersions := Seq("2.13.7", "3.1.0")
+ThisBuild / crossScalaVersions := Seq("2.13.8", "3.1.3")
 
-lazy val plotlyjs: Project = Project(id = projectName, base = file(".")) enablePlugins (ScalaJSPlugin) settings(
+lazy val plotlyjs: Project = Project(id = projectName, base = file(".")) enablePlugins (ScalaJSBundlerPlugin) settings(
   name := projectName,
   organization := organisation,
   shellPrompt := { state => s"[${Project.extract(state).currentProject.id}] $$ " },
   // Using webjars beacause plotly.js webpacking does not work properly
   // jsDependencies += "org.webjars.bower" % "plotly.js" % "1.54.1" / "dist/plotly.min.js",
-  //Compile / npmDependencies += "plotly.js"-> "2.8.3",
+  Compile / npmDependencies += "plotly.js"-> "2.13.3",
   libraryDependencies ++= Seq(
     "org.scala-js" %%% "scalajs-dom" % "2.0.0",
     "org.querki" %%% "querki-jsext" % "0.10" cross (CrossVersion.for3Use2_13)

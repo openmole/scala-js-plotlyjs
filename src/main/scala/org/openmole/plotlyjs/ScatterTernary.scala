@@ -1,6 +1,6 @@
 package org.openmole.plotlyjs
 
-import org.openmole.plotlyjs.PlotlyStatic.DatumArray
+import org.openmole.plotlyjs.PlotlyTypes.DatumArray
 import org.querki.jsext.{ JSOptionBuilder, OptMap, noOpts }
 
 import scala.scalajs.js

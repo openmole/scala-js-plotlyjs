@@ -1,8 +1,8 @@
 package org.openmole.plotlyjs
 
-import PlotlyStatic._
 import scala.scalajs.js
 import js.|
+import PlotlyTypes._
 
 object Color {
   type ColorType = String | js.Array[String | Unit | Null] | js.Array[js.Array[String | Unit | Null]] | Datum | DatumArray
