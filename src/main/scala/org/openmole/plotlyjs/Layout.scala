@@ -92,6 +92,8 @@ trait Layout extends js.Object {
   val polar: js.UndefOr[PolarLayout] = js.native
   val ternary: js.UndefOr[TernaryLayout] = js.native
   val font: js.UndefOr[Font] = js.native
+  val paperBgColor: js.UndefOr[Color] = js.native
+  val plotBgColor: js.UndefOr[Color] = js.native
 }
 
 object Layout extends LayoutBuilder(noOpts)
@@ -171,4 +173,9 @@ class LayoutBuilder(val dict: OptMap) extends JSOptionBuilder[Layout, LayoutBuil
   def ternary(v: TernaryLayout) = jsOpt("ternary", v)
 
   def font(v: Font) = jsOpt("font", v)
+
+  def paperBgColor(c: Color) = jsOpt("paper_bgcolor", c)
+
+  def plotBgColor(c: Color) = jsOpt("plot_bgcolor", c)
+
 }

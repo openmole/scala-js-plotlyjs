@@ -303,12 +303,19 @@ object Annotation extends AnnotationBuilder(noOpts)
 class AnnotationBuilder(val dict: OptMap) extends JSOptionBuilder[Annotation, AnnotationBuilder](new AnnotationBuilder(_)) {
   def x(v: Datum) = jsOpt("x", v)
   def y(v: Datum) = jsOpt("y", v)
+
   def xref(v: String) = jsOpt("xref", v)
+
   def yref(v: String) = jsOpt("yref", v)
+
   def xanchor(v: String) = jsOpt("xanchor", v)
+
   def yanchor(v: String) = jsOpt("yanchor", v)
+
   def text(v: String) = jsOpt("text", v)
+
   def textangle(v: Datum) = jsOpt("textangle", v)
+
   def showarrow(v: Boolean) = jsOpt("showarrow", v)
 }
 
@@ -352,6 +359,8 @@ trait PointData extends js.Object {
 trait Dimension extends js.Object {
   val label: js.UndefOr[String] = js.native
   val values: js.UndefOr[DatumArray] = js.native
+  val tickVals: js.UndefOr[DatumArray] = js.native
+  val tickText: js.UndefOr[Array[String]] = js.native
 }
 
 object Dimension extends DimensionBuilder(noOpts)
@@ -361,6 +370,10 @@ class DimensionBuilder(val dict: OptMap) extends JSOptionBuilder[Dimension, Dime
   def label(v: String) = jsOpt("label", v)
 
   def values(v: DatumArray | DatumMatrix) = jsOpt("values", v)
+
+  def tickVals(v: DatumArray | DatumMatrix) = jsOpt("tickvals", v)
+
+  def tickText(v: Array[String]) = jsOpt("ticktext", v)
 }
 
 @js.native
@@ -695,7 +708,9 @@ object Font extends FontBuilder(noOpts)
 
 class FontBuilder(val dict: OptMap) extends JSOptionBuilder[Font, FontBuilder](new FontBuilder(_)) {
   def family(v: String) = jsOpt("family", v)
+
   def size(v: Int) = jsOpt("size", v)
+
   def color(v: String) = jsOpt("color", v)
 }
 
@@ -883,8 +898,11 @@ object Icon extends IconBuilder(noOpts) {
 
 class IconBuilder(val dict: OptMap) extends JSOptionBuilder[Icon, IconBuilder](new IconBuilder(_)) {
   def width(v: Datum) = jsOpt("width", v)
+
   def height(v: Datum) = jsOpt("height", v)
+
   def path(v: String) = jsOpt("path", v)
+
   def transform(v: String) = jsOpt("transform", v)
 }
 
@@ -899,8 +917,11 @@ object ModeBarButton extends ModeBarButtonBuilder(noOpts)
 
 class ModeBarButtonBuilder(val dict: OptMap) extends JSOptionBuilder[ModeBarButton, ModeBarButtonBuilder](new ModeBarButtonBuilder(_)) {
   def name(v: String) = jsOpt("name", v)
+
   def icon(v: Icon) = jsOpt("icon", v)
+
   def click(v: js.Function0[Unit]) = jsOpt("click", v)
+
   def click(v: js.Function1[html.Div, Unit]) = jsOpt("click", v)
 }
 
